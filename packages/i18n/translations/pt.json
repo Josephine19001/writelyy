@@ -1,0 +1,275 @@
+{
+  "marketing": {
+    "nav": {
+      "features": "Recursos",
+      "howItWorks": "Como Funciona",
+      "pricing": "Preços",
+      "signIn": "Entrar",
+      "getStarted": "Começar"
+    },
+    "hero": {
+      "title": "Transforme Texto de IA em Escrita Humana Natural — Instantaneamente",
+      "subtitle": "Transforme conteúdo robótico de IA em escrita autêntica e indetectável que passa por todos os principais detectores de IA. Perfeito para estudantes, criadores e profissionais.",
+      "cta": "Comece a Escrever Melhor",
+      "tryForFree": "Experimente Grátis",
+      "trustedBy": "Confiado por mais de 50.000 escritores em todo o mundo",
+      "noCardRequired": "Não é necessário cartão de crédito"
+    },
+    "features": {
+      "title": "Recursos Essenciais",
+      "subtitle": "Tudo o que você precisa para transformar texto de IA em escrita autêntica e indetectável.",
+      "rewriteToHuman": {
+        "title": "Reescrever para Humano",
+        "description": "Transforme texto de IA em escrita natural e autêntica em segundos"
+      },
+      "aiDetection": {
+        "title": "Detecção de IA",
+        "description": "Contorne todos os principais detectores de IA com 99,9% de taxa de sucesso"
+      },
+      "addCollaborators": {
+        "title": "Adicionar Colaboradores",
+        "description": "Convide membros da equipe e colabore perfeitamente"
+      },
+      "createContexts": {
+        "title": "Criar Diferentes Contextos",
+        "description": "Gerencie múltiplos contextos para tom e estilo consistentes"
+      }
+    },
+    "howItWorks": {
+      "title": "Como o Writelyy Funciona",
+      "subtitle": "Duas maneiras poderosas de transformar seu texto de IA em escrita natural e humana",
+      "browserExtension": {
+        "title": "Extensão do Navegador",
+        "description": "Humanização com um clique diretamente em seus aplicativos favoritos",
+        "steps": {
+          "selectText": {
+            "title": "Selecionar Texto",
+            "description": "Destaque qualquer texto gerado por IA no Google Docs, Gmail, Notion, ou qualquer aplicativo web"
+          },
+          "clickHumanize": {
+            "title": "Clicar em Humanizar",
+            "description": "Aperte o botão mágico do Writelyy que aparece ao lado da sua seleção"
+          },
+          "instantlyRewritten": {
+            "title": "Reescrito Instantaneamente",
+            "description": "Seu texto é transformado no local para soar natural e humano"
+          }
+        }
+      },
+      "webEditor": {
+        "title": "Editor Web",
+        "description": "Editor online poderoso para documentos maiores",
+        "steps": {
+          "pasteContent": {
+            "title": "Colar Conteúdo",
+            "description": "Copie seu texto gerado por IA e cole em nosso editor web"
+          },
+          "chooseTone": {
+            "title": "Escolher Tom",
+            "description": "Selecione entre estilos de escrita Padrão, Profissional, Amigável ou Acadêmico"
+          },
+          "copyUse": {
+            "title": "Copiar e Usar",
+            "description": "Obtenha seu texto humanizado e use onde precisar"
+          }
+        }
+      },
+      "processingTime": "Tempo de processamento: Menos de 2 segundos"
+    },
+    "integrations": {
+      "title": "Integração Perfeita",
+      "subtitle": "Writelyy funciona diretamente em suas ferramentas de escrita favoritas. Chega de alternar entre aplicativos ou copiar e colar texto.",
+      "badge": "Funciona Em Qualquer Lugar Que Você Escreva",
+      "browserExtension": {
+        "title": "Extensão do Navegador",
+        "description": "Funciona em qualquer lugar que você escreva - Google Docs, Gmail, Notion, e mais",
+        "features": {
+          "oneClick": "Reescrita com um clique",
+          "anyField": "Funciona em qualquer campo de texto",
+          "instant": "Transformação instantânea"
+        }
+      },
+      "cta": {
+        "title": "Pronto para transformar seu fluxo de trabalho de escrita?",
+        "subtitle": "Junte-se a milhares de escritores que usam Writelyy para criar conteúdo autêntico e indetectável em todas as suas plataformas favoritas.",
+        "startWriting": "Comece a Escrever Melhor",
+        "requestIntegration": "Solicitar Integração"
+      }
+    },
+    "reviews": {
+      "title": "Confiado por estudantes, criadores e profissionais",
+      "subtitle": "De ensaios universitários a conteúdo viral de redes sociais, veja como Writelyy ajuda nossos usuários a criar escrita autêntica e indetectável em cada plataforma.",
+      "testimonials": {
+        "student": {
+          "name": "Sarah Chen",
+          "role": "Estudante Universitária",
+          "company": "UCLA",
+          "text": "Meus ensaios agora passam pelo Turnitin sem problemas! Writelyy faz minha pesquisa assistida por IA soar completamente natural e acadêmica. Chega de estresse sobre detecção de IA.",
+          "category": "Estudante"
+        },
+        "creator": {
+          "name": "Marcus Rodriguez",
+          "role": "Criador de Conteúdo",
+          "company": "YouTube • 250K inscritos",
+          "text": "Mudança radical para minhas legendas do TikTok e LinkedIn! Posso produzir conteúdo que soa autêntico em segundos. Minhas taxas de engajamento nunca estiveram tão altas.",
+          "category": "Criador"
+        },
+        "professional": {
+          "name": "Dra. Emma Wilson",
+          "role": "Consultora Empresarial",
+          "company": "Strategic Solutions Inc",
+          "text": "Relatórios e propostas de clientes que costumavam levar horas agora levam minutos. O tom profissional é perfeito, e contorna todos os detectores de IA corporativos perfeitamente.",
+          "category": "Profissional"
+        }
+      },
+      "stats": {
+        "happyWriters": {
+          "number": "50K+",
+          "label": "Escritores Felizes",
+          "sublabel": "Estudantes, Criadores e Profissionais"
+        },
+        "wordsHumanized": {
+          "number": "5M+",
+          "label": "Palavras Humanizadas",
+          "sublabel": "Ensaios, Posts e Artigos"
+        },
+        "bypassSuccess": {
+          "number": "99.9%",
+          "label": "Sucesso de Contorno",
+          "sublabel": "Turnitin, GPTZero e Mais"
+        },
+        "processingTime": {
+          "number": "<2s",
+          "label": "Tempo de Processamento",
+          "sublabel": "Resultados Ultra Rápidos"
+        }
+      },
+      "trustIndicators": {
+        "universities": "Confiado pelas melhores universidades",
+        "creators": "Usado por criadores de conteúdo em todo o mundo",
+        "security": "Segurança de nível empresarial"
+      }
+    },
+    "pricing": {
+      "recommended": "Recomendado",
+      "monthly": "Mensal",
+      "yearly": "Anual",
+      "subscribe": "Inscrever-se",
+      "subscribeToTitle": "Inscrever-se no {title}",
+      "planFeatures": {
+        "starter": {
+          "title": "Inicial",
+          "description": "Perfeito para começar com Writelyy"
+        },
+        "pro": {
+          "title": "Pro",
+          "description": "Para escritores regulares, profissionais e pequenas equipes"
+        },
+        "unlimited": {
+          "title": "Ilimitado",
+          "description": "Para usuários avançados, grandes equipes e organizações"
+        }
+      }
+    }
+  },
+  "auth": {
+    "errors": {
+      "invalidEmailOrPassword": "As credenciais inseridas são inválidas. Verifique-as e tente novamente.",
+      "unknown": "Algo deu errado. Tente novamente.",
+      "userNotFound": "Este usuário não existe",
+      "failedToCreateUser": "Não foi possível criar o usuário. Tente novamente.",
+      "failedToCreateSession": "Não foi possível criar uma sessão. Tente novamente.",
+      "failedToUpdateUser": "Não foi possível atualizar o usuário. Tente novamente.",
+      "failedToGetSession": "Não foi possível obter a sessão.",
+      "invalidPassword": "A senha inserida está incorreta.",
+      "invalidEmail": "O email inserido é inválido.",
+      "invalidToken": "O token inserido é inválido ou expirou.",
+      "credentialAccountNotFound": "Conta não encontrada.",
+      "emailCanNotBeUpdated": "O email não pôde ser atualizado. Tente novamente.",
+      "emailNotVerified": "Verifique seu email antes de fazer login.",
+      "failedToGetUserInfo": "Não foi possível carregar as informações do usuário.",
+      "idTokenNotSupported": "Token ID não é suportado.",
+      "passwordTooLong": "A senha é muito longa.",
+      "passwordTooShort": "A senha é muito curta.",
+      "providerNotFound": "Este provedor não é suportado.",
+      "socialAccountAlreadyLinked": "Esta conta já está vinculada a um usuário.",
+      "userEmailNotFound": "Email não encontrado.",
+      "userAlreadyExists": "Este usuário já existe.",
+      "invalidInvitation": "O convite é inválido ou expirou.",
+      "sessionExpired": "A sessão expirou.",
+      "failedToUnlinkLastAccount": "Falha ao desvincular conta",
+      "accountNotFound": "Conta não encontrada"
+    },
+    "forgotPassword": {
+      "backToSignin": "Voltar ao login",
+      "email": "Email",
+      "hints": {
+        "linkNotSent": {
+          "message": "Desculpe, mas não conseguimos enviar um link para redefinir sua senha. Tente novamente mais tarde.",
+          "title": "Link não enviado"
+        },
+        "linkSent": {
+          "message": "Enviamos um link para você continuar. Verifique sua caixa de entrada.",
+          "title": "Link enviado"
+        }
+      },
+      "message": "Insira seu endereço de email e enviaremos um link para redefinir sua senha.",
+      "submit": "Enviar link",
+      "title": "Esqueceu sua senha?"
+    },
+    "login": {
+      "continueWith": "Ou continuar com",
+      "createAnAccount": "Criar uma conta",
+      "dontHaveAnAccount": "Ainda não tem uma conta?",
+      "forgotPassword": "Esqueceu a senha?",
+      "hints": {
+        "invalidCredentials": "O email ou senha inseridos são inválidos. Tente novamente.",
+        "linkSent": {
+          "message": "Enviamos um link para você continuar. Verifique sua caixa de entrada.",
+          "title": "Link enviado"
+        }
+      },
+      "loginWithPasskey": "Fazer login com chave de acesso",
+      "modes": {
+        "magicLink": "Link mágico",
+        "password": "Senha"
+      },
+      "submit": "Entrar",
+      "subtitle": "Insira suas credenciais para fazer login.",
+      "title": "Bem-vindo de volta",
+      "sendMagicLink": "Enviar link mágico"
+    },
+    "resetPassword": {
+      "backToSignin": "Voltar ao login",
+      "hints": {
+        "error": "Desculpe, mas não conseguimos redefinir sua senha. Tente novamente.",
+        "success": "Sua senha foi redefinida com sucesso."
+      },
+      "message": "Insira uma nova senha.",
+      "newPassword": "Nova senha",
+      "submit": "Redefinir senha",
+      "title": "Redefina sua senha"
+    },
+    "signup": {
+      "alreadyHaveAccount": "Já tem uma conta?",
+      "email": "Email",
+      "hints": {
+        "signupFailed": "Desculpe, mas não conseguimos criar sua conta. Tente novamente mais tarde.",
+        "verifyEmail": "Enviamos um link para verificar seu email. Verifique sua caixa de entrada."
+      },
+      "message": "Estamos felizes que você queira se juntar a nós. Preencha o formulário abaixo para criar sua conta.",
+      "name": "Nome",
+      "password": "Senha",
+      "signIn": "Entrar",
+      "submit": "Criar conta",
+      "title": "Criar uma conta"
+    },
+    "verify": {
+      "title": "Verifique sua conta",
+      "code": "Senha de uso único",
+      "submit": "Verificar",
+      "backToSignin": "Voltar ao login",
+      "message": "Insira a senha de uso único do seu aplicativo autenticador para continuar."
+    }
+  }
+}

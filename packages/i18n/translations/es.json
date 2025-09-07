@@ -1,0 +1,615 @@
+{
+  "marketing": {
+    "nav": {
+      "humanizer": "Humanizador",
+      "detector": "Detector",
+      "features": "Características", 
+      "howItWorks": "Cómo Funciona",
+      "pricing": "Precios",
+      "contact": "Contacto",
+      "signIn": "Iniciar Sesión",
+      "getStarted": "Empezar"
+    },
+    "footer": {
+      "allRightsReserved": "Todos los derechos reservados.",
+      "terms": "Términos",
+      "privacy": "Privacidad"
+    },
+    "hero": {
+      "title1": "Convierte el Texto de IA en",
+      "title2": "Escritura Humana Natural",
+      "title3": "Instante",
+      "subtitle": "Transforma contenido robótico de IA en escritura auténtica e indetectable que pasa todos los principales detectores de IA.",
+      "cta": "Empieza a Escribir Mejor",
+      "tryForFree": "Prueba Gratis",
+      "trustedBy": "Confiado por más de 50,000 escritores en todo el mundo",
+      "noCardRequired": "No se requiere tarjeta de crédito"
+    },
+    "features": {
+      "title": "Características Esenciales",
+      "subtitle": "Todo lo que necesitas para transformar texto de IA en escritura auténtica e indetectable.",
+      "rewriteToHuman": {
+        "title": "Reescribir a Humano",
+        "description": "Transforma texto de IA en escritura natural y auténtica en segundos"
+      },
+      "aiDetection": {
+        "title": "Detección de IA",
+        "description": "Evita todos los principales detectores de IA con 99.9% de tasa de éxito"
+      },
+      "addCollaborators": {
+        "title": "Añadir Colaboradores",
+        "description": "Invita a miembros del equipo y colabora sin problemas"
+      },
+      "createContexts": {
+        "title": "Crear Diferentes Contextos",
+        "description": "Gestiona múltiples contextos para tono y estilo consistentes"
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona Writelyy",
+      "subtitle": "Dos formas poderosas de transformar tu texto de IA en escritura natural y humana",
+      "browserExtension": {
+        "title": "Extensión del Navegador",
+        "description": "Humanización de un clic directamente en tus aplicaciones favoritas",
+        "steps": {
+          "selectText": {
+            "title": "Seleccionar Texto",
+            "description": "Resalta cualquier texto generado por IA en Google Docs, Gmail, Notion, o cualquier aplicación web"
+          },
+          "clickHumanize": {
+            "title": "Hacer Clic en Humanizar",
+            "description": "Presiona el botón mágico de Writelyy que aparece junto a tu selección"
+          },
+          "instantlyRewritten": {
+            "title": "Reescrito Instantáneamente",
+            "description": "Tu texto se transforma en el lugar para sonar natural y humano"
+          }
+        }
+      },
+      "webEditor": {
+        "title": "Editor Web",
+        "description": "Editor en línea poderoso para documentos más grandes",
+        "steps": {
+          "pasteContent": {
+            "title": "Pegar Contenido",
+            "description": "Copia tu texto generado por IA y pégalo en nuestro editor web"
+          },
+          "chooseTone": {
+            "title": "Elegir Tono",
+            "description": "Selecciona entre estilos de escritura Predeterminado, Profesional, Amigable o Académico"
+          },
+          "copyUse": {
+            "title": "Copiar y Usar",
+            "description": "Obtén tu texto humanizado y úsalo donde lo necesites"
+          }
+        }
+      },
+      "processingTime": "Tiempo de procesamiento: Menos de 2 segundos"
+    },
+    "integrations": {
+      "title": "Integración Perfecta",
+      "subtitle": "Writelyy funciona directamente en tus herramientas de escritura favoritas. No más cambios entre aplicaciones o copiar y pegar texto.",
+      "badge": "Funciona En Todas Partes Donde Escribes",
+      "browserExtension": {
+        "title": "Extensión del Navegador",
+        "description": "Funciona en todas partes donde escribes - Google Docs, Gmail, Notion, y más",
+        "features": {
+          "oneClick": "Reescritura de un clic",
+          "anyField": "Funciona en cualquier campo de texto",
+          "instant": "Transformación instantánea"
+        }
+      },
+      "cta": {
+        "title": "¿Listo para transformar tu flujo de trabajo de escritura?",
+        "subtitle": "Únete a miles de escritores que usan Writelyy para crear contenido auténtico e indetectable en todas sus plataformas favoritas.",
+        "startWriting": "Empieza a Escribir Mejor",
+        "requestIntegration": "Solicitar Integración"
+      }
+    },
+    "reviews": {
+      "title": "Confiado por estudiantes, creadores y profesionales",
+      "subtitle": "Desde ensayos universitarios hasta contenido viral de redes sociales, mira cómo Writelyy ayuda a nuestros usuarios a crear escritura auténtica e indetectable en cada plataforma.",
+      "testimonials": {
+        "student": {
+          "name": "Sarah Chen",
+          "role": "Estudiante Universitaria",
+          "company": "UCLA",
+          "text": "¡Mis ensayos ahora pasan Turnitin sin problemas! Writelyy hace que mi investigación asistida por IA suene completamente natural y académica. No más estrés sobre la detección de IA.",
+          "category": "Estudiante"
+        },
+        "creator": {
+          "name": "Marcus Rodriguez",
+          "role": "Creador de Contenido",
+          "company": "YouTube • 250K subs",
+          "text": "¡Un cambio radical para mis subtítulos de TikTok y LinkedIn! Puedo crear contenido que suena auténtico en segundos. Mis tasas de participación nunca han sido más altas.",
+          "category": "Creador"
+        },
+        "professional": {
+          "name": "Dra. Emma Wilson",
+          "role": "Consultora Empresarial",
+          "company": "Strategic Solutions Inc",
+          "text": "Los informes y propuestas de clientes que solían tomar horas ahora toman minutos. El tono profesional es perfecto, y evita todos los detectores de IA corporativos sin problemas.",
+          "category": "Profesional"
+        }
+      },
+      "stats": {
+        "happyWriters": {
+          "number": "50K+",
+          "label": "Escritores Felices",
+          "sublabel": "Estudiantes, Creadores y Profesionales"
+        },
+        "wordsHumanized": {
+          "number": "5M+",
+          "label": "Palabras Humanizadas",
+          "sublabel": "Ensayos, Publicaciones y Artículos"
+        },
+        "bypassSuccess": {
+          "number": "99.9%",
+          "label": "Éxito de Evasión",
+          "sublabel": "Turnitin, GPTZero y Más"
+        },
+        "processingTime": {
+          "number": "<2s",
+          "label": "Tiempo de Procesamiento",
+          "sublabel": "Resultados Ultra Rápidos"
+        }
+      },
+      "trustIndicators": {
+        "universities": "Confiado por las mejores universidades",
+        "creators": "Usado por creadores de contenido en todo el mundo",
+        "security": "Seguridad de nivel empresarial"
+      }
+    },
+    "aiDetector": {
+      "badge": "Pasa Todos los Principales Detectores de IA",
+      "title": "Evita Cada Detector de IA",
+      "subtitle": "Nuestros algoritmos avanzados están específicamente diseñados para pasar todas las principales herramientas de detección de IA. Tu contenido será indetectable y completamente humano.",
+      "statusBypassed": "EVITADO",
+      "centerStatus": "NO DETECTADO",
+      "stats": {
+        "successRate": {
+          "number": "99.9%",
+          "label": "Tasa de Éxito"
+        },
+        "detectorsBypassed": {
+          "number": "10+",
+          "label": "Detectores Evitados"
+        },
+        "processingTime": {
+          "number": "<2s",
+          "label": "Tiempo de Procesamiento"
+        }
+      }
+    },
+    "pricing": {
+      "recommended": "Recomendado",
+      "monthly": "Mensual",
+      "yearly": "Anual",
+      "subscribe": "Suscribirse",
+      "subscribeToTitle": "Suscribirse a {title}",
+      "month": "mes",
+      "year": "año",
+      "planFeatures": {
+        "starter": {
+          "title": "Inicial",
+          "description": "Perfecto para empezar con Writelyy",
+          "features": {
+            "0": "15,000 palabras/mes",
+            "1": "500 palabras por solicitud",
+            "2": "Evita todos los detectores de IA principales (incl. Turnitin & GPTZero)",
+            "3": "Motor de Humanización Básico",
+            "4": "Reescritura sin errores",
+            "5": "Editor de texto web",
+            "6": "Extensión Google Docs & Notion",
+            "7": "Soporte por email",
+            "8": "Crear y gestionar hasta 3 contextos"
+          }
+        },
+        "pro": {
+          "title": "Pro",
+          "description": "Para escritores regulares, profesionales y equipos pequeños",
+          "features": {
+            "0": "75,000 palabras/mes",
+            "1": "1,500 palabras por solicitud",
+            "2": "Evita todos los detectores de IA principales (incl. Turnitin & GPTZero)",
+            "3": "Motor de Humanización Avanzado",
+            "4": "Reescritura libre de plagio",
+            "5": "Resultados indetectables",
+            "6": "Extensión Google Docs & Notion",
+            "7": "Verificaciones gramaticales ilimitadas",
+            "8": "Modo rápido",
+            "9": "Soporte prioritario",
+            "10": "Invitar miembros del equipo (hasta 5)",
+            "11": "Crear y gestionar hasta 10 contextos"
+          }
+        },
+        "unlimited": {
+          "title": "Ilimitado",
+          "description": "Para usuarios avanzados, equipos grandes y organizaciones",
+          "features": {
+            "0": "Palabras ilimitadas",
+            "1": "3,000 palabras por solicitud",
+            "2": "Evita todos los detectores de IA principales (incl. Turnitin & GPTZero)",
+            "3": "Motor de Humanización Avanzado",
+            "4": "Salida de escritura ultra-humana",
+            "5": "Reescritura libre de plagio y sin errores",
+            "6": "Verificaciones gramaticales ilimitadas",
+            "7": "Todos los idiomas compatibles (50+)",
+            "8": "Modo rápido",
+            "9": "Soporte prioritario",
+            "10": "Invitar miembros del equipo ilimitados",
+            "11": "Crear y gestionar contextos ilimitados"
+          }
+        }
+      }
+    },
+    "pricingSection": {
+      "title": "Precios simples y transparentes",
+      "subtitle": "Obtén 1,000 palabras gratis al registrarte. Elige tu plan."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "description": "¿Tienes alguna pregunta? Te tenemos cubierto.",
+      "items": {
+        "howItWorks": {
+          "question": "¿Cómo funciona realmente Writelyy?",
+          "answer": "¡Es sorprendentemente simple! Solo pega tu texto generado por IA en nuestro editor o resalta texto con nuestra extensión de navegador, luego haz clic en \"Humanizar\". Nuestra IA avanzada lo reescribe para que suene natural y humano manteniendo el significado original intacto. ¡Toma menos de 2 segundos y funciona como magia!"
+        },
+        "bypassDetectors": {
+          "question": "¿Realmente evitará los detectores de IA?",
+          "answer": "¡Absolutamente! Nuestro motor de humanización avanzado logra una tasa de éxito del 99.9% contra todas las principales herramientas de detección de IA incluyendo Turnitin, GPTZero, ZeroGPT, Originality.ai, y CopyLeaks. Utilizamos algoritmos sofisticados que crean patrones de escritura humana natural que estos detectores simplemente no pueden identificar."
+        },
+        "pricing": {
+          "question": "¿Cuánto cuesta?",
+          "answer": "¡Obtén 1,000 palabras gratis al registrarte! Nuestros planes comienzan en solo $4.99/mes por 15,000 palabras (Inicial), $12.99/mes por 75,000 palabras (Pro), o $24.99/mes por palabras ilimitadas. Sin suscripciones engañosas o tarifas ocultas. Cancela en cualquier momento. Tu presupuesto nos amará."
+        },
+        "privacy": {
+          "question": "¿Mi contenido está seguro y privado?",
+          "answer": "¡100%! No almacenamos tu texto después del procesamiento, y todo está encriptado en tránsito. Nadie puede ver lo que estás reescribiendo. No registramos tu contenido ni vendemos tus datos. Tu privacidad es sagrada para nosotros."
+        },
+        "features": {
+          "question": "¿Qué características avanzadas ofrecen?",
+          "answer": "Ofrecemos múltiples tonos de escritura, gestión de contexto para proyectos consistentes, características de colaboración en equipo, verificaciones gramaticales ilimitadas, modo de procesamiento rápido, y soporte para más de 50 idiomas. Los planes Pro e Ilimitado incluyen motores de humanización avanzados y límites de palabras más altos por solicitud."
+        },
+        "academic": {
+          "question": "¿Puedo usar esto para escritura académica?",
+          "answer": "¡Absolutamente! Nuestro tono Académico y motor de humanización avanzado están específicamente diseñados para escritura académica. Con hasta 3,000 palabras por solicitud y evitación garantizada de detectores de IA académicos como Turnitin, es perfecto para ensayos, trabajos de investigación y tesis mientras mantiene la integridad académica."
+        },
+        "installation": {
+          "question": "¿Necesito instalar algo?",
+          "answer": "¡No! Puedes usar nuestro editor web instantáneamente - solo copia, pega y humaniza. ¿Quieres aún más conveniencia? Instala nuestra extensión opcional de navegador para reescribir texto directamente en Google Docs, Gmail, Notion, o cualquier campo de texto. ¡Ambos funcionan perfectamente!"
+        },
+        "guarantee": {
+          "question": "¿Qué pasa si no estoy satisfecho con los resultados?",
+          "answer": "Ofrecemos una garantía de devolución de dinero de 30 días en todos los planes pagos. Si no estás feliz con Writelyy, solo contacta a nuestro equipo de soporte dentro de 30 días para un reembolso completo. Sin preguntas, sin complicaciones. ¡Estamos tan seguros de que te encantará!"
+        }
+      }
+    }
+  },
+  "auth": {
+    "errors": {
+      "invalidEmailOrPassword": "Las credenciales que ingresaste son inválidas. Por favor verifícalas e inténtalo de nuevo.",
+      "unknown": "Algo salió mal. Por favor inténtalo de nuevo.",
+      "userNotFound": "Este usuario no existe",
+      "failedToCreateUser": "No se pudo crear el usuario. Por favor inténtalo de nuevo.",
+      "failedToCreateSession": "No se pudo crear una sesión. Por favor inténtalo de nuevo.",
+      "failedToUpdateUser": "No se pudo actualizar el usuario. Por favor inténtalo de nuevo.",
+      "failedToGetSession": "No se pudo obtener la sesión.",
+      "invalidPassword": "La contraseña ingresada es incorrecta.",
+      "invalidEmail": "El email ingresado es inválido.",
+      "invalidToken": "El token que ingresaste es inválido o ha expirado.",
+      "credentialAccountNotFound": "Cuenta no encontrada.",
+      "emailCanNotBeUpdated": "El email no pudo ser actualizado. Por favor inténtalo de nuevo.",
+      "emailNotVerified": "Por favor verifica tu email antes de iniciar sesión.",
+      "failedToGetUserInfo": "No se pudo cargar la información del usuario.",
+      "idTokenNotSupported": "El token ID no es compatible.",
+      "passwordTooLong": "La contraseña es demasiado larga.",
+      "passwordTooShort": "La contraseña es demasiado corta.",
+      "providerNotFound": "Este proveedor no es compatible.",
+      "socialAccountAlreadyLinked": "Esta cuenta ya está vinculada a un usuario.",
+      "userEmailNotFound": "Email no encontrado.",
+      "userAlreadyExists": "Este usuario ya existe.",
+      "invalidInvitation": "La invitación es inválida o ha expirado.",
+      "sessionExpired": "La sesión ha expirado.",
+      "failedToUnlinkLastAccount": "Fallo al desvincular la cuenta",
+      "accountNotFound": "Cuenta no encontrada"
+    },
+    "forgotPassword": {
+      "backToSignin": "Volver al inicio de sesión",
+      "email": "Email",
+      "hints": {
+        "linkNotSent": {
+          "message": "Lo sentimos, pero no pudimos enviarte un enlace para restablecer tu contraseña. Por favor inténtalo más tarde.",
+          "title": "Enlace no enviado"
+        },
+        "linkSent": {
+          "message": "Te hemos enviado un enlace para continuar. Por favor revisa tu bandeja de entrada.",
+          "title": "Enlace enviado"
+        }
+      },
+      "message": "Por favor ingresa tu dirección de email y te enviaremos un enlace para restablecer tu contraseña.",
+      "submit": "Enviar enlace",
+      "title": "¿Olvidaste tu contraseña?"
+    },
+    "login": {
+      "continueWith": "O continuar con",
+      "createAnAccount": "Crear una cuenta",
+      "dontHaveAnAccount": "¿Aún no tienes una cuenta?",
+      "forgotPassword": "¿Olvidaste la contraseña?",
+      "hints": {
+        "invalidCredentials": "El email o contraseña que ingresaste son inválidos. Por favor inténtalo de nuevo.",
+        "linkSent": {
+          "message": "Te hemos enviado un enlace para continuar. Por favor revisa tu bandeja de entrada.",
+          "title": "Enlace enviado"
+        }
+      },
+      "loginWithPasskey": "Iniciar sesión con clave de acceso",
+      "modes": {
+        "magicLink": "Enlace mágico",
+        "password": "Contraseña"
+      },
+      "submit": "Iniciar sesión",
+      "subtitle": "Por favor ingresa tus credenciales para iniciar sesión.",
+      "title": "Bienvenido de vuelta",
+      "sendMagicLink": "Enviar enlace mágico"
+    },
+    "resetPassword": {
+      "backToSignin": "Volver al inicio de sesión",
+      "hints": {
+        "error": "Lo sentimos, pero no pudimos restablecer tu contraseña. Por favor inténtalo de nuevo.",
+        "success": "Tu contraseña ha sido restablecida exitosamente."
+      },
+      "message": "Por favor ingresa una nueva contraseña.",
+      "newPassword": "Nueva contraseña",
+      "submit": "Restablecer contraseña",
+      "title": "Restablece tu contraseña"
+    },
+    "signup": {
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+      "email": "Email",
+      "hints": {
+        "signupFailed": "Lo sentimos, pero no pudimos crear tu cuenta. Por favor inténtalo más tarde.",
+        "verifyEmail": "Te hemos enviado un enlace para verificar tu email. Por favor revisa tu bandeja de entrada."
+      },
+      "message": "Estamos felices de que quieras unirte a nosotros. Por favor completa el formulario a continuación para crear tu cuenta.",
+      "name": "Nombre",
+      "password": "Contraseña",
+      "signIn": "Iniciar sesión",
+      "submit": "Crear cuenta",
+      "title": "Crear una cuenta"
+    },
+    "verify": {
+      "title": "Verifica tu cuenta",
+      "code": "Contraseña de un solo uso",
+      "submit": "Verificar",
+      "backToSignin": "Volver al inicio de sesión",
+      "message": "Ingresa la contraseña de un solo uso de tu aplicación de autenticación para continuar."
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "description": "Ponte en contacto con nuestro equipo. ¡Nos encantaría saber de ti!",
+    "email": {
+      "title": "Envíanos un Email",
+      "description": "Envíanos un email y te responderemos dentro de 24 horas.",
+      "composeButton": "Redactar Email",
+      "subject": "Solicitud de Contacto - Writelyy AI",
+      "body": "Hola,\n\nEstoy interesado en aprender más sobre Writelyy AI.\n\n[Por favor describe tu pregunta o cómo podemos ayudarte]\n\nSaludos cordiales,\n[Tu Nombre]"
+    },
+    "quickQuestions": {
+      "title": "Preguntas Rápidas",
+      "description": "Para preguntas rápidas sobre características, precios, o cómo funciona Writelyy."
+    },
+    "businessInquiries": {
+      "title": "Consultas Comerciales",
+      "description": "Para asociaciones, soluciones empresariales, o integraciones personalizadas."
+    },
+    "responseTime": {
+      "title": "Tiempo de Respuesta:",
+      "description": "Típicamente respondemos dentro de 24 horas durante días laborables. Para asuntos urgentes, por favor menciona \"URGENTE\" en tu línea de asunto."
+    }
+  },
+  "app": {
+    "menu": {
+      "accountSettings": "Configuración de cuenta",
+      "admin": "Admin",
+      "aiChatbot": "Chatbot IA",
+      "organizationSettings": "Configuración de contexto",
+      "start": "Inicio"
+    },
+    "platforms": {
+      "dashboard": "Panel",
+      "commentsAnalyzer": "Analizador de comentarios",
+      "requests": "Tablero de comentarios",
+      "trends": "Buscador de tendencias",
+      "viralityChecker": "Verificador de viralidad",
+      "brainDump": "Descarga mental"
+    },
+    "userMenu": {
+      "accountSettings": "Configuración de cuenta",
+      "contextSettings": "Configuración de contexto",
+      "colorMode": "Modo de color",
+      "documentation": "Documentación",
+      "home": "Inicio",
+      "logout": "Cerrar sesión"
+    }
+  },
+  "settings": {
+    "accountSettings": {
+      "title": "Configuración de Cuenta",
+      "description": "Gestiona la configuración y preferencias de tu cuenta personal"
+    },
+    "contextSettings": {
+      "title": "Configuración de Contexto",
+      "description": "Gestiona la configuración del contexto.",
+      "contextLogo": "Logo del contexto",
+      "contextLogoDescription": "Sube un logo para tu contexto.",
+      "contextName": "Nombre del contexto",
+      "deleteContext": "Eliminar contexto",
+      "deleteContextDescription": "Elimina permanentemente tu contexto. Una vez que elimines tu contexto, no hay vuelta atrás. Para confirmar, ingresa tu contraseña a continuación:"
+    },
+    "account": {
+      "avatar": {
+        "description": "Para cambiar tu avatar, haz clic en la imagen de este bloque y selecciona un archivo de tu computadora para subir.",
+        "notifications": {
+          "error": "No se pudo actualizar el avatar",
+          "success": "El avatar se actualizó correctamente"
+        },
+        "title": "Tu avatar"
+      },
+      "changeEmail": {
+        "description": "Para cambiar tu email, ingresa el nuevo email y presiona guardar. Tendrás que confirmar el nuevo email antes de que se active.",
+        "notifications": {
+          "error": "No se pudo actualizar el email",
+          "success": "El email se actualizó correctamente"
+        },
+        "title": "Tu email"
+      },
+      "changeName": {
+        "notifications": {
+          "error": "No se pudo actualizar el nombre",
+          "success": "El nombre se actualizó correctamente"
+        },
+        "title": "Tu nombre"
+      },
+      "deleteAccount": {
+        "confirmation": "¿Estás seguro de que quieres eliminar tu cuenta?",
+        "description": "Eliminar permanentemente tu cuenta. Una vez que elimines tu cuenta, no hay vuelta atrás. Para confirmar, por favor ingresa tu contraseña abajo:",
+        "notifications": {
+          "error": "No se pudo eliminar la cuenta",
+          "success": "La cuenta se eliminó correctamente"
+        },
+        "submit": "Eliminar cuenta",
+        "title": "Eliminar cuenta"
+      },
+      "dangerZone": {
+        "title": "Zona de peligro"
+      },
+      "language": {
+        "description": "Para cambiar el idioma de la aplicación para tu cuenta, selecciona un idioma de la lista y haz clic en guardar.",
+        "notifications": {
+          "error": "No se pudo actualizar el idioma",
+          "success": "El idioma se actualizó correctamente"
+        },
+        "title": "Tu idioma"
+      },
+      "security": {
+        "title": "Seguridad",
+        "activeSessions": {
+          "description": "Estas son todas las sesiones activas de tu cuenta. Haz clic en la X para finalizar una sesión específica.",
+          "title": "Sesiones activas",
+          "notifications": {
+            "revokeSession": {
+              "success": "Sesión revocada"
+            }
+          },
+          "currentSession": "Sesión actual"
+        },
+        "changePassword": {
+          "currentPassword": "Contraseña actual",
+          "newPassword": "Nueva contraseña",
+          "notifications": {
+            "error": "No se pudo actualizar la contraseña",
+            "success": "La contraseña se actualizó correctamente"
+          },
+          "title": "Tu contraseña"
+        },
+        "connectedAccounts": {
+          "connect": "Conectar",
+          "disconnect": "Desconectar",
+          "title": "Cuentas conectadas"
+        },
+        "passkeys": {
+          "description": "Usa llaves de acceso como una alternativa segura a las contraseñas.",
+          "notifications": {
+            "addPasskey": {
+              "error": {
+                "title": "No se pudo agregar la llave de acceso"
+              },
+              "success": {
+                "title": "Llave de acceso agregada"
+              }
+            },
+            "deletePasskey": {
+              "error": {
+                "title": "No se pudo eliminar la llave de acceso"
+              },
+              "loading": {
+                "title": "Eliminando llave de acceso..."
+              },
+              "success": {
+                "title": "Llave de acceso eliminada"
+              }
+            }
+          },
+          "title": "Llaves de acceso"
+        },
+        "setPassword": {
+          "description": "Aún no has establecido una contraseña. Para establecer una, necesitas pasar por el flujo de restablecimiento de contraseña. Haz clic en el botón de abajo para enviar un email para restablecer tu contraseña y sigue las instrucciones en el email.",
+          "notifications": {
+            "error": "No se pudo enviar el enlace para establecer la contraseña. Por favor intenta de nuevo.",
+            "success": "Revisa tu bandeja de entrada para el enlace para establecer tu contraseña."
+          },
+          "submit": "Establecer contraseña",
+          "title": "Tu contraseña"
+        },
+        "twoFactor": {
+          "title": "Autenticación de dos factores",
+          "description": "Agrega una capa extra de seguridad a tu cuenta.",
+          "dialog": {
+            "password": {
+              "title": "Verificar con contraseña",
+              "description": "Por favor verifica tu cuenta ingresando tu contraseña:",
+              "label": "Tu contraseña:"
+            },
+            "totpUrl": {
+              "description": "Usa tu aplicación de autenticación preferida y escanea el código QR con ella o ingresa el secreto abajo manualmente para configurar la autenticación de dos factores.",
+              "code": "Ingresa el código de 6 dígitos para verificar la configuración:",
+              "title": "Habilitar autenticación de dos factores"
+            }
+          },
+          "enable": "Habilitar autenticación de dos factores",
+          "notifications": {
+            "verify": {
+              "success": {
+                "title": "La autenticación de dos factores se habilitó correctamente."
+              }
+            },
+            "enable": {
+              "error": {
+                "title": "No se pudo verificar tu cuenta con la contraseña proporcionada. Por favor intenta de nuevo."
+              }
+            },
+            "disable": {
+              "success": {
+                "title": "La autenticación de dos factores se deshabilitó correctamente."
+              }
+            }
+          },
+          "disable": "Deshabilitar autenticación de dos factores",
+          "enabled": "Tienes la autenticación de dos factores habilitada para tu cuenta."
+        }
+      },
+      "subtitle": "Gestiona la configuración de tu cuenta personal.",
+      "title": "Configuración de cuenta"
+    },
+    "save": "Guardar",
+    "menu": {
+      "account": {
+        "billing": "Facturación",
+        "dangerZone": "Zona de peligro",
+        "general": "General",
+        "security": "Seguridad",
+        "title": "Cuenta"
+      },
+      "organization": {
+        "billing": "Facturación",
+        "general": "General",
+        "members": "Miembros",
+        "integrations": "Integraciones",
+        "title": "Contexto",
+        "dangerZone": "Zona de peligro"
+      }
+    }
+  }
+}

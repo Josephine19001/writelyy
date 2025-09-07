@@ -1,0 +1,1161 @@
+{
+  "admin": {
+    "menu": {
+      "organizations": "Context",
+      "users": "Users"
+    },
+    "organizations": {
+      "backToList": "Back to brands",
+      "confirmDelete": {
+        "confirm": "Delete",
+        "message": "Are you sure you want to delete this context? This action cannot be undone.",
+        "title": "Delete context"
+      },
+      "create": "Create",
+      "delete": "Delete",
+      "deleteOrganization": {
+        "deleted": "Context has been deleted successfully!",
+        "deleting": "Deleting context...",
+        "notDeleted": "Context could not be deleted. Please try again."
+      },
+      "edit": "Edit",
+      "form": {
+        "createTitle": "Create a context",
+        "name": "Context name",
+        "notifications": {
+          "error": "Could not save the context. Please try again later.",
+          "success": "Context has been saved."
+        },
+        "save": "Save",
+        "updateTitle": "Edit context"
+      },
+      "loading": "Loading brands...",
+      "membersCount": "{count} {count, plural, one {member} other {members}}",
+      "search": "Search for a context...",
+      "title": "Manage brands"
+    },
+    "title": "Administration",
+    "users": {
+      "confirmDelete": {
+        "confirm": "Delete",
+        "message": "Are you sure you want to delete this user? This action cannot be undone.",
+        "title": "Delete user"
+      },
+      "delete": "Delete",
+      "deleteUser": {
+        "deleted": "User has been deleted successfully!",
+        "deleting": "Deleting user...",
+        "notDeleted": "User could not be deleted. Please try again."
+      },
+      "emailVerified": {
+        "verified": "Email verified",
+        "waiting": "Email waiting for verification"
+      },
+      "impersonate": "Impersonate",
+      "impersonation": {
+        "impersonating": "Impersonating as {name}..."
+      },
+      "loading": "Loading users...",
+      "resendVerificationMail": {
+        "error": "Could not resend verification mail. Please try again.",
+        "submitting": "Resending verification mail...",
+        "success": "Verification mail has been sent.",
+        "title": "Resend verification mail"
+      },
+      "search": "Search for name or email...",
+      "title": "Manage users",
+      "assignAdminRole": "Assign admin role",
+      "removeAdminRole": "Remove admin role"
+    },
+    "description": "Manage your application."
+  },
+  "app": {
+    "menu": {
+      "accountSettings": "Account settings",
+      "admin": "Admin",
+      "aiChatbot": "AI Chatbot",
+      "organizationSettings": "Context settings",
+      "start": "Start"
+    },
+    "platforms": {
+      "dashboard": "Dashboard",
+      "commentsAnalyzer": "Comments Analyzer",
+      "requests": "Feedback Board",
+      "trends": "Trends Finder",
+      "viralityChecker": "Virality Checker",
+      "brainDump": "Brain Dump"
+    },
+    "userMenu": {
+      "accountSettings": "Account settings",
+      "contextSettings": "Context settings",
+      "colorMode": "Color mode",
+      "documentation": "Documentation",
+      "home": "Home",
+      "logout": "Logout"
+    }
+  },
+  "auth": {
+    "errors": {
+      "invalidEmailOrPassword": "The credentials you entered are invalid. Please check them and try again.",
+      "unknown": "Something went wrong. Please try again.",
+      "userNotFound": "This user does not exists",
+      "failedToCreateUser": "Could not create user. Please try again.",
+      "failedToCreateSession": "Could not create a session. Please try again.",
+      "failedToUpdateUser": "Could not update user. Please try again.",
+      "failedToGetSession": "Could not get the session.",
+      "invalidPassword": "The entered password is incorrect.",
+      "invalidEmail": "The entered email is invalid.",
+      "invalidToken": "The token you entered is invalid or has expired.",
+      "credentialAccountNotFound": "Account not found.",
+      "emailCanNotBeUpdated": "Email could not be updated. Please try again.",
+      "emailNotVerified": "Please verify your email first before logging in.",
+      "failedToGetUserInfo": "Could not load user information.",
+      "idTokenNotSupported": "ID token is not supported.",
+      "passwordTooLong": "Password is too long.",
+      "passwordTooShort": "Password is too short.",
+      "providerNotFound": "This provider is not suppported.",
+      "socialAccountAlreadyLinked": "This account is already linked to a user.",
+      "userEmailNotFound": "Email not found.",
+      "userAlreadyExists": "This user already exists.",
+      "invalidInvitation": "The invitation is invalid or expired.",
+      "sessionExpired": "The session has expired.",
+      "failedToUnlinkLastAccount": "Failed to unlink account",
+      "accountNotFound": "Account not found"
+    },
+    "forgotPassword": {
+      "backToSignin": "Back to signin",
+      "email": "Email",
+      "hints": {
+        "linkNotSent": {
+          "message": "We are sorry, but we were unable to send you a link to reset your password. Please try again later.",
+          "title": "Link not sent"
+        },
+        "linkSent": {
+          "message": "We have sent you a link to continue. Please check your inbox.",
+          "title": "Link sent"
+        }
+      },
+      "message": "Please enter your email address and we will send you a link to reset your password.",
+      "submit": "Send link",
+      "title": "Forgot your password?"
+    },
+    "login": {
+      "continueWith": "Or continue with",
+      "createAnAccount": "Create an account",
+      "dontHaveAnAccount": "Don't have an account yet?",
+      "forgotPassword": "Forgot password?",
+      "hints": {
+        "invalidCredentials": "The email or password you entered are invalid. Please try again.",
+        "linkSent": {
+          "message": "We have sent you a link to continue. Please check your inbox.",
+          "title": "Link sent"
+        }
+      },
+      "loginWithPasskey": "Login with passkey",
+      "modes": {
+        "magicLink": "Magic link",
+        "password": "Password"
+      },
+      "submit": "Sign in",
+      "subtitle": "Please enter your credentials to sign in.",
+      "title": "Welcome back",
+      "sendMagicLink": "Send magic link"
+    },
+    "resetPassword": {
+      "backToSignin": "Back to signin",
+      "hints": {
+        "error": "We are sorry, but we were unable to reset your password. Please try again.",
+        "success": "Your password has been reset successfully."
+      },
+      "message": "Please enter a new password.",
+      "newPassword": "New password",
+      "submit": "Reset password",
+      "title": "Reset your password"
+    },
+    "signup": {
+      "alreadyHaveAccount": "Already have an account?",
+      "email": "Email",
+      "hints": {
+        "signupFailed": "We are sorry, but we were unable to create your account. Please try again later.",
+        "verifyEmail": "We have sent you a link to verify your email. Please check your inbox."
+      },
+      "message": "We are happy that you want to join us. Please fill in the form below to create your account.",
+      "name": "Name",
+      "password": "Password",
+      "signIn": "Sign in",
+      "submit": "Create account",
+      "title": "Create an account"
+    },
+    "verify": {
+      "title": "Verify your account",
+      "code": "One-time password",
+      "submit": "Verify",
+      "backToSignin": "Back to login",
+      "message": "Enter the one-time password from your authenticator app to continue."
+    }
+  },
+  "blog": {
+    "description": "Insights, tips, and stories about turning social media comments into competitive advantages",
+    "title": "Writelyy Insights",
+    "back": "Back to blog"
+  },
+  "changelog": {
+    "description": "Stay up to date with the latest changes in our context.",
+    "title": "Changelog"
+  },
+  "common": {
+    "confirmation": {
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "menu": {
+      "blog": "Blog",
+      "changelog": "Changelog",
+      "contact": "Contact",
+      "dashboard": "Dashboard",
+      "docs": "Docs",
+      "faq": "FAQ",
+      "login": "Login",
+      "pricing": "Pricing"
+    },
+    "tableOfContents": {
+      "title": "On this page"
+    },
+    "actions": {
+      "continue": "Continue",
+      "verify": "Verify"
+    }
+  },
+  "contact": {
+    "title": "Contact us",
+    "description": "Get in touch with our team. We'd love to hear from you!",
+    "email": {
+      "title": "Email Us",
+      "description": "Send us an email and we'll get back to you within 24 hours.",
+      "composeButton": "Compose Email",
+      "subject": "Contact Request - Writelyy AI",
+      "body": "Hi there,\n\nI'm interested in learning more about Writelyy AI.\n\n[Please describe your question or how we can help]\n\nBest regards,\n[Your Name]"
+    },
+    "quickQuestions": {
+      "title": "Quick Questions",
+      "description": "For quick questions about features, pricing, or how Writelyy works."
+    },
+    "businessInquiries": {
+      "title": "Business Inquiries",
+      "description": "For partnerships, enterprise solutions, or custom integrations."
+    },
+    "responseTime": {
+      "title": "Response Time:",
+      "description": "We typically respond within 24 hours during business days. For urgent matters, please mention \"URGENT\" in your subject line."
+    },
+    "form": {
+      "email": "Email",
+      "message": "Message",
+      "name": "Name",
+      "notifications": {
+        "error": "We are sorry, but we were unable to send your message. Please try again later.",
+        "success": "Your message has been sent successfully. We will get back to you as soon as possible."
+      },
+      "submit": "Send message"
+    }
+  },
+  "documentation": {
+    "title": "Documentation"
+  },
+  "faq": {
+    "description": "Do you have any questions? We have got you covered.",
+    "title": "Frequently asked questions"
+  },
+  "mail": {
+    "common": {
+      "openLinkInBrowser": "If you want to open the link in a different browser than your default one, copy and paste this link:",
+      "otp": "One-time password",
+      "useLink": "or use the following link:"
+    },
+    "emailVerification": {
+      "body": "Hey,\nplease click the link below to verify this new email address.",
+      "confirmEmail": "Verify email",
+      "subject": "Verify your email"
+    },
+    "forgotPassword": {
+      "body": "Hey,\nyou requested a password reset.\n\nClick the button below to reset your password.",
+      "resetPassword": "Reset password",
+      "subject": "Reset your password"
+    },
+    "magicLink": {
+      "body": "Hey,\nyou requested a login email from Writelyy AI.\n\nClick the link below to login.",
+      "login": "Login",
+      "subject": "Login to Writelyy AI"
+    },
+    "newUser": {
+      "body": "Hey,\nthanks for signing up for Writelyy AI.\n\nTo start using our app, please confirm your email address by clicking the link below.",
+      "confirmEmail": "Confirm email",
+      "subject": "Confirm your email"
+    },
+    "newsletterSignup": {
+      "body": "Thank you for signing up for the Writelyy AI newsletter. We will keep you updated with the latest news and updates.",
+      "subject": "Welcome to our newsletter"
+    },
+    "organizationInvitation": {
+      "body": "You have been invited to join the context {brandName}. Click the button below or copy and paste the link into your browser of choice to accept the invitation and join the context.",
+      "headline": "Join the context {brandName}",
+      "join": "Join the context",
+      "subject": "You have been invited to join a context"
+    },
+    "paymentReceipt": {
+      "body": "Thank you for your payment! Your receipt and order details are below.",
+      "subject": "Payment Receipt"
+    }
+  },
+  "newsletter": {
+    "email": "Email",
+    "hints": {
+      "error": {
+        "message": "Oops! Something went wrong. Try again?"
+      },
+      "success": {
+        "message": "You're in! We'll send you the good stuff (no spam, promise).",
+        "title": "Welcome aboard! 🎉"
+      }
+    },
+    "submit": "Subscribe",
+    "subtitle": "Tips, tricks, and updates straight to your inbox. No fluff, just the good stuff.",
+    "title": "Don't miss out"
+  },
+  "onboarding": {
+    "account": {
+      "avatar": "Avatar",
+      "avatarDescription": "Click the circle or drop an image to it to upload your avatar.",
+      "name": "Name"
+    },
+    "continue": "Continue",
+    "message": "Just a few quick steps to get you started.",
+    "notifications": {
+      "accountSetupFailed": "We are sorry, but we were unable to set up your account. Please try again later.",
+      "roleSaveFailed": "We are sorry, but we were unable to save your role. Please try again later."
+    },
+    "role": {
+      "title": "What best describes your role?",
+      "creator": {
+        "title": "Creator",
+        "description": "Content creator, influencer, or social media personality looking for viral content ideas"
+      },
+      "productTeam": {
+        "title": "Context Team",
+        "description": "Context manager, founder, or team member building brands and need user feedback"
+      },
+      "socialMediaStrategist": {
+        "title": "Social Media Strategist",
+        "description": "Marketing professional, growth hacker, or social media manager optimizing context presence"
+      }
+    },
+    "step": "Step {step} / {total}",
+    "title": "Set up your account"
+  },
+  "organizations": {
+    "createForm": {
+      "name": "Context name",
+      "notifications": {
+        "error": "We are sorry, but we were unable to create your context. Please try again later.",
+        "success": "Your context has been created. You can now invite members."
+      },
+      "submit": "Create context",
+      "subtitle": "Enter a name for your context to get started. You can change the name later in the context settings.",
+      "title": "Create a context"
+    },
+    "invitationAlert": {
+      "description": "You need to sign in or create an account to join the context.",
+      "title": "You have been invited to join a context."
+    },
+    "invitationModal": {
+      "accept": "Accept",
+      "decline": "Decline",
+      "description": "You have been invited to join the context {brandName}. Do you want to accept the invitation and join the context?",
+      "title": "Join the context"
+    },
+    "organizationSelect": {
+      "allProducts": "All Context",
+      "createNewOrganization": "Create new context",
+      "organizations": "Context",
+      "personalAccount": "Personal account"
+    },
+    "organizationsGrid": {
+      "createNewOrganization": "Create new context",
+      "title": "Your brands",
+      "subtitle": "Choose a context to start managing your social media comments"
+    },
+    "roles": {
+      "admin": "Admin",
+      "member": "Member",
+      "owner": "Owner"
+    },
+    "settings": {
+      "changeName": {
+        "title": "Context name"
+      },
+      "deleteOrganization": {
+        "confirmation": "Are you sure you want to delete your context?",
+        "description": "Permanently delete your context. Once you delete your context, there is no going back. To confirm, please enter your password below:",
+        "submit": "Delete context",
+        "title": "Delete context"
+      },
+      "logo": {
+        "description": "Upload a logo for your context.",
+        "title": "Context logo"
+      },
+      "members": {
+        "activeMembers": "Active members",
+        "description": "See all active members and the pending invites of your context.",
+        "invitations": {
+          "empty": "You have not invited any members yet.",
+          "expiresAt": "Expires at {date}",
+          "invitationStatus": {
+            "accepted": "Accepted",
+            "canceled": "Canceled",
+            "pending": "Pending",
+            "rejected": "Rejected"
+          },
+          "revoke": "Revoke invitation",
+          "resend": "Resend invitation"
+        },
+        "inviteMember": {
+          "description": "To invite a new member, send them an invitation.",
+          "email": "Email",
+          "notifications": {
+            "error": {
+              "description": "We were unable to invite the member. Please try again later.",
+              "title": "Could not invite member"
+            },
+            "success": {
+              "description": "The member has been invited.",
+              "title": "Member invited"
+            }
+          },
+          "role": "Role",
+          "submit": "Invite",
+          "title": "Invite member"
+        },
+        "leaveOrganization": "Leave context",
+        "notifications": {
+          "removeMember": {
+            "error": {
+              "description": "Could not remove the member from your context. Please try again."
+            },
+            "loading": {
+              "description": "Removing member from context..."
+            },
+            "success": {
+              "description": "The member has been successfully removed from your context."
+            }
+          },
+          "revokeInvitation": {
+            "error": {
+              "description": "The invitation could not be revoked. Please try again later."
+            },
+            "loading": {
+              "description": "Revoking invitation..."
+            },
+            "success": {
+              "description": "The invitation has been revoked."
+            }
+          },
+          "updateMembership": {
+            "error": {
+              "description": "Could not update context membership. Please try again."
+            },
+            "loading": {
+              "description": "Updating membership..."
+            },
+            "success": {
+              "description": "Membership was updated successfully"
+            }
+          },
+          "resendInvitation": {
+            "loading": {
+              "description": "Resending invitation..."
+            },
+            "success": {
+              "description": "Invitation sent"
+            },
+            "error": {
+              "description": "Could not sent invitation. Please try again."
+            }
+          }
+        },
+        "pendingInvitations": "Pending invitations",
+        "removeMember": "Remove member",
+        "title": "Members"
+      },
+      "notifications": {
+        "organizationDeleted": "Your context has been deleted.",
+        "organizationNameNotUpdated": "We were unable to update your context name. Please try again later.",
+        "organizationNameUpdated": "Your context name has been updated.",
+        "organizationNotDeleted": "We were unable to delete your context. Please try again later."
+      },
+      "subtitle": "Manage the settings of the context.",
+      "title": "Context Settings",
+      "dangerZone": {
+        "title": "Danger zone"
+      }
+    },
+    "start": {
+      "subtitle": "Manage your social media comments with AI-powered replies and automation"
+    }
+  },
+  "pricing": {
+    "choosePlan": "Choose plan",
+    "contactSales": "Contact sales",
+    "description": "Simple, transparent pricing. Unlimited team members included. No credit card required to start.",
+    "getStarted": "Get started",
+    "month": "{count, plural, one {month} other {{count} months}}",
+    "monthly": "Monthly",
+    "products": {
+      "free": {
+        "description": "100 free comments every month",
+        "features": {
+          "comments": "100 free comments/month",
+          "platforms": "All social platforms",
+          "aiAnalysis": "AI sentiment analysis",
+          "csvExport": "Export to CSV",
+          "basicSupport": "Basic support"
+        },
+        "title": "Free"
+      },
+      "credits": {
+        "description": "$2.50 for 1,000 comments",
+        "features": {
+          "comments": "1,000 comments for $2.50",
+          "platforms": "All social platforms",
+          "aiAnalysis": "AI sentiment analysis",
+          "integrations": "Export to CSV, Notion",
+          "prioritySupport": "Priority support",
+          "noCommitment": "No monthly commitment"
+        },
+        "title": "Pay as you need"
+      }
+    },
+    "purchase": "Purchase",
+    "recommended": "Recommended",
+    "subscribe": "Subscribe",
+    "title": "Pricing",
+    "trialPeriod": "{days} {days, plural, one {day} other {days}} free trial",
+    "year": "{count, plural, one {year} other {{count} years}}",
+    "yearly": "Yearly"
+  },
+  "settings": {
+    "accountSettings": {
+      "title": "Account Settings",
+      "description": "Manage your personal account settings and preferences"
+    },
+    "contextSettings": {
+      "title": "Context Settings",
+      "description": "Manage the settings of the context.",
+      "contextLogo": "Context logo",
+      "contextLogoDescription": "Upload a logo for your context.",
+      "contextName": "Context name",
+      "deleteContext": "Delete context",
+      "deleteContextDescription": "Permanently delete your context. Once you delete your context, there is no going back. To confirm, please enter your password below:"
+    },
+    "account": {
+      "avatar": {
+        "description": "To change your avatar click the picture in this block and select a file from your computer to upload.",
+        "notifications": {
+          "error": "Could not update avatar",
+          "success": "Avatar was updated successfully"
+        },
+        "title": "Your avatar"
+      },
+      "changeEmail": {
+        "description": "To change your email, enter the new email and hit save. You will have to confirm the new email before it will become active.",
+        "notifications": {
+          "error": "Could not update email",
+          "success": "Email was updated successfully"
+        },
+        "title": "Your email"
+      },
+      "changeName": {
+        "notifications": {
+          "error": "Could not update name",
+          "success": "Name was updated successfully"
+        },
+        "title": "Your name"
+      },
+      "deleteAccount": {
+        "confirmation": "Are you sure you want to delete your account?",
+        "description": "Permanently delete your account. Once you delete your account, there is no going back. To confirm, please enter your password below:",
+        "notifications": {
+          "error": "Could not delete account",
+          "success": "Account was deleted successfully"
+        },
+        "submit": "Delete account",
+        "title": "Delete account"
+      },
+      "dangerZone": {
+        "title": "Danger zone"
+      },
+      "language": {
+        "description": "To change the language of the app for your account, select a language from the list and click save.",
+        "notifications": {
+          "error": "Could not update language",
+          "success": "Language was updated successfully"
+        },
+        "title": "Your language"
+      },
+      "security": {
+        "title": "Security",
+        "activeSessions": {
+          "description": "These are all the active sessions of your account. Click the X to end a specifc session.",
+          "title": "Active sessions",
+          "notifications": {
+            "revokeSession": {
+              "success": "Session revoked"
+            }
+          },
+          "currentSession": "Current session"
+        },
+        "changePassword": {
+          "currentPassword": "Current password",
+          "newPassword": "New password",
+          "notifications": {
+            "error": "Could not update password",
+            "success": "Password was updated successfully"
+          },
+          "title": "Your password"
+        },
+        "connectedAccounts": {
+          "connect": "Connect",
+          "disconnect": "Disconnect",
+          "title": "Connected accounts"
+        },
+        "passkeys": {
+          "description": "Use passkeys as a secure alternative to passwords.",
+          "notifications": {
+            "addPasskey": {
+              "error": {
+                "title": "Could not add passkey"
+              },
+              "success": {
+                "title": "Passkey added"
+              }
+            },
+            "deletePasskey": {
+              "error": {
+                "title": "Could not delete passkey"
+              },
+              "loading": {
+                "title": "Deleting passkey..."
+              },
+              "success": {
+                "title": "Passkey deleted"
+              }
+            }
+          },
+          "title": "Passkeys"
+        },
+        "setPassword": {
+          "description": "You have not set a password yet. To set one, you need to go through the password reset flow. Click the button below to send an email to reset your password and follow the instructions in the email.",
+          "notifications": {
+            "error": "Could not send link to set password. Please try again.",
+            "success": "Check your inbox for the link to set your password."
+          },
+          "submit": "Set password",
+          "title": "Your password"
+        },
+        "twoFactor": {
+          "title": "Two-factor authentication",
+          "description": "Add an extra layer of security to your account.",
+          "dialog": {
+            "password": {
+              "title": "Verify with password",
+              "description": "Please verify your account by entering your password:",
+              "label": "Your password:"
+            },
+            "totpUrl": {
+              "description": "Use your preferred authenticator app and scan the QR code with it or enter the secret below manually to set up two-factor authentication.",
+              "code": "Enter 6-digit code to verify the setup:",
+              "title": "Enable two-factor authentication"
+            }
+          },
+          "enable": "Enable two-factor authentication",
+          "notifications": {
+            "verify": {
+              "success": {
+                "title": "Two-factor authentication has been enabled successfully."
+              }
+            },
+            "enable": {
+              "error": {
+                "title": "Could not verify your account with the provided password. Please try again."
+              }
+            },
+            "disable": {
+              "success": {
+                "title": "Two-factor authentication has been disabled successfully."
+              }
+            }
+          },
+          "disable": "Disable two-factor authentication",
+          "enabled": "You have two-factor authentication enabled for your account."
+        }
+      },
+      "subtitle": "Manage the settings of your personal account.",
+      "title": "Account settings"
+    },
+    "billing": {
+      "createCustomerPortal": {
+        "label": "Manage billing",
+        "notifications": {
+          "error": {
+            "title": "Could not create a customer portal session. Please try again."
+          }
+        }
+      },
+      "activePlan": {
+        "status": {
+          "active": "Active",
+          "canceled": "Canceled",
+          "expired": "Expired",
+          "incomplete": "Incomplete",
+          "past_due": "Past due",
+          "paused": "Paused",
+          "trialing": "Trialing",
+          "unpaid": "Unpaid"
+        },
+        "title": "Your plan"
+      },
+      "changePlan": {
+        "description": "Choose a plan to subscribe to.",
+        "title": "Change your plan"
+      },
+      "title": "Billing"
+    },
+    "menu": {
+      "account": {
+        "billing": "Billing",
+        "dangerZone": "Danger zone",
+        "general": "General",
+        "security": "Security",
+        "title": "Account"
+      },
+      "organization": {
+        "billing": "Billing",
+        "general": "General",
+        "members": "Members",
+        "integrations": "Integrations",
+        "title": "Context",
+        "dangerZone": "Danger zone"
+      }
+    },
+    "save": "Save"
+  },
+  "start": {
+    "subtitle": "See how your fun base are engaging with your content.",
+    "welcome": "Welcome {name}!"
+  },
+  "zod": {
+    "errors": {
+      "invalid_arguments": "Invalid function arguments",
+      "invalid_date": "Invalid date",
+      "invalid_enum_value": "Invalid enum value. Expected {- options}, received '{received}'",
+      "invalid_intersection_types": "Intersection results could not be merged",
+      "invalid_literal": "Invalid literal value, expected {expected}",
+      "invalid_return_type": "Invalid function return type",
+      "invalid_string": {
+        "cuid": "Invalid {validation}",
+        "datetime": "Invalid {validation}",
+        "email": "Invalid {validation}",
+        "endsWith": "Invalid input: must end with \"{endsWith}\"",
+        "regex": "Invalid",
+        "startsWith": "Invalid input: must start with \"{startsWith}\"",
+        "url": "Invalid {validation}",
+        "uuid": "Invalid {validation}"
+      },
+      "invalid_type": "Expected {expected}, received {received}",
+      "invalid_type_received_undefined": "Required",
+      "invalid_union": "Invalid input",
+      "invalid_union_discriminator": "Invalid discriminator value. Expected {- options}",
+      "not_finite": "Number must be finite",
+      "not_multiple_of": "Number must be a multiple of {multipleOf}",
+      "too_big": {
+        "array": {
+          "exact": "Array must contain exactly {maximum} element(s)",
+          "inclusive": "Array must contain at most {maximum} element(s)",
+          "not_inclusive": "Array must contain less than {maximum} element(s)"
+        },
+        "date": {
+          "exact": "Date must be exactly {- maximum, datetime}",
+          "inclusive": "Date must be smaller than or equal to {- maximum, datetime}",
+          "not_inclusive": "Date must be smaller than {- maximum, datetime}"
+        },
+        "number": {
+          "exact": "Number must be exactly {maximum}",
+          "inclusive": "Number must be less than or equal to {maximum}",
+          "not_inclusive": "Number must be less than {maximum}"
+        },
+        "set": {
+          "exact": "Invalid input",
+          "inclusive": "Invalid input",
+          "not_inclusive": "Invalid input"
+        },
+        "string": {
+          "exact": "String must contain exactly {maximum} character(s)",
+          "inclusive": "String must contain at most {maximum} character(s)",
+          "not_inclusive": "String must contain under {maximum} character(s)"
+        }
+      },
+      "too_small": {
+        "array": {
+          "exact": "Array must contain exactly {minimum} element(s)",
+          "inclusive": "Array must contain at least {minimum} element(s)",
+          "not_inclusive": "Array must contain more than {minimum} element(s)"
+        },
+        "date": {
+          "exact": "Date must be exactly {- minimum, datetime}",
+          "inclusive": "Date must be greater than or equal to {- minimum, datetime}",
+          "not_inclusive": "Date must be greater than {- minimum, datetime}"
+        },
+        "number": {
+          "exact": "Number must be exactly {minimum}",
+          "inclusive": "Number must be greater than or equal to {minimum}",
+          "not_inclusive": "Number must be greater than {minimum}"
+        },
+        "set": {
+          "exact": "Invalid input",
+          "inclusive": "Invalid input",
+          "not_inclusive": "Invalid input"
+        },
+        "string": {
+          "exact": "String must contain exactly {minimum} character(s)",
+          "inclusive": "String must contain at least {minimum} character(s)",
+          "not_inclusive": "String must contain over {minimum} character(s)"
+        }
+      },
+      "unrecognized_keys": "Unrecognized key(s) in object: {- keys}"
+    },
+    "types": {
+      "array": "array",
+      "bigint": "bigint",
+      "boolean": "boolean",
+      "date": "date",
+      "float": "float",
+      "function": "function",
+      "integer": "integer",
+      "map": "map",
+      "nan": "nan",
+      "never": "never",
+      "null": "null",
+      "number": "number",
+      "object": "object",
+      "promise": "promise",
+      "set": "set",
+      "string": "string",
+      "symbol": "symbol",
+      "undefined": "undefined",
+      "unknown": "unknown",
+      "void": "void"
+    },
+    "validations": {
+      "cuid": "cuid",
+      "cuid2": "cuid2",
+      "datetime": "datetime",
+      "email": "email",
+      "emoji": "emoji",
+      "ip": "up",
+      "regex": "regex",
+      "ulid": "ulid",
+      "url": "url",
+      "uuid": "uuid"
+    }
+  },
+  "choosePlan": {
+    "title": "Choose your plan",
+    "description": "To continue, please select a plan."
+  },
+  "marketing": {
+    "nav": {
+      "humanizer": "Humanizer",
+      "detector": "Detector",
+      "features": "Features",
+      "howItWorks": "How it Works",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "signIn": "Sign In",
+      "getStarted": "Get Started"
+    },
+    "footer": {
+      "allRightsReserved": "All rights reserved.",
+      "terms": "Terms",
+      "privacy": "Privacy"
+    },
+    "hero": {
+      "title1": "Turn AI Text Into",
+      "title2": "Natural Human Writing",
+      "title3": "Instantly",
+      "subtitle": "Transform robotic AI content into authentic, undetectable writing that passes all major AI detectors.",
+      "cta": "Start Writing Better",
+      "tryForFree": "Try for Free",
+      "trustedBy": "Trusted by 50,000+ writers worldwide",
+      "noCardRequired": "No credit card required"
+    },
+    "features": {
+      "title": "Essential Features",
+      "subtitle": "Everything you need to transform AI text into authentic, undetectable human writing.",
+      "rewriteToHuman": {
+        "title": "Rewrite to Human",
+        "description": "Transform AI text into natural, authentic writing in seconds"
+      },
+      "aiDetection": {
+        "title": "AI Detection",
+        "description": "Bypass all major AI detectors with 99.9% success rate"
+      },
+      "addCollaborators": {
+        "title": "Add Collaborators",
+        "description": "Invite team members and collaborate seamlessly"
+      },
+      "createContexts": {
+        "title": "Create Different Contexts",
+        "description": "Manage multiple contexts for consistent tone and style"
+      }
+    },
+    "howItWorks": {
+      "title": "How Writelyy Works",
+      "subtitle": "Two powerful ways to transform your AI text into natural, human-like writing",
+      "browserExtension": {
+        "title": "Browser Extension",
+        "description": "One-click humanization directly in your favorite apps",
+        "steps": {
+          "selectText": {
+            "title": "Select Text",
+            "description": "Highlight any AI-generated text in Google Docs, Gmail, Notion, or any web app"
+          },
+          "clickHumanize": {
+            "title": "Click Humanize",
+            "description": "Hit the magic Writelyy button that appears next to your selection"
+          },
+          "instantlyRewritten": {
+            "title": "Instantly Rewritten",
+            "description": "Your text is transformed in-place to sound natural and human-like"
+          }
+        }
+      },
+      "webEditor": {
+        "title": "Web Editor",
+        "description": "Powerful online editor for larger documents",
+        "steps": {
+          "pasteContent": {
+            "title": "Paste Content",
+            "description": "Copy your AI-generated text and paste it into our web editor"
+          },
+          "chooseTone": {
+            "title": "Choose Tone",
+            "description": "Select from Default, Professional, Friendly, or Academic writing styles"
+          },
+          "copyUse": {
+            "title": "Copy & Use",
+            "description": "Get your humanized text and use it wherever you need"
+          }
+        }
+      },
+      "processingTime": "Processing time: Under 2 seconds"
+    },
+    "integrations": {
+      "title": "Seamless Integration",
+      "subtitle": "Writelyy works directly in your favorite writing tools. No more switching between apps or copy-pasting text.",
+      "badge": "Works Everywhere You Write",
+      "browserExtension": {
+        "title": "Browser Extension",
+        "description": "Works everywhere you write - Google Docs, Gmail, Notion, and more",
+        "features": {
+          "oneClick": "One-click rewriting",
+          "anyField": "Works in any text field",
+          "instant": "Instant transformation"
+        }
+      },
+      "cta": {
+        "title": "Ready to transform your writing workflow?",
+        "subtitle": "Join thousands of writers who use Writelyy to create authentic, undetectable content across all their favorite platforms.",
+        "startWriting": "Start Writing Better",
+        "requestIntegration": "Request Integration"
+      }
+    },
+    "reviews": {
+      "title": "Trusted by students, creators & professionals",
+      "subtitle": "From university essays to viral social media content, see how Writelyy helps our users create authentic, undetectable writing across every platform.",
+      "testimonials": {
+        "student": {
+          "name": "Sarah Chen",
+          "role": "University Student",
+          "company": "UCLA",
+          "text": "My essays now pass Turnitin with flying colors! Writelyy makes my AI-assisted research sound completely natural and academic. No more stress about AI detection.",
+          "category": "Student"
+        },
+        "creator": {
+          "name": "Marcus Rodriguez",
+          "role": "Content Creator",
+          "company": "YouTube • 250K subs",
+          "text": "Game-changer for my TikTok and LinkedIn captions! I can pump out authentic-sounding content in seconds. My engagement rates have never been higher.",
+          "category": "Creator"
+        },
+        "professional": {
+          "name": "Dr. Emma Wilson",
+          "role": "Business Consultant",
+          "company": "Strategic Solutions Inc",
+          "text": "Client reports and proposals that used to take hours now take minutes. The professional tone is perfect, and it bypasses all corporate AI detectors seamlessly.",
+          "category": "Professional"
+        }
+      },
+      "stats": {
+        "happyWriters": {
+          "number": "50K+",
+          "label": "Happy Writers",
+          "sublabel": "Students, Creators & Pros"
+        },
+        "wordsHumanized": {
+          "number": "5M+",
+          "label": "Words Humanized",
+          "sublabel": "Essays, Posts & Articles"
+        },
+        "bypassSuccess": {
+          "number": "99.9%",
+          "label": "Bypass Success",
+          "sublabel": "Turnitin, GPTZero & More"
+        },
+        "processingTime": {
+          "number": "<2s",
+          "label": "Processing Time",
+          "sublabel": "Lightning Fast Results"
+        }
+      },
+      "trustIndicators": {
+        "universities": "Trusted by top universities",
+        "creators": "Used by content creators worldwide",
+        "security": "Enterprise-grade security"
+      }
+    },
+    "pricing": {
+      "recommended": "Recommended",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "subscribe": "Subscribe",
+      "subscribeToTitle": "Subscribe to {title}",
+      "month": "month",
+      "year": "year",
+      "planFeatures": {
+        "starter": {
+          "title": "Starter",
+          "description": "Perfect for getting started with Writelyy",
+          "features": {
+            "0": "15,000 words/month",
+            "1": "500 words per request",
+            "2": "Bypass all major AI detectors (incl. Turnitin & GPTZero)",
+            "3": "Basic Humanization Engine",
+            "4": "Error-free rewriting",
+            "5": "Web text editor",
+            "6": "Google Docs & Notion extension",
+            "7": "Email support",
+            "8": "Create & manage up to 3 contexts"
+          }
+        },
+        "pro": {
+          "title": "Pro",
+          "description": "For regular writers, professionals, and small teams",
+          "features": {
+            "0": "75,000 words/month",
+            "1": "1,500 words per request",
+            "2": "Bypass all major AI detectors (incl. Turnitin & GPTZero)",
+            "3": "Advanced Humanization Engine",
+            "4": "Plagiarism-free rewriting",
+            "5": "Undetectable results",
+            "6": "Google Docs & Notion extension",
+            "7": "Unlimited grammar checks",
+            "8": "Fast mode",
+            "9": "Priority support",
+            "10": "Invite team members (up to 5)",
+            "11": "Create & manage up to 10 contexts"
+          }
+        },
+        "unlimited": {
+          "title": "Unlimited",
+          "description": "For power users, large teams, and organizations",
+          "features": {
+            "0": "Unlimited words",
+            "1": "3,000 words per request",
+            "2": "Bypass all major AI detectors (incl. Turnitin & GPTZero)",
+            "3": "Advanced Humanization Engine",
+            "4": "Ultra-human writing output",
+            "5": "Plagiarism-free & error-free rewriting",
+            "6": "Unlimited grammar checks",
+            "7": "All supported languages (50+)",
+            "8": "Fast mode",
+            "9": "Priority support",
+            "10": "Invite unlimited team members",
+            "11": "Create & manage unlimited contexts"
+          }
+        }
+      }
+    },
+    "aiDetector": {
+      "badge": "Passes All Major AI Detectors",
+      "title": "Bypass Every AI Detector",
+      "subtitle": "Our advanced algorithms are specifically designed to pass all major AI detection tools. Your content will be undetectable and completely human-like.",
+      "statusBypassed": "BYPASSED",
+      "centerStatus": "UNDETECTED",
+      "stats": {
+        "successRate": {
+          "number": "99.9%",
+          "label": "Success Rate"
+        },
+        "detectorsBypassed": {
+          "number": "10+",
+          "label": "Detectors Bypassed"
+        },
+        "processingTime": {
+          "number": "<2s",
+          "label": "Processing Time"
+        }
+      }
+    },
+    "pricingSection": {
+      "title": "Simple, transparent pricing",
+      "subtitle": "Get 1,000 words free on signup. Choose your plan."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "description": "Do you have any questions? We have got you covered.",
+      "items": {
+        "howItWorks": {
+          "question": "How does Writelyy actually work?",
+          "answer": "It's surprisingly simple! Just paste your AI-generated text into our editor or highlight text with our browser extension, then click \"Humanize.\" Our advanced AI rewrites it to sound natural and human-like while keeping the original meaning intact. Takes under 2 seconds and works like magic!"
+        },
+        "bypassDetectors": {
+          "question": "Will this really bypass AI detectors?",
+          "answer": "Absolutely! Our advanced humanization engine achieves a 99.9% success rate against all major AI detection tools including Turnitin, GPTZero, ZeroGPT, Originality.ai, and CopyLeaks. We use sophisticated algorithms that create natural human writing patterns these detectors simply cannot identify."
+        },
+        "pricing": {
+          "question": "How much does it cost?",
+          "answer": "Get 1,000 words free on signup! Our plans start at just $4.99/month for 15,000 words (Starter), $12.99/month for 75,000 words (Pro), or $24.99/month for unlimited words. No sneaky subscriptions or hidden fees. Cancel anytime. Your budget will love us."
+        },
+        "privacy": {
+          "question": "Is my content safe and private?",
+          "answer": "100%! We don't store your text after processing, and everything is encrypted in transit. No one can see what you're rewriting. We're not logging your content or selling your data. Your privacy is sacred to us."
+        },
+        "features": {
+          "question": "What advanced features do you offer?",
+          "answer": "We offer multiple writing tones, context management for consistent projects, team collaboration features, unlimited grammar checks, fast processing mode, and support for 50+ languages. Pro and Unlimited plans include advanced humanization engines and higher word limits per request."
+        },
+        "academic": {
+          "question": "Can I use this for academic writing?",
+          "answer": "Absolutely! Our Academic tone and advanced humanization engine are specifically designed for scholarly writing. With up to 3,000 words per request and guaranteed bypass of academic AI detectors like Turnitin, it's perfect for essays, research papers, and dissertations while maintaining academic integrity."
+        },
+        "installation": {
+          "question": "Do I need to install anything?",
+          "answer": "Nope! You can use our web editor instantly - just copy, paste, and humanize. Want even more convenience? Install our optional browser extension to rewrite text directly in Google Docs, Gmail, Notion, or any text field. Both work perfectly!"
+        },
+        "guarantee": {
+          "question": "What if I'm not satisfied with the results?",
+          "answer": "We offer a 30-day money-back guarantee on all paid plans. If you're not happy with Writelyy, just contact our support team within 30 days for a full refund. No questions asked, no hassle. We're that confident you'll love it!"
+        }
+      }
+    }
+  }
+}
