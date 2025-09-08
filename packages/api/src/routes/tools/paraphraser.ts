@@ -1,6 +1,6 @@
 import { generateText } from '../../lib/ai-client';
 import { encryptData, decryptData } from '@repo/database/lib/encryption';
-import { createParaphraserUsage, getParaphraserUsageByUserId } from '@repo/database';
+import { createParaphraserUsage, getParaphraserUsageByUserId, deleteParaphraserUsage } from '@repo/database';
 import { ParaphraserInputSchema, preprocessInput } from '../../lib/input-validation';
 import { validateAndEnforceLimit } from '../../lib/word-limit-middleware';
 import { Hono } from 'hono';
@@ -156,5 +156,33 @@ export const paraphraserRouter = new Hono()
       });
 
       return c.json({ history });
+    }
+  )
+  .delete(
+    '/history/:id',
+    describeRoute({
+      tags: ['Tools'],
+      summary: 'Delete paraphraser history item',
+      description: 'Delete a specific paraphraser history entry by ID',
+      responses: {
+        204: {
+          description: 'History item deleted successfully'
+        },
+        404: {
+          description: 'History item not found'
+        }
+      }
+    }),
+    async (c) => {
+      const { id } = c.req.param();
+      const user = c.get('user');
+
+      const result = await deleteParaphraserUsage(id, user.id);
+      
+      if (result.count === 0) {
+        throw new HTTPException(404, { message: 'History item not found' });
+      }
+
+      return c.body(null, 204);
     }
   );

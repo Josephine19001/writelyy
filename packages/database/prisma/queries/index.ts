@@ -52,7 +52,6 @@ export async function addCreditsToOrganization(
 export async function deductCreditsFromOrganization(
   organizationId: string,
   credits: number,
-  postId?: string,
   description?: string
 ) {
   return db.$transaction(async (tx: Prisma.TransactionClient) => {
@@ -66,70 +65,26 @@ export async function deductCreditsFromOrganization(
       throw new Error('Organization not found');
     }
 
-    // Calculate monthly usage to determine available free allowance
-    const now = new Date();
-    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-
-    // Get posts and total comments for this month
-    const monthlyPosts = await tx.post.findMany({
-      where: {
-        organizationId,
-        createdAt: {
-          gte: startOfMonth
-        }
-      },
-      select: {
-        commentCount: true
-      }
-    });
-
-    const monthlyCommentsUsed = monthlyPosts.reduce(
-      (sum, post) => sum + (post.commentCount || 0),
-      0
-    );
-
-    // Calculate available credits: purchased credits + remaining free allowance
-    const freeMonthlyAllowance = 100;
-    const freeRemaining = Math.max(
-      0,
-      freeMonthlyAllowance - monthlyCommentsUsed
-    );
-    const totalAvailableCredits = org.creditBalance + freeRemaining;
-
-    if (totalAvailableCredits < credits) {
+    if (org.creditBalance < credits) {
       throw new Error('Insufficient credits');
     }
 
-    // Determine how to deduct credits
-    let creditsToDeductFromBalance = 0;
+    const newBalance = org.creditBalance - credits;
 
-    if (freeRemaining >= credits) {
-      // Use only free allowance - no deduction from balance needed
-      creditsToDeductFromBalance = 0;
-    } else {
-      // Use all free allowance + some purchased credits
-      creditsToDeductFromBalance = credits - freeRemaining;
-    }
+    // Update organization balance
+    await tx.organization.update({
+      where: { id: organizationId },
+      data: { creditBalance: newBalance }
+    });
 
-    const newBalance = org.creditBalance - creditsToDeductFromBalance;
-
-    // Update organization balance only if we're deducting from purchased credits
-    if (creditsToDeductFromBalance > 0) {
-      await tx.organization.update({
-        where: { id: organizationId },
-        data: { creditBalance: newBalance }
-      });
-    }
-
-    // Create transaction record showing total credits used
+    // Create transaction record
     await tx.creditTransaction.create({
       data: {
         organizationId,
         type: 'USAGE',
         amount: -credits,
         balance: newBalance,
-        description: `${description} (${credits - creditsToDeductFromBalance} from free allowance, ${creditsToDeductFromBalance} from purchased credits)`,
-        postId
+        description
       }
     });
 

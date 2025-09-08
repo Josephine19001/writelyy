@@ -5,12 +5,10 @@ import { describeRoute } from 'hono-openapi';
 import { validator } from 'hono-openapi/zod';
 import { nanoid } from 'nanoid';
 import { z } from 'zod';
-import { usageRoutes } from './usage';
 import { creditsRoutes } from './credits';
 
 export const organizationsRouter = new Hono()
   .basePath('/organizations')
-  .route('/', usageRoutes)
   .route('/', creditsRoutes)
   .get(
     '/generate-slug',

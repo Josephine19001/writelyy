@@ -54,11 +54,11 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
   const updateLocaleMutation = useMutation({
     mutationFn: async (newLocale: Locale) => {
       await authClient.updateUser({
-        locale: newLocale,
+        locale: newLocale
       });
       await updateLocale(newLocale);
       router.refresh();
-    },
+    }
   });
 
   const handleLocaleChange = async (newLocale: string) => {
@@ -106,7 +106,7 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
         return 'Credits Plan';
       case 'pro':
         return 'Pro Plan';
-      case 'unlimited':
+      case 'max':
         return 'Unlimited Plan';
       default:
         return 'Free Plan';
@@ -218,8 +218,8 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuRadioGroup 
-                  value={locale} 
+                <DropdownMenuRadioGroup
+                  value={locale}
                   onValueChange={handleLocaleChange}
                 >
                   {localeOptions.map((option) => (

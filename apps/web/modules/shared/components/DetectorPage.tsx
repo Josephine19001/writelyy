@@ -2,7 +2,7 @@
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
-import { useDetectTextMutation, useDetectorHistoryQuery } from '@shared/lib/tools-api';
+import { useDetectTextMutation, useDetectorHistoryQuery, useDeleteDetectorHistoryMutation } from '@shared/lib/tools-api';
 import { ShieldCheckIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
@@ -18,6 +18,7 @@ export function DetectorPage() {
   
   // API hooks
   const detectMutation = useDetectTextMutation();
+  const deleteHistoryMutation = useDeleteDetectorHistoryMutation();
   const { data: historyData, refetch: refetchHistory } = useDetectorHistoryQuery(10);
   
   const isProcessing = detectMutation.isPending;
@@ -54,7 +55,7 @@ export function DetectorPage() {
       const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
         setInputText(entry.inputText);
-        if (entry.aiProbability !== undefined) {
+        if (entry.aiProbability !== undefined && entry.aiProbability !== null) {
           setDetectionResult({
             aiProbability: entry.aiProbability,
             detectionResult: entry.detectionResult as 'Human' | 'AI' | 'Mixed',
@@ -66,11 +67,14 @@ export function DetectorPage() {
     [historyData?.history]
   );
 
-  const handleHistoryItemDelete = useCallback((id: string) => {
-    // TODO: Implement delete API endpoint
-    console.log('Delete history item:', id);
-    refetchHistory();
-  }, [refetchHistory]);
+  const handleHistoryItemDelete = useCallback(async (id: string) => {
+    try {
+      await deleteHistoryMutation.mutateAsync(id);
+      refetchHistory();
+    } catch (error) {
+      console.error('Failed to delete history item:', error);
+    }
+  }, [deleteHistoryMutation, refetchHistory]);
 
   const getScoreColor = (score: number) => {
     if (score >= 70) {

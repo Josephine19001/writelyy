@@ -8,7 +8,8 @@ import { TrialDataManager } from '@shared/components/TrialDataManager';
 import { DiffHighlighter } from '@shared/components/DiffHighlighter';
 import {
   useHumanizeTextMutation,
-  useHumanizerHistoryQuery
+  useHumanizerHistoryQuery,
+  useDeleteHumanizerHistoryMutation
 } from '@shared/lib/tools-api';
 
 export function HumanizerPage() {
@@ -19,6 +20,7 @@ export function HumanizerPage() {
 
   // API hooks
   const humanizeMutation = useHumanizeTextMutation();
+  const deleteHistoryMutation = useDeleteHumanizerHistoryMutation();
   const { data: historyData, refetch: refetchHistory } =
     useHumanizerHistoryQuery(10);
 
@@ -58,7 +60,7 @@ export function HumanizerPage() {
     try {
       const result = await humanizeMutation.mutateAsync({
         inputText: text,
-        tone: options.tone || 'default'
+        tone: (options.tone as 'default' | 'professional' | 'friendly' | 'academic') || 'default'
       });
 
       setOutputText(result.outputText);
@@ -93,12 +95,15 @@ export function HumanizerPage() {
   );
 
   const handleHistoryItemDelete = useCallback(
-    (id: string) => {
-      // TODO: Implement delete API endpoint
-      console.log('Delete history item:', id);
-      refetchHistory();
+    async (id: string) => {
+      try {
+        await deleteHistoryMutation.mutateAsync(id);
+        refetchHistory();
+      } catch (error) {
+        console.error('Failed to delete history item:', error);
+      }
     },
-    [refetchHistory]
+    [deleteHistoryMutation, refetchHistory]
   );
 
   const renderResults = () => (

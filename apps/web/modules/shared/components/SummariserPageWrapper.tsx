@@ -2,30 +2,25 @@
 
 import { SummariserPage } from '@shared/components/SummariserPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
-import { useSummarizeTextMutation, useSummariserHistoryQuery } from '@shared/lib/tools-api';
+import {
+  useSummarizeTextMutation,
+  useSummariserHistoryQuery,
+  useDeleteSummariserHistoryMutation
+} from '@shared/lib/tools-api';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-
-interface TextHistoryEntry {
-  id: string;
-  originalText: string;
-  processedText?: string;
-  type: 'humanized' | 'detected' | 'summarised' | 'paraphrased';
-  status?: 'processing' | 'completed' | 'failed';
-  timestamp: Date;
-  aiScore?: number;
-}
-
 
 export function SummariserPageWrapper() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  
+
   // API hooks
   const summarizeMutation = useSummarizeTextMutation();
-  const { data: historyData, refetch: refetchHistory } = useSummariserHistoryQuery(10);
-  
+  const deleteHistoryMutation = useDeleteSummariserHistoryMutation();
+  const { data: historyData, refetch: refetchHistory } =
+    useSummariserHistoryQuery(10);
+
   const isProcessing = summarizeMutation.isPending;
 
   const handleProcess = async (text: string) => {
@@ -38,7 +33,7 @@ export function SummariserPageWrapper() {
       });
 
       setOutputText(result.summaryText);
-      
+
       // Refetch history to get the new entry
       refetchHistory();
     } catch (error) {
@@ -65,11 +60,17 @@ export function SummariserPageWrapper() {
     [historyData?.history]
   );
 
-  const handleHistoryItemDelete = useCallback((id: string) => {
-    // TODO: Implement delete API endpoint
-    console.log('Delete history item:', id);
-    refetchHistory();
-  }, [refetchHistory]);
+  const handleHistoryItemDelete = useCallback(
+    async (id: string) => {
+      try {
+        await deleteHistoryMutation.mutateAsync(id);
+        refetchHistory();
+      } catch (error) {
+        console.error('Failed to delete history item:', error);
+      }
+    },
+    [deleteHistoryMutation, refetchHistory]
+  );
 
   const renderResults = () => (
     <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
@@ -85,19 +86,21 @@ export function SummariserPageWrapper() {
 
   return (
     <>
-      <TrialDataManager 
-        currentPage="summariser" 
+      <TrialDataManager
+        currentPage="summariser"
         onTrialDataFound={setInputText}
       />
       <SummariserPage
-        historyEntries={historyData?.history?.map(entry => ({
-          id: entry.id,
-          originalText: entry.inputText,
-          processedText: entry.summaryText || '',
-          type: 'summarised' as const,
-          status: 'completed' as const,
-          timestamp: new Date(entry.createdAt)
-        })) || []}
+        historyEntries={
+          historyData?.history?.map((entry) => ({
+            id: entry.id,
+            originalText: entry.inputText,
+            processedText: entry.summaryText || '',
+            type: 'summarised' as const,
+            status: 'completed' as const,
+            timestamp: new Date(entry.createdAt)
+          })) || []
+        }
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
         onProcess={handleProcess}

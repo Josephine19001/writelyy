@@ -32,6 +32,30 @@ export function useUsageLimits() {
 
   const canProcessText = (wordCount: number) => checkWordLimit(wordCount);
 
+  const getRemainingUsage = (type: 'comments' | 'words') => {
+    if (type === 'comments') {
+      // For comments analysis, return remaining credits or word allowance
+      if (activePlan?.id === 'credits') {
+        return currentCredits.creditBalance;
+      }
+      return monthlyUsage.remainingWords;
+    }
+    return monthlyUsage.remainingWords;
+  };
+
+  const canAnalyzeComments = (commentCount: number) => {
+    // Check if user can analyze the specified number of comments
+    // This could be based on credits or word limits
+    if (activePlan?.id === 'credits') {
+      return currentCredits.creditBalance > 0;
+    }
+    // For word-based plans, assume each comment uses ~50 words on average
+    const estimatedWords = commentCount * 50;
+    return checkWordLimit(estimatedWords);
+  };
+
+  const currentUsage = monthlyUsage.currentUsage;
+
   return {
     activePlan,
     currentCredits,
@@ -41,6 +65,9 @@ export function useUsageLimits() {
     limitType,
     checkLimit,
     canProcessText,
+    getRemainingUsage,
+    canAnalyzeComments,
+    currentUsage,
     // Helper functions for UI
     shouldShowWarning: isApproachingWordLimit,
     shouldBlockActions: hasExceededWordLimit,

@@ -2,43 +2,43 @@
 
 import { ParaphraserPage } from '@shared/components/ParaphraserPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
-import { useParaphraseTextMutation, useParaphraserHistoryQuery } from '@shared/lib/tools-api';
+import {
+  useParaphraseTextMutation,
+  useParaphraserHistoryQuery,
+  useDeleteParaphraserHistoryMutation
+} from '@shared/lib/tools-api';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-
-interface TextHistoryEntry {
-  id: string;
-  originalText: string;
-  processedText?: string;
-  type: 'humanized' | 'detected' | 'summarised' | 'paraphrased';
-  status?: 'processing' | 'completed' | 'failed';
-  timestamp: Date;
-  aiScore?: number;
-}
-
 
 export function ParaphraserPageWrapper() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  
+
   // API hooks
   const paraphraseMutation = useParaphraseTextMutation();
-  const { data: historyData, refetch: refetchHistory } = useParaphraserHistoryQuery(10);
-  
+  const deleteHistoryMutation = useDeleteParaphraserHistoryMutation();
+  const { data: historyData, refetch: refetchHistory } =
+    useParaphraserHistoryQuery(10);
+
   const isProcessing = paraphraseMutation.isPending;
 
-  const handleProcess = async (text: string, options: { tone?: string; level?: string }) => {
+  const handleProcess = async (
+    text: string,
+    options: { tone?: string; level?: string }
+  ) => {
     setOutputText(''); // Clear previous results
 
     try {
       const result = await paraphraseMutation.mutateAsync({
         inputText: text,
-        style: (options.tone as 'formal' | 'casual' | 'academic' | 'creative') || 'formal'
+        style:
+          (options.tone as 'formal' | 'casual' | 'academic' | 'creative') ||
+          'formal'
       });
 
       setOutputText(result.paraphrasedText);
-      
+
       // Refetch history to get the new entry
       refetchHistory();
     } catch (error) {
@@ -65,11 +65,17 @@ export function ParaphraserPageWrapper() {
     [historyData?.history]
   );
 
-  const handleHistoryItemDelete = useCallback((id: string) => {
-    // TODO: Implement delete API endpoint
-    console.log('Delete history item:', id);
-    refetchHistory();
-  }, [refetchHistory]);
+  const handleHistoryItemDelete = useCallback(
+    async (id: string) => {
+      try {
+        await deleteHistoryMutation.mutateAsync(id);
+        refetchHistory();
+      } catch (error) {
+        console.error('Failed to delete history item:', error);
+      }
+    },
+    [deleteHistoryMutation, refetchHistory]
+  );
 
   const renderResults = () => (
     <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
@@ -85,19 +91,21 @@ export function ParaphraserPageWrapper() {
 
   return (
     <>
-      <TrialDataManager 
-        currentPage="paraphraser" 
+      <TrialDataManager
+        currentPage="paraphraser"
         onTrialDataFound={setInputText}
       />
       <ParaphraserPage
-        historyEntries={historyData?.history?.map(entry => ({
-          id: entry.id,
-          originalText: entry.inputText,
-          processedText: entry.paraphrasedText || '',
-          type: 'paraphrased' as const,
-          status: 'completed' as const,
-          timestamp: new Date(entry.createdAt)
-        })) || []}
+        historyEntries={
+          historyData?.history?.map((entry) => ({
+            id: entry.id,
+            originalText: entry.inputText,
+            processedText: entry.paraphrasedText || '',
+            type: 'paraphrased' as const,
+            status: 'completed' as const,
+            timestamp: new Date(entry.createdAt)
+          })) || []
+        }
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
         onProcess={handleProcess}

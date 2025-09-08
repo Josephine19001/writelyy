@@ -32,6 +32,15 @@ export async function getHumanizerUsageByUserId({
   });
 }
 
+export async function deleteHumanizerUsage(id: string, userId: string) {
+  return db.humanizerUsage.deleteMany({
+    where: { 
+      id,
+      userId // Ensure user can only delete their own records
+    }
+  });
+}
+
 // Detector queries  
 export async function createDetectorUsage(
   data: Prisma.DetectorUsageCreateInput
@@ -60,6 +69,15 @@ export async function getDetectorUsageByUserId({
     orderBy: { createdAt: 'desc' },
     take: limit,
     skip: offset,
+  });
+}
+
+export async function deleteDetectorUsage(id: string, userId: string) {
+  return db.detectorUsage.deleteMany({
+    where: { 
+      id,
+      userId // Ensure user can only delete their own records
+    }
   });
 }
 
@@ -94,6 +112,15 @@ export async function getSummariserUsageByUserId({
   });
 }
 
+export async function deleteSummariserUsage(id: string, userId: string) {
+  return db.summariserUsage.deleteMany({
+    where: { 
+      id,
+      userId // Ensure user can only delete their own records
+    }
+  });
+}
+
 // Paraphraser queries
 export async function createParaphraserUsage(
   data: Prisma.ParaphraserUsageCreateInput
@@ -122,6 +149,15 @@ export async function getParaphraserUsageByUserId({
     orderBy: { createdAt: 'desc' },
     take: limit,
     skip: offset,
+  });
+}
+
+export async function deleteParaphraserUsage(id: string, userId: string) {
+  return db.paraphraserUsage.deleteMany({
+    where: { 
+      id,
+      userId // Ensure user can only delete their own records
+    }
   });
 }
 

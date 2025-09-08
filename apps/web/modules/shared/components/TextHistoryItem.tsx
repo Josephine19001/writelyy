@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@ui/components/dropdown-menu';
 import { cn } from '@ui/lib';
 import { useTranslations } from 'next-intl';
@@ -17,7 +17,7 @@ interface TextHistoryItemProps {
   id: string;
   originalText: string;
   processedText?: string;
-  type: 'humanized' | 'detected';
+  type: 'humanized' | 'detected' | 'summarised' | 'paraphrased';
   status?: 'processing' | 'completed' | 'failed';
   timestamp: Date;
   aiScore?: number;
@@ -47,7 +47,8 @@ export function TextHistoryItem({
 
   const getStatusBadge = () => {
     if (type === 'detected' && typeof aiScore === 'number') {
-      const badgeStatus = aiScore > 70 ? 'error' : aiScore > 30 ? 'warning' : 'success';
+      const badgeStatus =
+        aiScore > 70 ? 'error' : aiScore > 30 ? 'warning' : 'success';
       return <Badge status={badgeStatus}>{aiScore}% AI</Badge>;
     }
     return null;
@@ -60,7 +61,9 @@ export function TextHistoryItem({
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
     if (hours < 24) {
-      return hours === 0 ? t('history.justNow') : t('history.hoursAgo', { hours });
+      return hours === 0
+        ? t('history.justNow')
+        : t('history.hoursAgo', { hours });
     }
     if (days < 7) {
       return t('history.daysAgo', { days });
@@ -69,7 +72,7 @@ export function TextHistoryItem({
   };
 
   return (
-    <Card 
+    <Card
       className={cn(
         'cursor-pointer hover:shadow-md transition-shadow duration-200 border border-slate-200 dark:border-slate-700',
         className
@@ -85,12 +88,12 @@ export function TextHistoryItem({
                 {formatTimestamp(timestamp)}
               </span>
             </div>
-            
+
             <div className="space-y-2">
               <p className="text-sm text-foreground leading-relaxed">
                 {truncateText(originalText)}
               </p>
-              
+
               {processedText && status === 'completed' && (
                 <div className="pt-2 border-t border-border/50">
                   <p className="text-xs text-muted-foreground mb-1">

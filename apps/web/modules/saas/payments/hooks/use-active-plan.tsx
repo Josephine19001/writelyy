@@ -59,8 +59,8 @@ export function useActivePlan() {
 
   // Determine the actual active plan considering both purchases and credits
   const activePlan = useMemo(() => {
-    // If we have a valid purchase-based plan that's not free, use it
-    if (purchaseBasedPlan && purchaseBasedPlan.id !== 'free') {
+    // If we have a valid purchase-based plan, use it
+    if (purchaseBasedPlan) {
       return purchaseBasedPlan;
     }
 

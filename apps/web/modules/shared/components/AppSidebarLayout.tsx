@@ -21,7 +21,7 @@ interface TextHistoryEntry {
   id: string;
   originalText: string;
   processedText?: string;
-  type: 'humanized' | 'detected';
+  type: 'humanized' | 'detected' | 'summarised' | 'paraphrased';
   status?: 'processing' | 'completed' | 'failed';
   timestamp: Date;
   aiScore?: number;

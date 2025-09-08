@@ -1,6 +1,6 @@
 import { generateText } from '../../lib/ai-client';
 import { encryptData, decryptData } from '@repo/database/lib/encryption';
-import { createSummariserUsage, getSummariserUsageByUserId } from '@repo/database';
+import { createSummariserUsage, getSummariserUsageByUserId, deleteSummariserUsage } from '@repo/database';
 import { SummariserInputSchema, preprocessInput } from '../../lib/input-validation';
 import { validateAndEnforceLimit } from '../../lib/word-limit-middleware';
 import { Hono } from 'hono';
@@ -160,5 +160,33 @@ export const summariserRouter = new Hono()
       });
 
       return c.json({ history });
+    }
+  )
+  .delete(
+    '/history/:id',
+    describeRoute({
+      tags: ['Tools'],
+      summary: 'Delete summariser history item',
+      description: 'Delete a specific summariser history entry by ID',
+      responses: {
+        204: {
+          description: 'History item deleted successfully'
+        },
+        404: {
+          description: 'History item not found'
+        }
+      }
+    }),
+    async (c) => {
+      const { id } = c.req.param();
+      const user = c.get('user');
+
+      const result = await deleteSummariserUsage(id, user.id);
+      
+      if (result.count === 0) {
+        throw new HTTPException(404, { message: 'History item not found' });
+      }
+
+      return c.body(null, 204);
     }
   );

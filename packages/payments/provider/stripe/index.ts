@@ -343,7 +343,33 @@ export const webhookHandler: WebhookHandler = async (req) => {
 
 // Helper function to get credits by product ID
 function getCreditsByProductId(productId: string): number {
-  const allPrices = config.payments.plans.credits.prices;
+  // Get all prices from all plans
+  const allPrices = [
+    ...config.payments.plans.starter.prices,
+    ...config.payments.plans.pro.prices,
+    ...config.payments.plans.max.prices
+  ];
+  
   const price = allPrices.find((p) => p.productId === productId);
-  return price?.credits || 0;
+  if (!price) return 0;
+  
+  // Determine credits based on plan type and interval
+  // Find which plan this productId belongs to
+  let planType = '';
+  if (config.payments.plans.starter.prices.some(p => p.productId === productId)) {
+    planType = 'starter';
+  } else if (config.payments.plans.pro.prices.some(p => p.productId === productId)) {
+    planType = 'pro';
+  } else if (config.payments.plans.max.prices.some(p => p.productId === productId)) {
+    planType = 'max';
+  }
+  
+  // Assign credits based on plan type
+  const creditsByPlan = {
+    starter: 10000,  // 10k credits
+    pro: 50000,      // 50k credits  
+    max: 200000      // 200k credits
+  };
+  
+  return creditsByPlan[planType as keyof typeof creditsByPlan] || 0;
 }

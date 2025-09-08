@@ -1,6 +1,6 @@
 import { generateText } from '../../lib/ai-client';
 import { encryptData, decryptData } from '@repo/database/lib/encryption';
-import { createDetectorUsage, getDetectorUsageByUserId } from '@repo/database';
+import { createDetectorUsage, getDetectorUsageByUserId, deleteDetectorUsage } from '@repo/database';
 import { Hono } from 'hono';
 import { describeRoute } from 'hono-openapi';
 import { resolver, validator } from 'hono-openapi/zod';
@@ -175,5 +175,33 @@ export const detectorRouter = new Hono()
       });
 
       return c.json({ history });
+    }
+  )
+  .delete(
+    '/history/:id',
+    describeRoute({
+      tags: ['Tools'],
+      summary: 'Delete detector history item',
+      description: 'Delete a specific detector history entry by ID',
+      responses: {
+        204: {
+          description: 'History item deleted successfully'
+        },
+        404: {
+          description: 'History item not found'
+        }
+      }
+    }),
+    async (c) => {
+      const { id } = c.req.param();
+      const user = c.get('user');
+
+      const result = await deleteDetectorUsage(id, user.id);
+      
+      if (result.count === 0) {
+        throw new HTTPException(404, { message: 'History item not found' });
+      }
+
+      return c.body(null, 204);
     }
   );

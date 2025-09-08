@@ -35,19 +35,19 @@ interface ParaphraserResponse {
 
 interface HistoryEntry {
   id: string;
-  tone?: string;
-  style?: string;
-  summaryType?: string;
-  aiProbability?: number;
-  detectionResult?: string;
+  tone?: string | null;
+  style?: string | null;
+  summaryType?: string | null;
+  aiProbability?: number | null;
+  detectionResult?: string | null;
   wordCount: number;
   charactersUsed: number;
-  creditsUsed?: number;
+  creditsUsed?: number | null;
   createdAt: string;
-  inputText: string;
-  outputText?: string;
-  summaryText?: string;
-  paraphrasedText?: string;
+  inputText: any;
+  outputText?: any;
+  summaryText?: any;
+  paraphrasedText?: any;
 }
 
 interface HealthResponse {
@@ -68,14 +68,14 @@ export const useHumanizeTextMutation = () => {
       tone = 'default'
     }: {
       inputText: string;
-      tone?: string;
+      tone?: 'default' | 'professional' | 'friendly' | 'academic';
     }): Promise<HumanizerResponse> => {
       const response = await apiClient.tools.humanizer.process.$post({
         json: { inputText, tone }
       });
 
       if (!response.ok) {
-        const error = await response.json();
+        const error = await response.json() as { message?: string };
         throw new Error(error.message || 'Failed to humanize text');
       }
 
@@ -115,7 +115,7 @@ export const useDetectTextMutation = () => {
       });
 
       if (!response.ok) {
-        const error = await response.json();
+        const error = await response.json() as { message?: string };
         throw new Error(error.message || 'Failed to analyze text');
       }
 
@@ -157,7 +157,7 @@ export const useSummarizeTextMutation = () => {
       });
 
       if (!response.ok) {
-        const error = await response.json();
+        const error = await response.json() as { message?: string };
         throw new Error(error.message || 'Failed to summarize text');
       }
 
@@ -199,7 +199,7 @@ export const useParaphraseTextMutation = () => {
       });
 
       if (!response.ok) {
-        const error = await response.json();
+        const error = await response.json() as { message?: string };
         throw new Error(error.message || 'Failed to paraphrase text');
       }
 
@@ -240,5 +240,70 @@ export const useToolsHealthQuery = () => {
     },
     refetchInterval: 30000, // Check every 30 seconds
     retry: false
+  });
+};
+
+// Delete History Mutations
+export const useDeleteHumanizerHistoryMutation = () => {
+  return useMutation({
+    mutationKey: ['delete-humanizer-history'],
+    mutationFn: async (id: string): Promise<void> => {
+      const response = await apiClient.tools.humanizer.history[":id"].$delete({
+        param: { id }
+      });
+
+      if (!response.ok) {
+        const error = await response.json() as { message?: string };
+        throw new Error(error.message || 'Failed to delete history item');
+      }
+    },
+  });
+};
+
+export const useDeleteDetectorHistoryMutation = () => {
+  return useMutation({
+    mutationKey: ['delete-detector-history'],
+    mutationFn: async (id: string): Promise<void> => {
+      const response = await apiClient.tools.detector.history[":id"].$delete({
+        param: { id }
+      });
+
+      if (!response.ok) {
+        const error = await response.json() as { message?: string };
+        throw new Error(error.message || 'Failed to delete history item');
+      }
+    },
+  });
+};
+
+export const useDeleteSummariserHistoryMutation = () => {
+  return useMutation({
+    mutationKey: ['delete-summariser-history'],
+    mutationFn: async (id: string): Promise<void> => {
+      const response = await apiClient.tools.summariser.history[":id"].$delete({
+        param: { id }
+      });
+
+      if (!response.ok) {
+        const error = await response.json() as { message?: string };
+        throw new Error(error.message || 'Failed to delete history item');
+      }
+    },
+  });
+};
+
+export const useDeleteParaphraserHistoryMutation = () => {
+  return useMutation({
+    mutationKey: ['delete-paraphraser-history'],
+    mutationFn: async (id: string): Promise<void> => {
+      const response = await apiClient.tools.paraphraser.history[":id"].$delete({
+        param: { id }
+      });
+
+      if (!response.ok) {
+        const error = await response.json() as { message?: string };
+        throw new Error(error.message || 'Failed to delete history item');
+      }
+    },
   });
 };

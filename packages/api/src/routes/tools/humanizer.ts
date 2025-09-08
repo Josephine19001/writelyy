@@ -1,6 +1,6 @@
 import { generateText } from '../../lib/ai-client';
 import { encryptData, decryptData } from '@repo/database/lib/encryption';
-import { createHumanizerUsage, getHumanizerUsageByUserId } from '@repo/database';
+import { createHumanizerUsage, getHumanizerUsageByUserId, deleteHumanizerUsage } from '@repo/database';
 import { Hono } from 'hono';
 import { describeRoute } from 'hono-openapi';
 import { resolver, validator } from 'hono-openapi/zod';
@@ -155,5 +155,33 @@ export const humanizerRouter = new Hono()
       });
 
       return c.json({ history });
+    }
+  )
+  .delete(
+    '/history/:id',
+    describeRoute({
+      tags: ['Tools'],
+      summary: 'Delete humanizer history item',
+      description: 'Delete a specific humanizer history entry by ID',
+      responses: {
+        204: {
+          description: 'History item deleted successfully'
+        },
+        404: {
+          description: 'History item not found'
+        }
+      }
+    }),
+    async (c) => {
+      const { id } = c.req.param();
+      const user = c.get('user');
+
+      const result = await deleteHumanizerUsage(id, user.id);
+      
+      if (result.count === 0) {
+        throw new HTTPException(404, { message: 'History item not found' });
+      }
+
+      return c.body(null, 204);
     }
   );

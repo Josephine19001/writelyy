@@ -14,7 +14,6 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { OrganzationSelect } from '../../organizations/components/OrganizationSelect';
-import { CommentCounter } from './CommentCounter';
 
 export function NavBar() {
   const t = useTranslations();
@@ -136,18 +135,6 @@ export function NavBar() {
             );
           })}
         </ul>
-
-        {/* Comment Counter */}
-        <div
-          className={cn(
-            '-mx-4 md:-mx-6 mt-auto mb-0 hidden border-t border-border p-4 md:p-4',
-            {
-              'md:block': useSidebarLayout
-            }
-          )}
-        >
-          <CommentCounter />
-        </div>
 
         <div
           className={cn('-mx-4 md:-mx-6 mb-0 hidden p-4 md:p-4', {
