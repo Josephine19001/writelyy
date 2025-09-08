@@ -77,7 +77,7 @@ export function AiDetectorShowcase() {
                     alt={`${detector.name} logo`}
                     width={120}
                     height={80}
-                    className="object-contain max-h-20 grayscale brightness-75 dark:brightness-125"
+                    className="object-contain max-h-20 grayscale brightness-75 dark:brightness-125 dark:invert"
                   />
                 </div>
               </div>
