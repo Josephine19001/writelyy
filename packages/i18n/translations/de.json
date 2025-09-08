@@ -1,4 +1,111 @@
 {
+  "detector": {
+    "title": "KI-Erkennung",
+    "placeholder": "Fügen Sie den Text ein, den Sie auf KI-Erkennung analysieren möchten...",
+    "actionLabel": "KI-Inhalt Erkennen",
+    "processingLabel": "Analysiere...",
+    "resultsPlaceholder": "Erkennungsergebnisse werden hier angezeigt",
+    "confidence": "Vertrauen: {confidence}%",
+    "analysis": {
+      "title": "Analyse-Details",
+      "vocabulary": "Wortschatz",
+      "syntax": "Syntax",
+      "coherence": "Kohärenz",
+      "creativity": "Kreativität"
+    },
+    "scoreLabels": {
+      "likelyAi": "Wahrscheinlich KI-Generiert",
+      "possiblyAi": "Möglicherweise KI-Generiert",
+      "likelyHuman": "Wahrscheinlich von Menschen Geschrieben"
+    }
+  },
+  "humanizer": {
+    "title": "Humanisierer",
+    "placeholder": "Fügen Sie hier Ihren KI-generierten Text ein...",
+    "actionLabel": "Humanisieren",
+    "processingLabel": "Humanisiere...",
+    "resultsPlaceholder": "Ihr Text wird hier erscheinen",
+    "toneOptions": {
+      "default": "Allgemein",
+      "professional": "Professionell",
+      "friendly": "Freundlich",
+      "academic": "Akademisch",
+      "blog": "Blog",
+      "social": "Soziale Medien"
+    },
+    "languageOptions": {
+      "en": "Englisch",
+      "es": "Spanisch",
+      "fr": "Französisch",
+      "de": "Deutsch",
+      "it": "Italienisch",
+      "pt": "Portugiesisch",
+      "nl": "Niederländisch",
+      "pl": "Polnisch",
+      "ru": "Russisch",
+      "ja": "Japanisch",
+      "ko": "Koreanisch",
+      "zh": "Chinesisch"
+    }
+  },
+  "sidebar": {
+    "searchPlaceholder": "Verlauf durchsuchen...",
+    "noMatches": "Keine Übereinstimmungen gefunden",
+    "noHistory": "Noch kein Verlauf vorhanden",
+    "creditsUsed": "{used} von {total} in diesem Monat verwendet",
+    "closeMenu": "Menü schließen"
+  },
+  "textProcessor": {
+    "tonePlaceholder": "Ton",
+    "languagePlaceholder": "Sprache",
+    "words": "Wörter",
+    "characters": "Zeichen",
+    "copyText": "Text Kopieren",
+    "copyResult": "Ergebnis Kopieren",
+    "minWordsError": "Bitte geben Sie mindestens 30 Wörter ein, um den Text zu verarbeiten."
+  },
+  "history": {
+    "justNow": "Gerade jetzt",
+    "hoursAgo": "Vor {hours}h",
+    "daysAgo": "Vor {days}d",
+    "result": "Ergebnis:",
+    "copy": "Kopieren",
+    "delete": "Löschen"
+  },
+  "tools": {
+    "new": "Neu",
+    "humanizer": {
+      "name": "Humanisierer",
+      "description": "KI-Text menschlich klingen lassen"
+    },
+    "detector": {
+      "name": "Detektor",
+      "description": "KI-generierten Inhalt erkennen"
+    }
+  },
+  "common": {
+    "confirmation": {
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen"
+    },
+    "menu": {
+      "blog": "Blog",
+      "changelog": "Änderungsprotokoll",
+      "contact": "Kontakt",
+      "dashboard": "Dashboard",
+      "docs": "Dokumentation",
+      "faq": "FAQ",
+      "login": "Anmelden",
+      "pricing": "Preise"
+    },
+    "tableOfContents": {
+      "title": "Auf dieser Seite"
+    },
+    "actions": {
+      "continue": "Weiter",
+      "verify": "Verifizieren"
+    }
+  },
   "admin": {
     "menu": {
       "organizations": "Organisationen",

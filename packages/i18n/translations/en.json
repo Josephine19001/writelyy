@@ -273,22 +273,22 @@
       "useLink": "or use the following link:"
     },
     "emailVerification": {
-      "body": "Hey,\nplease click the link below to verify this new email address.",
+      "body": "Please click the link below to verify this new email address.",
       "confirmEmail": "Verify email",
       "subject": "Verify your email"
     },
     "forgotPassword": {
-      "body": "Hey,\nyou requested a password reset.\n\nClick the button below to reset your password.",
+      "body": "You requested a password reset.\n\nClick the button below to reset your password.",
       "resetPassword": "Reset password",
       "subject": "Reset your password"
     },
     "magicLink": {
-      "body": "Hey,\nyou requested a login email from Writelyy AI.\n\nClick the link below to login.",
+      "body": "You requested a login email from Writelyy AI.\n\nClick the link below to login.",
       "login": "Login",
       "subject": "Login to Writelyy AI"
     },
     "newUser": {
-      "body": "Hey,\nthanks for signing up for Writelyy AI.\n\nTo start using our app, please confirm your email address by clicking the link below.",
+      "body": "Thanks for signing up for Writelyy AI.\n\nTo start using our app, please confirm your email address by clicking the link below.",
       "confirmEmail": "Confirm email",
       "subject": "Confirm your email"
     },
@@ -870,6 +870,90 @@
   "choosePlan": {
     "title": "Choose your plan",
     "description": "To continue, please select a plan."
+  },
+  "detector": {
+    "title": "AI Detection",
+    "placeholder": "Paste the text you want to analyze for AI detection...",
+    "actionLabel": "Detect AI Content",
+    "processingLabel": "Analyzing...",
+    "resultsPlaceholder": "Detection results will appear here",
+    "confidence": "Confidence: {confidence}%",
+    "analysis": {
+      "title": "Analysis Details",
+      "vocabulary": "Vocabulary",
+      "syntax": "Syntax",
+      "coherence": "Coherence",
+      "creativity": "Creativity"
+    },
+    "scoreLabels": {
+      "likelyAi": "Likely AI Generated",
+      "possiblyAi": "Possibly AI Generated",
+      "likelyHuman": "Likely Human Written"
+    }
+  },
+  "humanizer": {
+    "title": "Humanizer",
+    "placeholder": "Paste your AI-generated text here...",
+    "actionLabel": "Humanize",
+    "processingLabel": "Humanizing...",
+    "resultsPlaceholder": "Your text will appear here",
+    "toneOptions": {
+      "default": "General",
+      "professional": "Professional",
+      "friendly": "Friendly",
+      "academic": "Academic",
+      "blog": "Blog",
+      "social": "Social Media"
+    },
+    "languageOptions": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "pt": "Português",
+      "nl": "Nederlands",
+      "pl": "Polski",
+      "ru": "Русский",
+      "ja": "日本語",
+      "ko": "한국어",
+      "zh": "中文"
+    }
+  },
+  "sidebar": {
+    "searchPlaceholder": "Search history...",
+    "noMatches": "No matches found",
+    "noHistory": "No history yet",
+    "creditsUsed": "{used} of {total} used this month",
+    "closeMenu": "Close menu"
+  },
+  "textProcessor": {
+    "tonePlaceholder": "Tone",
+    "languagePlaceholder": "Language",
+    "words": "words",
+    "characters": "characters",
+    "copyText": "Copy Text",
+    "copyResult": "Copy Result",
+    "minWordsError": "Please enter at least 30 words to process the text."
+  },
+  "history": {
+    "justNow": "Just now",
+    "hoursAgo": "{hours}h ago",
+    "daysAgo": "{days}d ago",
+    "result": "Result:",
+    "copy": "Copy",
+    "delete": "Delete"
+  },
+  "tools": {
+    "new": "New",
+    "humanizer": {
+      "name": "Humanizer",
+      "description": "Make AI text sound human"
+    },
+    "detector": {
+      "name": "Detector", 
+      "description": "Detect AI-generated content"
+    }
   },
   "marketing": {
     "nav": {

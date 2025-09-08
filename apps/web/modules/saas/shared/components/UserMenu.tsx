@@ -6,6 +6,7 @@ import { config } from '@repo/config';
 import { useSession } from '@saas/auth/hooks/use-session';
 import { UserAvatar } from '@shared/components/UserAvatar';
 import { clearCache } from '@shared/lib/cache';
+import { useActivePlan } from '@saas/payments/hooks/use-active-plan';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,6 +34,11 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useState } from 'react';
+import { updateLocale } from '@i18n/lib/update-locale';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import type { Locale } from '@repo/i18n';
 
 export function UserMenu({ showUserName }: { showUserName?: boolean }) {
   const t = useTranslations();
@@ -40,6 +46,27 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
   const locale = useLocale();
   const { setTheme: setCurrentTheme, theme: currentTheme } = useTheme();
   const [theme, setTheme] = useState<string>(currentTheme ?? 'system');
+  const { activePlan } = useActivePlan();
+  const router = useRouter();
+
+  const updateLocaleMutation = useMutation({
+    mutationFn: async (newLocale: Locale) => {
+      await authClient.updateUser({
+        locale: newLocale,
+      });
+      await updateLocale(newLocale);
+      router.refresh();
+    },
+  });
+
+  const handleLocaleChange = async (newLocale: string) => {
+    try {
+      await updateLocaleMutation.mutateAsync(newLocale as Locale);
+      toast.success(t('settings.account.language.notifications.success'));
+    } catch {
+      toast.error(t('settings.account.language.notifications.error'));
+    }
+  };
 
   const colorModeOptions = [
     {
@@ -59,12 +86,30 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
     }
   ];
 
-  const localeOptions = [
-    { value: 'en', label: 'English' },
-    { value: 'es', label: 'Español' },
-    { value: 'fr', label: 'Français' },
-    { value: 'de', label: 'Deutsch' }
-  ];
+  const localeOptions = Object.entries(config.i18n.locales).map(
+    ([value, { label }]) => ({
+      value,
+      label
+    })
+  );
+
+  const getPlanDisplayName = () => {
+    if (!activePlan) {
+      return 'Free Plan';
+    }
+    switch (activePlan.id) {
+      case 'starter':
+        return 'Starter Plan';
+      case 'credits':
+        return 'Credits Plan';
+      case 'pro':
+        return 'Pro Plan';
+      case 'unlimited':
+        return 'Unlimited Plan';
+      default:
+        return 'Free Plan';
+    }
+  };
 
   const onLogout = () => {
     authClient.signOut({
@@ -99,7 +144,9 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
             {showUserName && (
               <span className="text-left leading-tight">
                 <span className="font-medium text-sm">{name}</span>
-                <span className="block text-xs opacity-70">{email}</span>
+                <span className="block text-xs opacity-70">
+                  {getPlanDisplayName()}
+                </span>
               </span>
             )}
           </span>
@@ -112,6 +159,9 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
         <DropdownMenuLabel>
           {name}
           <span className="block font-normal text-xs opacity-70">{email}</span>
+          <span className="block font-normal text-xs opacity-70 mt-1">
+            {getPlanDisplayName()}
+          </span>
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
@@ -163,16 +213,17 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuRadioGroup value={locale}>
+                <DropdownMenuRadioGroup 
+                  value={locale} 
+                  onValueChange={handleLocaleChange}
+                >
                   {localeOptions.map((option) => (
                     <DropdownMenuRadioItem
                       key={option.value}
                       value={option.value}
-                      asChild
+                      disabled={updateLocaleMutation.isPending}
                     >
-                      <Link href={`/${option.value}/app`}>
-                        {option.label}
-                      </Link>
+                      {option.label}
                     </DropdownMenuRadioItem>
                   ))}
                 </DropdownMenuRadioGroup>

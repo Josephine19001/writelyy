@@ -1,4 +1,111 @@
 {
+  "detector": {
+    "title": "Détection IA",
+    "placeholder": "Collez le texte que vous voulez analyser pour la détection IA...",
+    "actionLabel": "Détecter le Contenu IA",
+    "processingLabel": "Analyse...",
+    "resultsPlaceholder": "Les résultats de détection apparaîtront ici",
+    "confidence": "Confiance : {confidence}%",
+    "analysis": {
+      "title": "Détails de l'Analyse",
+      "vocabulary": "Vocabulaire",
+      "syntax": "Syntaxe",
+      "coherence": "Cohérence",
+      "creativity": "Créativité"
+    },
+    "scoreLabels": {
+      "likelyAi": "Probablement Généré par IA",
+      "possiblyAi": "Possiblement Généré par IA",
+      "likelyHuman": "Probablement Écrit par un Humain"
+    }
+  },
+  "humanizer": {
+    "title": "Humaniseur",
+    "placeholder": "Collez votre texte généré par IA ici...",
+    "actionLabel": "Humaniser",
+    "processingLabel": "Humanisation...",
+    "resultsPlaceholder": "Votre texte apparaîtra ici",
+    "toneOptions": {
+      "default": "Général",
+      "professional": "Professionnel",
+      "friendly": "Amical",
+      "academic": "Académique",
+      "blog": "Blog",
+      "social": "Réseaux Sociaux"
+    },
+    "languageOptions": {
+      "en": "Anglais",
+      "es": "Espagnol",
+      "fr": "Français",
+      "de": "Allemand",
+      "it": "Italien",
+      "pt": "Portugais",
+      "nl": "Néerlandais",
+      "pl": "Polonais",
+      "ru": "Russe",
+      "ja": "Japonais",
+      "ko": "Coréen",
+      "zh": "Chinois"
+    }
+  },
+  "sidebar": {
+    "searchPlaceholder": "Rechercher l'historique...",
+    "noMatches": "Aucune correspondance trouvée",
+    "noHistory": "Pas d'historique encore",
+    "creditsUsed": "{used} sur {total} utilisés ce mois",
+    "closeMenu": "Fermer le menu"
+  },
+  "textProcessor": {
+    "tonePlaceholder": "Ton",
+    "languagePlaceholder": "Langue",
+    "words": "mots",
+    "characters": "caractères",
+    "copyText": "Copier le Texte",
+    "copyResult": "Copier le Résultat",
+    "minWordsError": "Veuillez saisir au moins 30 mots pour traiter le texte."
+  },
+  "history": {
+    "justNow": "À l'instant",
+    "hoursAgo": "Il y a {hours}h",
+    "daysAgo": "Il y a {days}j",
+    "result": "Résultat:",
+    "copy": "Copier",
+    "delete": "Supprimer"
+  },
+  "tools": {
+    "new": "Nouveau",
+    "humanizer": {
+      "name": "Humanisateur",
+      "description": "Rendre le texte IA plus humain"
+    },
+    "detector": {
+      "name": "Détecteur",
+      "description": "Détecter le contenu généré par IA"
+    }
+  },
+  "common": {
+    "confirmation": {
+      "cancel": "Annuler",
+      "confirm": "Confirmer"
+    },
+    "menu": {
+      "blog": "Blog",
+      "changelog": "Journal des Modifications",
+      "contact": "Contact",
+      "dashboard": "Tableau de Bord",
+      "docs": "Documentation",
+      "faq": "FAQ",
+      "login": "Connexion",
+      "pricing": "Tarifs"
+    },
+    "tableOfContents": {
+      "title": "Sur cette page"
+    },
+    "actions": {
+      "continue": "Continuer",
+      "verify": "Vérifier"
+    }
+  },
   "marketing": {
     "nav": {
       "humanizer": "Humaniseur",

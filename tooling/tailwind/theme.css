@@ -1,5 +1,6 @@
 @theme {
   --color-background: var(--background);
+  --color-background-text: var(--background-text);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -55,6 +56,7 @@
     --input: #c7ced8;
     --ring: #00c8b3;
     --background: #fafafe;
+    --background-text: #ffffff;
     --foreground: #292b35;
     --primary: #00c8b3;
     --primary-foreground: #f6f7f9;
@@ -85,6 +87,7 @@
     --input: #4c5362;
     --ring: #00c8b3;
     --background: #070d12;
+    --background-text: #151616;
     --foreground: #e9eef3;
     --primary: #00c8b3;
     --primary-foreground: #091521;
