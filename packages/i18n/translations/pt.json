@@ -74,7 +74,8 @@
     "noMatches": "Nenhuma correspondência encontrada",
     "noHistory": "Nenhum histórico ainda",
     "creditsUsed": "{used} de {total} usados este mês",
-    "closeMenu": "Fechar menu"
+    "closeMenu": "Fechar menu",
+    "upgradeButton": "Atualizar Plano"
   },
   "textProcessor": {
     "tonePlaceholder": "Tom",

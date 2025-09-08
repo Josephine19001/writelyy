@@ -74,7 +74,8 @@
     "noMatches": "Nessuna corrispondenza trovata",
     "noHistory": "Nessuna cronologia ancora",
     "creditsUsed": "{used} di {total} utilizzati questo mese",
-    "closeMenu": "Chiudi menu"
+    "closeMenu": "Chiudi menu",
+    "upgradeButton": "Aggiorna Piano"
   },
   "textProcessor": {
     "tonePlaceholder": "Tono",

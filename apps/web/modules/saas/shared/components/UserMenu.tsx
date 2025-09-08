@@ -107,7 +107,7 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
       case 'pro':
         return 'Pro Plan';
       case 'max':
-        return 'Unlimited Plan';
+        return 'Max Plan';
       default:
         return 'Free Plan';
     }
@@ -163,9 +163,6 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
           <span className="block font-normal text-xs opacity-70">{email}</span>
           <span className="block font-normal text-xs opacity-70 mt-1">
             {getPlanDisplayName()}
-          </span>
-          <span className="block font-normal text-xs opacity-60 mt-1">
-            {currentUsageFormatted} / {wordLimitFormatted} words used
           </span>
         </DropdownMenuLabel>
 

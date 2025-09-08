@@ -87,7 +87,8 @@
     "noMatches": "Aucune correspondance trouvée",
     "noHistory": "Pas d'historique encore",
     "creditsUsed": "{used} sur {total} utilisés ce mois",
-    "closeMenu": "Fermer le menu"
+    "closeMenu": "Fermer le menu",
+    "upgradeButton": "Améliorer le Plan"
   },
   "textProcessor": {
     "tonePlaceholder": "Ton",

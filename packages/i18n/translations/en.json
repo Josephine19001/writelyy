@@ -932,7 +932,8 @@
     "noMatches": "No matches found",
     "noHistory": "No history yet",
     "creditsUsed": "{used} of {total} used this month",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "upgradeButton": "Upgrade Plan"
   },
   "textProcessor": {
     "tonePlaceholder": "Tone",

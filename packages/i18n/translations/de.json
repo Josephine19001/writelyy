@@ -74,7 +74,8 @@
     "noMatches": "Keine Übereinstimmungen gefunden",
     "noHistory": "Noch kein Verlauf vorhanden",
     "creditsUsed": "{used} von {total} in diesem Monat verwendet",
-    "closeMenu": "Menü schließen"
+    "closeMenu": "Menü schließen",
+    "upgradeButton": "Plan Upgraden"
   },
   "textProcessor": {
     "tonePlaceholder": "Ton",

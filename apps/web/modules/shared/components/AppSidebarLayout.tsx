@@ -16,6 +16,8 @@ import { UserMenu } from '@saas/shared/components/UserMenu';
 import { useUsageLimits } from '@saas/payments/hooks/use-usage-limits';
 import { Progress } from '@ui/components/progress';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { CrownIcon } from 'lucide-react';
 
 interface TextHistoryEntry {
   id: string;
@@ -52,7 +54,7 @@ export function AppSidebarLayout({
   const [searchQuery, setSearchQuery] = useState('');
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { monthlyUsage } = useUsageLimits();
+  const { monthlyUsage, hasExceededWordLimit } = useUsageLimits();
 
   const filteredEntries = historyEntries.filter(
     (entry) =>
@@ -200,6 +202,16 @@ export function AppSidebarLayout({
                   </div>
                 </div>
               </div>
+
+              {/* Upgrade Button - Show when user has exceeded word limit */}
+              {hasExceededWordLimit && (
+                <Link href="/app/billing">
+                  <Button variant="primary" size="sm" className="w-full mb-3">
+                    <CrownIcon className="h-4 w-4 mr-2" />
+                    {t('sidebar.upgradeButton')}
+                  </Button>
+                </Link>
+              )}
 
               <UserMenu showUserName={true} />
             </div>
