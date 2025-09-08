@@ -1,6 +1,7 @@
 'use client';
 
 import { ParaphraserPage } from '@shared/components/ParaphraserPage';
+import { TrialDataManager } from '@shared/components/TrialDataManager';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -94,18 +95,24 @@ export function ParaphraserPageWrapper() {
   );
 
   return (
-    <ParaphraserPage
-      historyEntries={historyEntries}
-      onHistoryItemClick={handleHistoryItemClick}
-      onHistoryItemDelete={handleHistoryItemDelete}
-      onProcess={handleProcess}
-      inputText={inputText}
-      setInputText={setInputText}
-      isProcessing={isProcessing}
-      renderResults={renderResults}
-      hasResults={!!outputText}
-      resultsText={outputText}
-      onReset={handleReset}
-    />
+    <>
+      <TrialDataManager 
+        currentPage="paraphraser" 
+        onTrialDataFound={setInputText}
+      />
+      <ParaphraserPage
+        historyEntries={historyEntries}
+        onHistoryItemClick={handleHistoryItemClick}
+        onHistoryItemDelete={handleHistoryItemDelete}
+        onProcess={handleProcess}
+        inputText={inputText}
+        setInputText={setInputText}
+        isProcessing={isProcessing}
+        renderResults={renderResults}
+        hasResults={!!outputText}
+        resultsText={outputText}
+        onReset={handleReset}
+      />
+    </>
   );
 }

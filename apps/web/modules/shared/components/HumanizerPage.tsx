@@ -1,6 +1,7 @@
 'use client';
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
+import { TrialDataManager } from '@shared/components/TrialDataManager';
 import { DiffHighlighter } from '@shared/components/DiffHighlighter';
 import { SparklesIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
@@ -135,28 +136,34 @@ export function HumanizerPage() {
   );
 
   return (
-    <TextProcessorPage
-      currentPage="humanizer"
-      showToneSelector={true}
-      showLanguageSelector={true}
-      toneOptions={toneOptions}
-      languageOptions={languageOptions}
-      placeholder={t('humanizer.placeholder')}
-      actionLabel={t('humanizer.actionLabel')}
-      processingLabel={t('humanizer.processingLabel')}
-      ActionIcon={SparklesIcon}
-      maxLength={5000}
-      historyEntries={historyEntries}
-      onHistoryItemClick={handleHistoryItemClick}
-      onHistoryItemDelete={handleHistoryItemDelete}
-      onProcess={handleProcess}
-      inputText={inputText}
-      setInputText={setInputText}
-      isProcessing={isProcessing}
-      renderResults={renderResults}
-      hasResults={!!outputText}
-      resultsText={outputText}
-      onReset={handleReset}
-    />
+    <>
+      <TrialDataManager 
+        currentPage="humanizer" 
+        onTrialDataFound={setInputText}
+      />
+      <TextProcessorPage
+        currentPage="humanizer"
+        showToneSelector={true}
+        showLanguageSelector={true}
+        toneOptions={toneOptions}
+        languageOptions={languageOptions}
+        placeholder={t('humanizer.placeholder')}
+        actionLabel={t('humanizer.actionLabel')}
+        processingLabel={t('humanizer.processingLabel')}
+        ActionIcon={SparklesIcon}
+        maxLength={5000}
+        historyEntries={historyEntries}
+        onHistoryItemClick={handleHistoryItemClick}
+        onHistoryItemDelete={handleHistoryItemDelete}
+        onProcess={handleProcess}
+        inputText={inputText}
+        setInputText={setInputText}
+        isProcessing={isProcessing}
+        renderResults={renderResults}
+        hasResults={!!outputText}
+        resultsText={outputText}
+        onReset={handleReset}
+      />
+    </>
   );
 }

@@ -23,9 +23,6 @@ import { cn } from '@ui/lib';
 import {
   MenuIcon,
   ChevronDownIcon,
-  TrendingUpIcon,
-  UserIcon,
-  BrainIcon,
   SparklesIcon,
   ShieldCheckIcon,
   FileTextIcon,
@@ -94,27 +91,6 @@ export function NavBar() {
     }
   ];
 
-  const useCases = [
-    {
-      label: 'Creators',
-      href: '/use-cases/creators',
-      icon: TrendingUpIcon,
-      description: 'Research trends and understand your audience'
-    },
-    {
-      label: 'Product Teams',
-      href: '/use-cases/product-teams',
-      icon: BrainIcon,
-      description: 'Turn feedback into product decisions'
-    },
-    {
-      label: 'Social Media Strategists',
-      href: '/use-cases/social-media-strategists',
-      icon: UserIcon,
-      description: 'Monitor context sentiment and engagement'
-    }
-  ];
-
   const menuItems: {
     label: string;
     href: string;
@@ -161,8 +137,8 @@ export function NavBar() {
             {/* Product Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="px-3 py-2 font-medium text-foreground/80 text-sm hover:text-foreground transition-colors h-auto gap-1"
                 >
                   {t('marketing.nav.product')}
@@ -254,29 +230,6 @@ export function NavBar() {
                           </div>
                         </div>
                       </NextLink>
-                    ))}
-                  </div>
-
-                  {/* Use Cases Section */}
-                  <div className="w-full px-3 py-2">
-                    <div className="text-sm font-medium text-foreground/60 mb-2">
-                      Use Cases
-                    </div>
-                    {useCases.map((useCase) => (
-                      <LocaleLink
-                        key={useCase.href}
-                        href={useCase.href}
-                        className="flex items-center gap-3 px-3 py-2 text-base text-foreground/80 hover:text-foreground"
-                        prefetch
-                      >
-                        <useCase.icon className="h-5 w-5 text-primary" />
-                        <div>
-                          <div className="font-medium">{useCase.label}</div>
-                          <div className="text-sm text-foreground/60">
-                            {useCase.description}
-                          </div>
-                        </div>
-                      </LocaleLink>
                     ))}
                   </div>
 

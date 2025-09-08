@@ -157,7 +157,8 @@
       "cta": "Commencer à Mieux Écrire",
       "tryForFree": "Essayer Gratuitement",
       "trustedBy": "Fait confiance par plus de 50 000 rédacteurs dans le monde",
-      "noCardRequired": "Aucune carte de crédit requise"
+      "noCardRequired": "Aucune carte de crédit requise",
+      "tryItOut": "Essayez-le"
     },
     "features": {
       "title": "Fonctionnalités Essentielles",
@@ -218,7 +219,81 @@
           }
         }
       },
-      "processingTime": "Temps de traitement : Moins de 2 secondes"
+      "processingTime": "Temps de traitement : Moins de 2 secondes",
+      "products": {
+        "humanizer": {
+          "title": "Humaniseur",
+          "description": "Transformez le texte IA en écriture naturelle et humaine qui contourne tous les détecteurs",
+          "steps": {
+            "pasteText": {
+              "title": "Coller le Texte IA",
+              "description": "Copiez et collez votre contenu généré par IA dans l'éditeur de texte"
+            },
+            "selectTone": {
+              "title": "Choisir le Ton",
+              "description": "Sélectionnez parmi les styles Professionnel, Académique, Amical ou Général"
+            },
+            "getHumanized": {
+              "title": "Obtenir le Texte Humanisé",
+              "description": "Recevez un texte naturel et indétectable qui sonne authentiquement humain"
+            }
+          }
+        },
+        "detector": {
+          "title": "Détecteur IA",
+          "description": "Analysez le texte pour identifier le contenu généré par IA avec une grande précision",
+          "steps": {
+            "inputText": {
+              "title": "Saisir le Texte",
+              "description": "Collez le texte que vous voulez analyser pour la détection IA"
+            },
+            "analyzeContent": {
+              "title": "Analyser le Contenu",
+              "description": "Notre IA scanne les motifs et signaux de génération artificielle"
+            },
+            "viewResults": {
+              "title": "Voir les Résultats",
+              "description": "Obtenez une analyse détaillée avec des scores de confiance et des informations de détection"
+            }
+          }
+        },
+        "summariser": {
+          "title": "Résumeur",
+          "description": "Créez des résumés concis et précis à partir de contenu long instantanément",
+          "steps": {
+            "addContent": {
+              "title": "Ajouter du Contenu",
+              "description": "Collez votre article, document ou texte qui nécessite un résumé"
+            },
+            "processSummary": {
+              "title": "Traiter le Résumé",
+              "description": "L'IA extrait les points clés et crée un résumé cohérent"
+            },
+            "getResults": {
+              "title": "Obtenir le Résumé",
+              "description": "Recevez un résumé concis mettant en évidence les informations les plus importantes"
+            }
+          }
+        },
+        "paraphraser": {
+          "title": "Paraphraseur",
+          "description": "Réécrivez et reformulez le texte tout en maintenant le sens et le contexte originaux",
+          "steps": {
+            "enterText": {
+              "title": "Saisir le Texte",
+              "description": "Saisissez le texte que vous voulez reformuler ou réécrire"
+            },
+            "rephrase": {
+              "title": "Reformuler le Contenu",
+              "description": "L'IA réécrit votre texte en utilisant différents mots et structures de phrases"
+            },
+            "copyResult": {
+              "title": "Copier le Résultat",
+              "description": "Obtenez votre texte paraphrasé avec une clarté et une variété améliorées"
+            }
+          }
+        }
+      }
     },
     "integrations": {
       "title": "Intégration Transparente",

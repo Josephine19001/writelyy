@@ -3,63 +3,110 @@
 import { useState } from 'react';
 import { cn } from '@ui/lib';
 import {
-  MousePointerClick,
+  Sparkles,
+  Search,
+  FileText,
+  RefreshCw,
   Edit3,
   Download,
-  Sparkles,
-  FileText,
   Settings
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export function HowItWorks() {
   const t = useTranslations('marketing.howItWorks');
-  const [activeTab, setActiveTab] = useState('extension');
+  const [activeTab, setActiveTab] = useState('humanizer');
   
   const steps = [
     {
-      id: 'extension',
-      title: t('browserExtension.title'),
-      icon: MousePointerClick,
-      description: t('browserExtension.description'),
+      id: 'humanizer',
+      title: t('products.humanizer.title'),
+      icon: Sparkles,
+      description: t('products.humanizer.description'),
       steps: [
         {
           icon: Edit3,
-          title: t('browserExtension.steps.selectText.title'),
-          description: t('browserExtension.steps.selectText.description')
+          title: t('products.humanizer.steps.pasteText.title'),
+          description: t('products.humanizer.steps.pasteText.description')
+        },
+        {
+          icon: Settings,
+          title: t('products.humanizer.steps.selectTone.title'),
+          description: t('products.humanizer.steps.selectTone.description')
         },
         {
           icon: Sparkles,
-          title: t('browserExtension.steps.clickHumanize.title'),
-          description: t('browserExtension.steps.clickHumanize.description')
-        },
-        {
-          icon: FileText,
-          title: t('browserExtension.steps.instantlyRewritten.title'),
-          description: t('browserExtension.steps.instantlyRewritten.description')
+          title: t('products.humanizer.steps.getHumanized.title'),
+          description: t('products.humanizer.steps.getHumanized.description')
         }
       ]
     },
     {
-      id: 'editor',
-      title: t('webEditor.title'),
-      icon: FileText,
-      description: t('webEditor.description'),
+      id: 'detector',
+      title: t('products.detector.title'),
+      icon: Search,
+      description: t('products.detector.description'),
       steps: [
         {
           icon: FileText,
-          title: t('webEditor.steps.pasteContent.title'),
-          description: t('webEditor.steps.pasteContent.description')
+          title: t('products.detector.steps.inputText.title'),
+          description: t('products.detector.steps.inputText.description')
         },
         {
-          icon: Settings,
-          title: t('webEditor.steps.chooseTone.title'),
-          description: t('webEditor.steps.chooseTone.description')
+          icon: Search,
+          title: t('products.detector.steps.analyzeContent.title'),
+          description: t('products.detector.steps.analyzeContent.description')
         },
         {
           icon: Download,
-          title: t('webEditor.steps.copyUse.title'),
-          description: t('webEditor.steps.copyUse.description')
+          title: t('products.detector.steps.viewResults.title'),
+          description: t('products.detector.steps.viewResults.description')
+        }
+      ]
+    },
+    {
+      id: 'summariser',
+      title: t('products.summariser.title'),
+      icon: FileText,
+      description: t('products.summariser.description'),
+      steps: [
+        {
+          icon: FileText,
+          title: t('products.summariser.steps.addContent.title'),
+          description: t('products.summariser.steps.addContent.description')
+        },
+        {
+          icon: RefreshCw,
+          title: t('products.summariser.steps.processSummary.title'),
+          description: t('products.summariser.steps.processSummary.description')
+        },
+        {
+          icon: Download,
+          title: t('products.summariser.steps.getResults.title'),
+          description: t('products.summariser.steps.getResults.description')
+        }
+      ]
+    },
+    {
+      id: 'paraphraser',
+      title: t('products.paraphraser.title'),
+      icon: RefreshCw,
+      description: t('products.paraphraser.description'),
+      steps: [
+        {
+          icon: Edit3,
+          title: t('products.paraphraser.steps.enterText.title'),
+          description: t('products.paraphraser.steps.enterText.description')
+        },
+        {
+          icon: RefreshCw,
+          title: t('products.paraphraser.steps.rephrase.title'),
+          description: t('products.paraphraser.steps.rephrase.description')
+        },
+        {
+          icon: Download,
+          title: t('products.paraphraser.steps.copyResult.title'),
+          description: t('products.paraphraser.steps.copyResult.description')
         }
       ]
     }
@@ -81,7 +128,7 @@ export function HowItWorks() {
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white dark:bg-gray-800 rounded-2xl p-2 shadow-lg border">
+          <div className="inline-flex bg-white dark:bg-gray-800 rounded-2xl p-2 shadow-lg border max-w-full overflow-x-auto">
             {steps.map((step) => {
               const Icon = step.icon;
               return (
@@ -90,14 +137,14 @@ export function HowItWorks() {
                   key={step.id}
                   onClick={() => setActiveTab(step.id)}
                   className={cn(
-                    'flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-200 font-medium',
+                    'flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 font-medium whitespace-nowrap',
                     activeTab === step.id
                       ? 'bg-primary text-primary-foreground shadow-sm'
                       : 'text-foreground/70 hover:text-foreground hover:bg-gray-50 dark:hover:bg-gray-700'
                   )}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="hidden sm:block">{step.title}</span>
+                  <Icon className="w-4 h-4" />
+                  <span className="text-sm">{step.title}</span>
                 </button>
               );
             })}

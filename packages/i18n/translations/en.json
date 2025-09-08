@@ -1006,7 +1006,8 @@
       "cta": "Start Writing Better",
       "tryForFree": "Try for Free",
       "trustedBy": "Trusted by 50,000+ writers worldwide",
-      "noCardRequired": "No credit card required"
+      "noCardRequired": "No credit card required",
+      "tryItOut": "Try it out"
     },
     "features": {
       "title": "Essential Features",
@@ -1067,7 +1068,81 @@
           }
         }
       },
-      "processingTime": "Processing time: Under 2 seconds"
+      "processingTime": "Processing time: Under 2 seconds",
+      "products": {
+        "humanizer": {
+          "title": "Humanizer",
+          "description": "Transform AI text into natural, human-like writing that bypasses all detectors",
+          "steps": {
+            "pasteText": {
+              "title": "Paste AI Text",
+              "description": "Copy and paste your AI-generated content into the text editor"
+            },
+            "selectTone": {
+              "title": "Choose Tone",
+              "description": "Select from Professional, Academic, Friendly, or General writing style"
+            },
+            "getHumanized": {
+              "title": "Get Humanized Text",
+              "description": "Receive natural, undetectable text that sounds authentically human"
+            }
+          }
+        },
+        "detector": {
+          "title": "AI Detector",
+          "description": "Analyze text to identify AI-generated content with high accuracy",
+          "steps": {
+            "inputText": {
+              "title": "Input Text",
+              "description": "Paste the text you want to analyze for AI detection"
+            },
+            "analyzeContent": {
+              "title": "Analyze Content",
+              "description": "Our AI scans for patterns and signals of artificial generation"
+            },
+            "viewResults": {
+              "title": "View Results",
+              "description": "Get detailed analysis with confidence scores and detection insights"
+            }
+          }
+        },
+        "summariser": {
+          "title": "Summariser",
+          "description": "Create concise, accurate summaries from long-form content instantly",
+          "steps": {
+            "addContent": {
+              "title": "Add Content",
+              "description": "Paste your article, document, or text that needs summarizing"
+            },
+            "processSummary": {
+              "title": "Process Summary",
+              "description": "AI extracts key points and creates a coherent summary"
+            },
+            "getResults": {
+              "title": "Get Summary",
+              "description": "Receive a concise summary highlighting the most important information"
+            }
+          }
+        },
+        "paraphraser": {
+          "title": "Paraphraser",
+          "description": "Rewrite and rephrase text while maintaining original meaning and context",
+          "steps": {
+            "enterText": {
+              "title": "Enter Text",
+              "description": "Input the text you want to rephrase or rewrite"
+            },
+            "rephrase": {
+              "title": "Rephrase Content",
+              "description": "AI rewrites your text using different words and sentence structures"
+            },
+            "copyResult": {
+              "title": "Copy Result",
+              "description": "Get your paraphrased text with improved clarity and variety"
+            }
+          }
+        }
+      }
     },
     "integrations": {
       "title": "Seamless Integration",

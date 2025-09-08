@@ -49,10 +49,10 @@ export function AiDetectorShowcase() {
   const t = useTranslations('marketing.aiDetector');
 
   return (
-    <section className="py-8 bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-950/20 dark:to-emerald-950/20">
+    <section className="py-6">
       <div className="container max-w-6xl">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-4 rounded-full text-sm font-medium">
             <Shield className="w-4 h-4" />
             <span>{t('badge')}</span>
           </div>
@@ -65,7 +65,7 @@ export function AiDetectorShowcase() {
 
         {/* Horizontal scrolling detector showcase */}
         <div className="relative overflow-hidden">
-          <div className="flex animate-scroll-horizontal space-x-8 py-4">
+          <div className="flex animate-scroll-horizontal space-x-8 py-2">
             {duplicatedDetectors.map((detector, index) => (
               <div
                 key={`${detector.name}-${index}`}
@@ -77,7 +77,7 @@ export function AiDetectorShowcase() {
                     alt={`${detector.name} logo`}
                     width={120}
                     height={80}
-                    className="object-contain max-h-20 grayscale dark:grayscale-0"
+                    className="object-contain max-h-20 grayscale brightness-75 dark:brightness-125"
                   />
                 </div>
               </div>

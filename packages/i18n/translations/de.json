@@ -1001,7 +1001,8 @@
       "cta": "Besser Schreiben Beginnen",
       "tryForFree": "Kostenlos Testen",
       "trustedBy": "Vertraut von über 50.000 Schreibern weltweit",
-      "noCardRequired": "Keine Kreditkarte erforderlich"
+      "noCardRequired": "Keine Kreditkarte erforderlich",
+      "tryItOut": "Probieren Sie es aus"
     },
     "features": {
       "title": "Wesentliche Features",
@@ -1062,7 +1063,81 @@
           }
         }
       },
-      "processingTime": "Verarbeitungszeit: Unter 2 Sekunden"
+      "processingTime": "Verarbeitungszeit: Unter 2 Sekunden",
+      "products": {
+        "humanizer": {
+          "title": "Humanisierer",
+          "description": "Verwandeln Sie KI-Text in natürliches, menschliches Schreiben, das alle Detektoren umgeht",
+          "steps": {
+            "pasteText": {
+              "title": "KI-Text Einfügen",
+              "description": "Kopieren und fügen Sie Ihren KI-generierten Inhalt in den Texteditor ein"
+            },
+            "selectTone": {
+              "title": "Ton Wählen",
+              "description": "Wählen Sie zwischen Professionell, Akademisch, Freundlich oder Allgemein"
+            },
+            "getHumanized": {
+              "title": "Humanisierten Text Erhalten",
+              "description": "Erhalten Sie natürlichen, unerkennbaren Text, der authentisch menschlich klingt"
+            }
+          }
+        },
+        "detector": {
+          "title": "KI-Detektor",
+          "description": "Analysieren Sie Text, um KI-generierten Inhalt mit hoher Genauigkeit zu identifizieren",
+          "steps": {
+            "inputText": {
+              "title": "Text Eingeben",
+              "description": "Fügen Sie den Text ein, den Sie auf KI-Erkennung analysieren möchten"
+            },
+            "analyzeContent": {
+              "title": "Inhalt Analysieren",
+              "description": "Unsere KI scannt nach Mustern und Signalen künstlicher Generierung"
+            },
+            "viewResults": {
+              "title": "Ergebnisse Anzeigen",
+              "description": "Erhalten Sie detaillierte Analysen mit Vertrauenswerten und Erkennungseinblicken"
+            }
+          }
+        },
+        "summariser": {
+          "title": "Zusammenfasser",
+          "description": "Erstellen Sie präzise, genaue Zusammenfassungen aus langen Inhalten sofort",
+          "steps": {
+            "addContent": {
+              "title": "Inhalt Hinzufügen",
+              "description": "Fügen Sie Ihren Artikel, Ihr Dokument oder Text ein, der zusammengefasst werden muss"
+            },
+            "processSummary": {
+              "title": "Zusammenfassung Verarbeiten",
+              "description": "KI extrahiert Schlüsselpunkte und erstellt eine kohärente Zusammenfassung"
+            },
+            "getResults": {
+              "title": "Zusammenfassung Erhalten",
+              "description": "Erhalten Sie eine präzise Zusammenfassung, die die wichtigsten Informationen hervorhebt"
+            }
+          }
+        },
+        "paraphraser": {
+          "title": "Paraphrasierer",
+          "description": "Schreiben Sie Text um und formulieren Sie ihn neu, während Bedeutung und Kontext erhalten bleiben",
+          "steps": {
+            "enterText": {
+              "title": "Text Eingeben",
+              "description": "Geben Sie den Text ein, den Sie paraphrasieren oder umschreiben möchten"
+            },
+            "rephrase": {
+              "title": "Inhalt Umformulieren",
+              "description": "KI schreibt Ihren Text mit verschiedenen Wörtern und Satzstrukturen um"
+            },
+            "copyResult": {
+              "title": "Ergebnis Kopieren",
+              "description": "Erhalten Sie Ihren paraphrasierten Text mit verbesserter Klarheit und Vielfalt"
+            }
+          }
+        }
+      }
     },
     "integrations": {
       "title": "Nahtlose Integration",

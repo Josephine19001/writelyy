@@ -1,6 +1,7 @@
 'use client';
 
 import { SummariserPage } from '@shared/components/SummariserPage';
+import { TrialDataManager } from '@shared/components/TrialDataManager';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -94,18 +95,24 @@ export function SummariserPageWrapper() {
   );
 
   return (
-    <SummariserPage
-      historyEntries={historyEntries}
-      onHistoryItemClick={handleHistoryItemClick}
-      onHistoryItemDelete={handleHistoryItemDelete}
-      onProcess={handleProcess}
-      inputText={inputText}
-      setInputText={setInputText}
-      isProcessing={isProcessing}
-      renderResults={renderResults}
-      hasResults={!!outputText}
-      resultsText={outputText}
-      onReset={handleReset}
-    />
+    <>
+      <TrialDataManager 
+        currentPage="summariser" 
+        onTrialDataFound={setInputText}
+      />
+      <SummariserPage
+        historyEntries={historyEntries}
+        onHistoryItemClick={handleHistoryItemClick}
+        onHistoryItemDelete={handleHistoryItemDelete}
+        onProcess={handleProcess}
+        inputText={inputText}
+        setInputText={setInputText}
+        isProcessing={isProcessing}
+        renderResults={renderResults}
+        hasResults={!!outputText}
+        resultsText={outputText}
+        onReset={handleReset}
+      />
+    </>
   );
 }

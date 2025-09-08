@@ -38,10 +38,6 @@ export function Footer() {
         </div>
 
         <div className="flex gap-4 flex-wrap items-center">
-          <a href="#features" className="block">
-            {t('nav.features')}
-          </a>
-
           <a href="/#pricing" className="block">
             {t('nav.pricing')}
           </a>

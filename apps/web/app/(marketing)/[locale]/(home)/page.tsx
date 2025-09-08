@@ -1,6 +1,6 @@
 import { AiDetectorShowcase } from '@marketing/home/components/AiDetectorShowcase';
 import { FaqSection } from '@marketing/home/components/FaqSection';
-import { FeaturesSection } from '@marketing/home/components/FeaturesSection';
+// import { FeaturesSection } from '@marketing/home/components/FeaturesSection';
 import { Hero } from '@marketing/home/components/Hero';
 import { HowItWorks } from '@marketing/home/components/HowItWorksNew';
 // import { IntegrationsShowcase } from '@marketing/home/components/IntegrationsShowcase';
@@ -25,7 +25,7 @@ export default async function Home({
       <Hero />
       <AiDetectorShowcase />
       <HowItWorks />
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       {/* <IntegrationsShowcase /> */}
       <ReviewsSection />
       <section

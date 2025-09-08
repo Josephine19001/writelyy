@@ -1,6 +1,7 @@
 'use client';
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
+import { TrialDataManager } from '@shared/components/TrialDataManager';
 import { ShieldCheckIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
@@ -275,24 +276,30 @@ export function DetectorPage() {
   };
 
   return (
-    <TextProcessorPage
-      currentPage="detector"
-      placeholder={t('detector.placeholder')}
-      actionLabel={t('detector.actionLabel')}
-      processingLabel={t('detector.processingLabel')}
-      ActionIcon={ShieldCheckIcon}
-      maxLength={5000}
-      historyEntries={historyEntries}
-      onHistoryItemClick={handleHistoryItemClick}
-      onHistoryItemDelete={handleHistoryItemDelete}
-      onProcess={handleProcess}
-      inputText={inputText}
-      setInputText={setInputText}
-      isProcessing={isProcessing}
-      renderResults={renderResults}
-      hasResults={!!detectionResult}
-      resultsText={inputText}
-      onReset={handleReset}
-    />
+    <>
+      <TrialDataManager 
+        currentPage="detector" 
+        onTrialDataFound={setInputText}
+      />
+      <TextProcessorPage
+        currentPage="detector"
+        placeholder={t('detector.placeholder')}
+        actionLabel={t('detector.actionLabel')}
+        processingLabel={t('detector.processingLabel')}
+        ActionIcon={ShieldCheckIcon}
+        maxLength={5000}
+        historyEntries={historyEntries}
+        onHistoryItemClick={handleHistoryItemClick}
+        onHistoryItemDelete={handleHistoryItemDelete}
+        onProcess={handleProcess}
+        inputText={inputText}
+        setInputText={setInputText}
+        isProcessing={isProcessing}
+        renderResults={renderResults}
+        hasResults={!!detectionResult}
+        resultsText={inputText}
+        onReset={handleReset}
+      />
+    </>
   );
 }
