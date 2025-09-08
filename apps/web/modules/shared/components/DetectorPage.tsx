@@ -73,37 +73,30 @@ export function DetectorPage() {
   };
 
   const handleHistoryItemClick = useCallback(
-    async (id: string) => {
+    (id: string) => {
       const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
         setInputText(entry.inputText);
-        // Re-run detection to get full analysis data
-        try {
-          await handleProcess(entry.inputText);
-        } catch (error) {
-          console.error('Failed to re-analyze text:', error);
-          // Fallback to basic data if re-analysis fails
-          if (entry.aiProbability !== undefined && entry.aiProbability !== null) {
-            setDetectionResult({
-              aiProbability: entry.aiProbability,
-              detectionResult: entry.detectionResult as 'Human' | 'AI' | 'Mixed',
-              confidence: 'Medium',
-              analysis: {
-                reasoning: '',
-                indicators: {
-                  vocabulary: { score: 0, issues: [], explanation: '' },
-                  syntax: { score: 0, issues: [], explanation: '' },
-                  coherence: { score: 0, issues: [], explanation: '' },
-                  creativity: { score: 0, issues: [], explanation: '' }
-                },
-                suggestions: []
-              }
-            });
-          }
+        if (entry.aiProbability !== undefined && entry.aiProbability !== null) {
+          setDetectionResult({
+            aiProbability: entry.aiProbability,
+            detectionResult: entry.detectionResult as 'Human' | 'AI' | 'Mixed',
+            confidence: 'Medium', // Default confidence from history
+            analysis: {
+              reasoning: '',
+              indicators: entry.indicators || {
+                vocabulary: { score: 0, issues: [], explanation: '' },
+                syntax: { score: 0, issues: [], explanation: '' },
+                coherence: { score: 0, issues: [], explanation: '' },
+                creativity: { score: 0, issues: [], explanation: '' }
+              },
+              suggestions: []
+            }
+          });
         }
       }
     },
-    [historyData?.history, handleProcess]
+    [historyData?.history]
   );
 
   const handleHistoryItemDelete = useCallback(
@@ -220,7 +213,7 @@ export function DetectorPage() {
                   <h4 className="font-medium text-sm">{t('detector.analysis.detailedAnalysis')}</h4>
                 </div>
 
-                <Accordion type="multiple" className="space-y-2">
+                <Accordion type="multiple" className="space-y-3">
                   {Object.entries(detectionResult.analysis.indicators)
                     .filter(
                       ([, data]) => data.explanation || data.issues.length > 0
@@ -229,26 +222,29 @@ export function DetectorPage() {
                       <AccordionItem 
                         key={key} 
                         value={key}
-                        className="border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/50"
+                        className="border-0 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 shadow-sm overflow-hidden"
                       >
-                        <AccordionTrigger className="px-3 py-2 hover:no-underline">
+                        <AccordionTrigger className="px-4 py-3 hover:no-underline border-0 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors">
                           <div className="flex items-center justify-between w-full mr-2">
-                            <h5 className="font-medium text-sm capitalize">
-                              {t(`detector.analysis.${key}`)}
-                            </h5>
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 rounded-full bg-primary/60" />
+                              <h5 className="font-semibold text-sm capitalize text-foreground">
+                                {t(`detector.analysis.${key}`)}
+                              </h5>
+                            </div>
                             {data.score > 0 && (
-                              <div className="flex items-center gap-2">
-                                <div className="text-xs text-muted-foreground">
+                              <div className="flex items-center gap-3">
+                                <div className="text-xs font-medium text-muted-foreground">
                                   {data.score}/100
                                 </div>
-                                <div className="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div className="w-20 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                                   <div
-                                    className={`h-full transition-all duration-500 ${
+                                    className={`h-full transition-all duration-700 ease-out rounded-full ${
                                       data.score >= 70
-                                        ? 'bg-green-500'
+                                        ? 'bg-gradient-to-r from-green-400 to-green-500'
                                         : data.score >= 40
-                                          ? 'bg-yellow-500'
-                                          : 'bg-red-500'
+                                          ? 'bg-gradient-to-r from-yellow-400 to-yellow-500'
+                                          : 'bg-gradient-to-r from-red-400 to-red-500'
                                     }`}
                                     style={{ width: `${data.score}%` }}
                                   />
@@ -257,32 +253,39 @@ export function DetectorPage() {
                             )}
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="px-3 pb-3">
-                          {data.explanation && (
-                            <p className="text-xs text-muted-foreground mb-2">
-                              {data.explanation}
-                            </p>
-                          )}
-                          {data.issues.length > 0 && (
-                            <div className="space-y-1">
-                              <p className="text-xs font-medium text-orange-700 dark:text-orange-300">
-                                {t('detector.analysis.issuesFound')}
-                              </p>
-                              <ul className="text-xs text-muted-foreground space-y-1">
-                                {data.issues.map((issue, index) => (
-                                  <li
-                                    key={index}
-                                    className="flex items-start gap-1"
-                                  >
-                                    <span className="text-orange-500 mt-0.5">
-                                      •
-                                    </span>
-                                    <span>{issue}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
+                        <AccordionContent className="px-4 pb-4 pt-0">
+                          <div className="space-y-3">
+                            {data.explanation && (
+                              <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
+                                <p className="text-sm text-foreground/80 leading-relaxed">
+                                  {data.explanation}
+                                </p>
+                              </div>
+                            )}
+                            {data.issues.length > 0 && (
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-1 h-3 bg-orange-400 rounded-full" />
+                                  <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">
+                                    {t('detector.analysis.issuesFound')}
+                                  </p>
+                                </div>
+                                <ul className="space-y-2 ml-3">
+                                  {data.issues.map((issue, index) => (
+                                    <li
+                                      key={index}
+                                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                                    >
+                                      <span className="text-orange-500 mt-1 text-xs">
+                                        ▪
+                                      </span>
+                                      <span className="leading-relaxed">{issue}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
                         </AccordionContent>
                       </AccordionItem>
                     ))}

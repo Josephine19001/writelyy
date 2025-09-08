@@ -74,6 +74,28 @@ interface HistoryEntry {
   outputText?: any;
   summaryText?: any;
   paraphrasedText?: any;
+  indicators?: {
+    vocabulary: {
+      score: number;
+      issues: string[];
+      explanation: string;
+    };
+    syntax: {
+      score: number;
+      issues: string[];
+      explanation: string;
+    };
+    coherence: {
+      score: number;
+      issues: string[];
+      explanation: string;
+    };
+    creativity: {
+      score: number;
+      issues: string[];
+      explanation: string;
+    };
+  };
 }
 
 interface HealthResponse {

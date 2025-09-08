@@ -150,7 +150,10 @@ export const detectorRouter = new Hono()
 
         // Encrypt sensitive content before storing
         const encryptedContent = encryptData(JSON.stringify({
-          inputText: cleanText
+          inputText: cleanText,
+          analysis: {
+            indicators: analysis.indicators
+          }
         }));
 
         // Save usage to database
@@ -226,6 +229,14 @@ export const detectorRouter = new Hono()
         const encryptedData = JSON.parse(record.encryptedContent);
         const decryptedContent = JSON.parse(decryptData(encryptedData));
         
+        // Extract analysis indicators if available (for backward compatibility)
+        const indicators = decryptedContent.analysis?.indicators || {
+          vocabulary: { score: 0, issues: [], explanation: '' },
+          syntax: { score: 0, issues: [], explanation: '' },
+          coherence: { score: 0, issues: [], explanation: '' },
+          creativity: { score: 0, issues: [], explanation: '' }
+        };
+        
         return {
           id: record.id,
           aiProbability: record.aiProbability,
@@ -234,7 +245,8 @@ export const detectorRouter = new Hono()
           charactersUsed: record.charactersUsed,
           creditsUsed: record.creditsUsed,
           createdAt: record.createdAt,
-          inputText: decryptedContent.inputText
+          inputText: decryptedContent.inputText,
+          indicators
         };
       });
 

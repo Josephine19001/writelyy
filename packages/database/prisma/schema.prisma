@@ -290,7 +290,7 @@ model DetectorUsage {
     user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
     
     // Encrypted content - stored as JSON string with iv, authTag
-    encryptedContent String    @db.Text  // Contains {inputText}
+    encryptedContent String    @db.Text  // Contains {inputText, analysis}
     
     // Non-sensitive metadata
     aiProbability    Float     // Probability score (0-1)
