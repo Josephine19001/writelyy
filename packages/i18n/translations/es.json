@@ -11,7 +11,12 @@
       "vocabulary": "Vocabulario",
       "syntax": "Sintaxis",
       "coherence": "Coherencia",
-      "creativity": "Creatividad"
+      "creativity": "Creatividad",
+      "detailedAnalysis": "Análisis Detallado",
+      "analysisLabel": "Análisis:",
+      "issuesFound": "Problemas encontrados:",
+      "recommendations": "Recomendaciones para hacer el texto más humano:",
+      "readyToAnalyze": "Listo para Analizar"
     },
     "scoreLabels": {
       "likelyAi": "Probablemente Generado por IA",
@@ -86,7 +91,11 @@
     "daysAgo": "Hace {days}d",
     "result": "Resultado:",
     "copy": "Copiar",
-    "delete": "Eliminar"
+    "copyOriginal": "Copiar texto original",
+    "copyModified": "Copiar modificado",
+    "delete": "Eliminar",
+    "copySuccess": "¡Copiado al portapapeles!",
+    "copyError": "Error al copiar al portapapeles"
   },
   "tools": {
     "new": "Nuevo",

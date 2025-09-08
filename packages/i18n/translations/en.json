@@ -883,7 +883,12 @@
       "vocabulary": "Vocabulary",
       "syntax": "Syntax",
       "coherence": "Coherence",
-      "creativity": "Creativity"
+      "creativity": "Creativity",
+      "detailedAnalysis": "Detailed Analysis",
+      "analysisLabel": "Analysis:",
+      "issuesFound": "Issues found:",
+      "recommendations": "Recommendations to make text more human-like:",
+      "readyToAnalyze": "Ready to Analyze"
     },
     "scoreLabels": {
       "likelyAi": "Likely AI Generated",
@@ -944,7 +949,11 @@
     "daysAgo": "{days}d ago",
     "result": "Result:",
     "copy": "Copy",
-    "delete": "Delete"
+    "copyOriginal": "Copy original text",
+    "copyModified": "Copy modified",
+    "delete": "Delete",
+    "copySuccess": "Copied to clipboard!",
+    "copyError": "Failed to copy to clipboard"
   },
   "tools": {
     "new": "New",
@@ -983,7 +992,7 @@
   },
   "marketing": {
     "nav": {
-      "product": "Product",
+      "product": "Tools",
       "humanizer": "Humanizer",
       "detector": "Detector",
       "features": "Features",

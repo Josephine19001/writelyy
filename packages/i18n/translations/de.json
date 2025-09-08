@@ -11,7 +11,12 @@
       "vocabulary": "Wortschatz",
       "syntax": "Syntax",
       "coherence": "Kohärenz",
-      "creativity": "Kreativität"
+      "creativity": "Kreativität",
+      "detailedAnalysis": "Detaillierte Analyse",
+      "analysisLabel": "Analyse:",
+      "issuesFound": "Gefundene Probleme:",
+      "recommendations": "Empfehlungen, um den Text menschlicher zu machen:",
+      "readyToAnalyze": "Bereit zur Analyse"
     },
     "scoreLabels": {
       "likelyAi": "Wahrscheinlich KI-Generiert",

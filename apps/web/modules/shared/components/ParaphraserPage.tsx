@@ -47,7 +47,6 @@ export function ParaphraserPage({
   onReset
 }: ParaphraserPageProps) {
   const toneOptions = [
-    { value: 'default', label: 'Default' },
     { value: 'formal', label: 'Formal' },
     { value: 'casual', label: 'Casual' },
     { value: 'academic', label: 'Academic' },

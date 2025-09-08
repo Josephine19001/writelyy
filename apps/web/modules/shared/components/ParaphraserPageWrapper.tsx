@@ -32,9 +32,7 @@ export function ParaphraserPageWrapper() {
     try {
       const result = await paraphraseMutation.mutateAsync({
         inputText: text,
-        style:
-          (options.tone as 'formal' | 'casual' | 'academic' | 'creative') ||
-          'formal'
+        style: (options.tone as 'formal' | 'casual' | 'academic' | 'creative') || 'formal'
       });
 
       setOutputText(result.paraphrasedText);

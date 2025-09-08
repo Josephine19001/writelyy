@@ -21,10 +21,11 @@ import { useTranslations } from 'next-intl';
 
 interface ToolSelectorProps {
   currentTool: 'humanizer' | 'detector' | 'summariser' | 'paraphraser';
+  onNewAction?: () => void;
   className?: string;
 }
 
-export function ToolSelector({ currentTool, className }: ToolSelectorProps) {
+export function ToolSelector({ currentTool, onNewAction, className }: ToolSelectorProps) {
   const t = useTranslations();
   
   const tools = [
@@ -64,17 +65,29 @@ export function ToolSelector({ currentTool, className }: ToolSelectorProps) {
   return (
     <div className={cn('flex items-center gap-2', className)}>
       {/* New Button */}
-      <Button
-        asChild
-        variant="outline"
-        size="sm"
-        className="gap-2 h-8 text-xs"
-      >
-        <Link href={currentToolData?.href || '/app'}>
+      {onNewAction ? (
+        <Button
+          onClick={onNewAction}
+          variant="outline"
+          size="sm"
+          className="gap-2 h-8 text-xs"
+        >
           <PlusIcon className="h-3 w-3" />
           {t('tools.new')}
-        </Link>
-      </Button>
+        </Button>
+      ) : (
+        <Button
+          asChild
+          variant="outline"
+          size="sm"
+          className="gap-2 h-8 text-xs"
+        >
+          <Link href={currentToolData?.href || '/app'}>
+            <PlusIcon className="h-3 w-3" />
+            {t('tools.new')}
+          </Link>
+        </Button>
+      )}
 
       {/* Tool Selector Dropdown */}
       <DropdownMenu>

@@ -22,21 +22,60 @@ Output: Only the rewritten text.`;
 };
 
 export const buildDetectorPrompt = (inputText: string): string => {
-  return `Task: Analyze text and estimate if it was written by a human, AI, or mixed.
+  return `Task: Provide comprehensive AI detection analysis with specific indicators and actionable feedback.
 
-Evaluation Criteria:
-- Sentence length distribution (AI = uniform, Human = varied)
-- Word choice (AI = generic vocabulary)
-- Style markers (AI avoids contractions, overuses transitions)
-- Flow & rhythm (AI = mechanical, balanced)
+Analyze the text across these four dimensions and provide scores (0-100) and specific issues:
+
+**VOCABULARY ANALYSIS:**
+- AI markers: overuse of words like "significant," "crucial," "essential," "demonstrate," "showcase," "innovative," "cutting-edge"
+- Human markers: natural word variety, colloquialisms, contractions, informal expressions
+- Score: 0 (definitely AI) to 100 (definitely human)
+
+**SYNTAX ANALYSIS:**
+- AI markers: uniform sentence length, repetitive structures, overuse of transitions like "furthermore," "moreover," "consequently"
+- Human markers: varied sentence length, natural flow, occasional fragments, conversational tone
+- Score: 0 (definitely AI) to 100 (definitely human)
+
+**COHERENCE ANALYSIS:**
+- AI markers: overly perfect logical flow, lack of tangents, mechanical organization
+- Human markers: natural digressions, personal anecdotes, imperfect but authentic structure
+- Score: 0 (definitely AI) to 100 (definitely human)
+
+**CREATIVITY ANALYSIS:**
+- AI markers: predictable phrasing, generic examples, lack of personality
+- Human markers: unique perspectives, personal voice, creative analogies, unexpected insights
+- Score: 0 (definitely AI) to 100 (definitely human)
 
 Text to analyze:
 ${inputText}
 
-Output Format:
-Likelihood: [Human / AI / Mixed]
-Confidence: [Low / Medium / High]
-Reasoning: [Plain-English explanation, max 3 sentences]`;
+Output as JSON:
+{
+  "likelihood": "Human|AI|Mixed",
+  "confidence": "Low|Medium|High",
+  "reasoning": "2-3 sentence summary of key findings",
+  "vocabulary": {
+    "score": number,
+    "issues": ["specific AI words/phrases found"],
+    "explanation": "brief analysis of vocabulary patterns"
+  },
+  "syntax": {
+    "score": number,
+    "issues": ["specific structural problems"],
+    "explanation": "brief analysis of sentence structure"
+  },
+  "coherence": {
+    "score": number,
+    "issues": ["specific flow/organization issues"],
+    "explanation": "brief analysis of text organization"
+  },
+  "creativity": {
+    "score": number,
+    "issues": ["specific creativity deficiencies"],
+    "explanation": "brief analysis of originality and voice"
+  },
+  "suggestions": ["specific recommendations to make text more human-like"]
+}`;
 };
 
 export const buildSummariserPrompt = (inputText: string, summaryType: string): string => {

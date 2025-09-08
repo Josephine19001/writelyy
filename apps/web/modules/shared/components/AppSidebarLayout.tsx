@@ -33,6 +33,7 @@ interface AppSidebarLayoutProps {
   onHistoryItemClick?: (id: string) => void;
   onHistoryItemCopy?: (text: string) => void;
   onHistoryItemDelete?: (id: string) => void;
+  onNewAction?: () => void;
   currentPage: 'humanizer' | 'detector' | 'paraphraser' | 'summariser';
   className?: string;
 }
@@ -43,6 +44,7 @@ export function AppSidebarLayout({
   onHistoryItemClick,
   onHistoryItemCopy,
   onHistoryItemDelete,
+  onNewAction,
   currentPage,
   className
 }: AppSidebarLayoutProps) {
@@ -51,8 +53,6 @@ export function AppSidebarLayout({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { monthlyUsage } = useUsageLimits();
-
-  console.log('--monthlyUsage', monthlyUsage);
 
   const filteredEntries = historyEntries.filter(
     (entry) =>
@@ -122,7 +122,11 @@ export function AppSidebarLayout({
         >
           {/* Show ToolSelector on mobile or when desktop is not collapsed */}
           {(!isCollapsed || isMobileMenuOpen) && (
-            <ToolSelector currentTool={currentPage} className="flex-1" />
+            <ToolSelector
+              currentTool={currentPage}
+              onNewAction={onNewAction}
+              className="flex-1"
+            />
           )}
 
           {/* Desktop collapse toggle - hidden on mobile */}

@@ -134,6 +134,7 @@ export function TextProcessorPage({
       onHistoryItemClick={onHistoryItemClick}
       onHistoryItemDelete={onHistoryItemDelete}
       onHistoryItemCopy={onHistoryItemCopy}
+      onNewAction={onReset}
       currentPage={currentPage}
     >
       <div className="h-full flex flex-col">

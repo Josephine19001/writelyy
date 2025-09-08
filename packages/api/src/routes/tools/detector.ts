@@ -17,7 +17,33 @@ const DetectResponseSchema = z.object({
   wordCount: z.number(),
   charactersUsed: z.number(),
   creditsUsed: z.number().optional(),
-  confidence: z.string()
+  confidence: z.string(),
+  analysis: z.object({
+    reasoning: z.string(),
+    indicators: z.object({
+      vocabulary: z.object({
+        score: z.number().min(0).max(100),
+        issues: z.array(z.string()),
+        explanation: z.string()
+      }),
+      syntax: z.object({
+        score: z.number().min(0).max(100),
+        issues: z.array(z.string()),
+        explanation: z.string()
+      }),
+      coherence: z.object({
+        score: z.number().min(0).max(100),
+        issues: z.array(z.string()),
+        explanation: z.string()
+      }),
+      creativity: z.object({
+        score: z.number().min(0).max(100),
+        issues: z.array(z.string()),
+        explanation: z.string()
+      })
+    }),
+    suggestions: z.array(z.string())
+  })
 });
 
 export const detectorRouter = new Hono()
@@ -64,16 +90,25 @@ export const detectorRouter = new Hono()
         // Call AI model to detect AI content
         const response = await generateText({
           prompt,
-          maxTokens: 100
+          maxTokens: 1000
         });
 
-        // Parse structured response
-        const responseText = response.text;
-        const likelihoodMatch = responseText.match(/Likelihood:\s*(Human|AI|Mixed)/i);
-        const confidenceMatch = responseText.match(/Confidence:\s*(Low|Medium|High)/i);
+        // Parse JSON response
+        const responseText = response.text.trim();
+        let analysisData: any;
         
-        const detectionResult = (likelihoodMatch?.[1] as 'Human' | 'AI' | 'Mixed') || 'Mixed';
-        const confidence = confidenceMatch?.[1] || 'Low';
+        try {
+          // Extract JSON from response if it's wrapped in other text
+          const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+          const jsonString = jsonMatch ? jsonMatch[0] : responseText;
+          analysisData = JSON.parse(jsonString);
+        } catch (parseError) {
+          console.error('Failed to parse JSON response:', parseError, 'Response:', responseText);
+          throw new HTTPException(500, { message: 'Failed to parse analysis results' });
+        }
+        
+        const detectionResult = (analysisData.likelihood as 'Human' | 'AI' | 'Mixed') || 'Mixed';
+        const confidence = analysisData.confidence || 'Low';
 
         // Convert to probability for consistency
         let aiProbability: number;
@@ -84,6 +119,34 @@ export const detectorRouter = new Hono()
         } else { // Human
           aiProbability = confidence === 'High' ? 0.1 : confidence === 'Medium' ? 0.3 : 0.4;
         }
+
+        // Build analysis object with fallbacks
+        const analysis = {
+          reasoning: analysisData.reasoning || 'Analysis could not be completed',
+          indicators: {
+            vocabulary: {
+              score: analysisData.vocabulary?.score || 50,
+              issues: analysisData.vocabulary?.issues || [],
+              explanation: analysisData.vocabulary?.explanation || 'No specific vocabulary analysis available'
+            },
+            syntax: {
+              score: analysisData.syntax?.score || 50,
+              issues: analysisData.syntax?.issues || [],
+              explanation: analysisData.syntax?.explanation || 'No specific syntax analysis available'
+            },
+            coherence: {
+              score: analysisData.coherence?.score || 50,
+              issues: analysisData.coherence?.issues || [],
+              explanation: analysisData.coherence?.explanation || 'No specific coherence analysis available'
+            },
+            creativity: {
+              score: analysisData.creativity?.score || 50,
+              issues: analysisData.creativity?.issues || [],
+              explanation: analysisData.creativity?.explanation || 'No specific creativity analysis available'
+            }
+          },
+          suggestions: analysisData.suggestions || []
+        };
 
         // Encrypt sensitive content before storing
         const encryptedContent = encryptData(JSON.stringify({
@@ -108,7 +171,8 @@ export const detectorRouter = new Hono()
           wordCount,
           charactersUsed: characterCount,
           creditsUsed: creditsRequired,
-          confidence
+          confidence,
+          analysis
         });
       } catch (error) {
         console.error('Detector error:', error);
