@@ -934,7 +934,9 @@
     "characters": "characters",
     "copyText": "Copy Text",
     "copyResult": "Copy Result",
-    "minWordsError": "Please enter at least 30 words to process the text."
+    "minWordsError": "Please enter at least 30 words to process the text.",
+    "copySuccess": "Copied to clipboard!",
+    "copyError": "Failed to copy to clipboard"
   },
   "history": {
     "justNow": "Just now",

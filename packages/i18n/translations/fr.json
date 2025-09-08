@@ -62,7 +62,9 @@
     "characters": "caractères",
     "copyText": "Copier le Texte",
     "copyResult": "Copier le Résultat",
-    "minWordsError": "Veuillez saisir au moins 30 mots pour traiter le texte."
+    "minWordsError": "Veuillez saisir au moins 30 mots pour traiter le texte.",
+    "copySuccess": "Copié dans le presse-papiers !",
+    "copyError": "Échec de la copie dans le presse-papiers"
   },
   "history": {
     "justNow": "À l'instant",

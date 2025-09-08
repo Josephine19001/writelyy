@@ -66,7 +66,7 @@ export function ToolSelector({ currentTool, className }: ToolSelectorProps) {
           <Button
             variant="ghost"
             size="sm"
-            className="gap-2 h-8 px-2 text-xs font-medium hover:bg-muted/50"
+            className="gap-2 h-8 px-2 text-xs font-medium hover:bg-primary/10 hover:text-primary"
           >
             {currentToolData && (
               <>
@@ -80,12 +80,12 @@ export function ToolSelector({ currentTool, className }: ToolSelectorProps) {
 
         <DropdownMenuContent align="start" className="w-48">
           {tools.map((tool) => (
-            <DropdownMenuItem key={tool.id} asChild>
+            <DropdownMenuItem key={tool.id} asChild className="hover:!bg-primary/10 focus:!bg-primary/10 data-[highlighted]:!bg-primary/10">
               <Link
                 href={tool.href}
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2',
-                  currentTool === tool.id && 'bg-muted'
+                  'flex items-center gap-3 px-3 py-2 hover:!bg-primary/10 hover:!text-primary focus:!bg-primary/10 focus:!text-primary',
+                  currentTool === tool.id && 'bg-primary/10 text-primary'
                 )}
               >
                 <tool.icon className="h-4 w-4" />

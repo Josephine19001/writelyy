@@ -62,7 +62,9 @@
     "characters": "caratteri",
     "copyText": "Copia Testo",
     "copyResult": "Copia Risultato",
-    "minWordsError": "Inserisci almeno 30 parole per elaborare il testo."
+    "minWordsError": "Inserisci almeno 30 parole per elaborare il testo.",
+    "copySuccess": "Copiato negli appunti!",
+    "copyError": "Impossibile copiare negli appunti"
   },
   "history": {
     "justNow": "Adesso",

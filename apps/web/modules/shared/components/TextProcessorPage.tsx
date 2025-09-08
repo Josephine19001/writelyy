@@ -5,7 +5,7 @@ import { AppSidebarLayout } from '@shared/components/AppSidebarLayout';
 import { Button } from '@ui/components/button';
 import { Textarea } from '@ui/components/textarea';
 import { Progress } from '@ui/components/progress';
-import { CopyIcon, RotateCcwIcon, TrashIcon } from 'lucide-react';
+import { CopyIcon, RotateCcwIcon, TrashIcon, CameraIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import {
   Select,
@@ -107,11 +107,14 @@ export function TextProcessorPage({
   const handleCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
+      toast.success(t('textProcessor.copySuccess'));
       onHistoryItemCopy?.(text);
     } catch (error) {
       console.error('Failed to copy text:', error);
+      toast.error(t('textProcessor.copyError'));
     }
   };
+
 
   const handleProcess = () => {
     // Count words by splitting on whitespace and filtering out empty strings
@@ -252,15 +255,26 @@ export function TextProcessorPage({
 
             {/* Results Footer */}
             <div className="border-t border-border/50 p-4 bg-card/20">
-              <Button
-                onClick={() => handleCopy(resultsText || inputText)}
-                disabled={!hasResults}
-                variant="outline"
-                className="w-full h-10 rounded-lg"
-              >
-                <CopyIcon className="mr-2 h-4 w-4" />
-                {currentPage === 'detector' ? t('textProcessor.copyText') : t('textProcessor.copyResult')}
-              </Button>
+              {currentPage === 'detector' ? (
+                <Button
+                  disabled={true}
+                  variant="outline"
+                  className="w-full h-10 rounded-lg opacity-50 cursor-not-allowed"
+                >
+                  <CameraIcon className="mr-2 h-4 w-4" />
+                  Screenshot Results
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleCopy(resultsText || inputText)}
+                  disabled={!hasResults}
+                  variant="outline"
+                  className="w-full h-10 rounded-lg"
+                >
+                  <CopyIcon className="mr-2 h-4 w-4" />
+                  {t('textProcessor.copyResult')}
+                </Button>
+              )}
             </div>
           </div>
         </div>

@@ -62,7 +62,9 @@
     "characters": "Zeichen",
     "copyText": "Text Kopieren",
     "copyResult": "Ergebnis Kopieren",
-    "minWordsError": "Bitte geben Sie mindestens 30 Wörter ein, um den Text zu verarbeiten."
+    "minWordsError": "Bitte geben Sie mindestens 30 Wörter ein, um den Text zu verarbeiten.",
+    "copySuccess": "In die Zwischenablage kopiert!",
+    "copyError": "Kopieren in die Zwischenablage fehlgeschlagen"
   },
   "history": {
     "justNow": "Gerade jetzt",

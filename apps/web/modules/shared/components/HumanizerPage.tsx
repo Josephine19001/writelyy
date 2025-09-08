@@ -1,6 +1,7 @@
 'use client';
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
+import { DiffHighlighter } from '@shared/components/DiffHighlighter';
 import { SparklesIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
@@ -37,6 +38,7 @@ export function HumanizerPage() {
   const [outputText, setOutputText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [historyEntries, setHistoryEntries] = useState(mockHistoryEntries);
+  const [showTypewriter, setShowTypewriter] = useState(false);
 
   const toneOptions = [
     { value: 'default', label: t('humanizer.toneOptions.default') },
@@ -64,11 +66,15 @@ export function HumanizerPage() {
 
   const handleProcess = async (text: string, _options: { tone?: string; language?: string }) => {
     setIsProcessing(true);
+    setOutputText(''); // Clear previous results
+    setShowTypewriter(false);
 
     // Mock API call - replace with actual API
     setTimeout(() => {
-      const humanizedText = `This is a humanized version of: "${text}"`;
+      const humanizedText = "Here's your content rewritten to sound more natural and engaging. The AI has transformed your original text into something that flows better and feels more authentic to readers.";
       setOutputText(humanizedText);
+      setShowTypewriter(true); // Start typewriter effect
+      setIsProcessing(false);
 
       // Add to history
       const newEntry = {
@@ -81,13 +87,13 @@ export function HumanizerPage() {
       };
 
       setHistoryEntries((prev) => [newEntry, ...prev]);
-      setIsProcessing(false);
     }, 2000);
   };
 
   const handleReset = () => {
     setInputText('');
     setOutputText('');
+    setShowTypewriter(false);
   };
 
   const handleHistoryItemClick = useCallback(
@@ -97,6 +103,7 @@ export function HumanizerPage() {
         setInputText(entry.originalText);
         if (entry.processedText) {
           setOutputText(entry.processedText);
+          setShowTypewriter(false); // Show immediate result for history items
         }
       }
     },
@@ -108,11 +115,17 @@ export function HumanizerPage() {
   }, []);
 
   const renderResults = () => (
-    <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4">
+    <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
       {outputText ? (
-        <div className="text-base leading-relaxed text-slate-900 dark:text-slate-100 whitespace-pre-wrap">
-          {outputText}
-        </div>
+        <DiffHighlighter
+          originalText={inputText}
+          newText={outputText}
+          showTypewriter={showTypewriter}
+          typewriterSpeed={25}
+          onTypewriterComplete={() => {
+            // Typewriter animation completed
+          }}
+        />
       ) : (
         <div className="text-sm text-slate-400 dark:text-slate-500">
           {t('humanizer.resultsPlaceholder')}

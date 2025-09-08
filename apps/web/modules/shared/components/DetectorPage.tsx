@@ -1,10 +1,7 @@
 'use client';
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
-import { Progress } from '@ui/components/progress';
-import {
-  ShieldCheckIcon
-} from 'lucide-react';
+import { ShieldCheckIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -121,7 +118,6 @@ export function DetectorPage() {
     return 'text-green-600';
   };
 
-
   const getScoreLabel = (score: number) => {
     if (score >= 70) {
       return t('detector.scoreLabels.likelyAi');
@@ -135,71 +131,124 @@ export function DetectorPage() {
   const renderResults = () => {
     if (detectionResult) {
       return (
-        <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4">
-          <div className="space-y-4">
-            {/* Main Score - Compact */}
-            <div className="text-center p-4 border rounded-lg bg-card/30">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <span
-                  className={`text-xl font-bold ${getScoreColor(detectionResult.aiScore)}`}
+        <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text text-slate-900 dark:text-slate-100 text-base leading-relaxed rounded-xl p-4">
+          <div className="space-y-4 h-full overflow-y-auto">
+            {/* Main Score - Enhanced with circular progress */}
+            <div className="text-center p-4 border rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 shadow-sm flex-shrink-0">
+              <div className="relative inline-flex items-center justify-center w-24 h-24 mb-3">
+                {/* Circular Progress Background */}
+                <svg
+                  className="w-24 h-24 transform -rotate-90"
+                  viewBox="0 0 100 100"
+                  aria-label="AI Detection Score Progress"
                 >
-                  {detectionResult.aiScore}%
-                </span>
+                  <title>AI Detection Score Progress</title>
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="none"
+                    className="text-gray-200 dark:text-gray-700"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="none"
+                    strokeDasharray={`${2 * Math.PI * 40}`}
+                    strokeDashoffset={`${2 * Math.PI * 40 * (1 - detectionResult.aiScore / 100)}`}
+                    className={`transition-all duration-1000 ease-out ${
+                      detectionResult.aiScore >= 70
+                        ? 'text-red-500'
+                        : detectionResult.aiScore >= 30
+                          ? 'text-yellow-500'
+                          : 'text-green-500'
+                    }`}
+                    strokeLinecap="round"
+                  />
+                </svg>
+                {/* Score Text */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <span
+                      className={`text-xl font-bold ${getScoreColor(detectionResult.aiScore)}`}
+                    >
+                      {detectionResult.aiScore}%
+                    </span>
+                  </div>
+                </div>
               </div>
-              <p className="text-sm font-medium mb-1">
-                {getScoreLabel(detectionResult.aiScore)}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {t('detector.confidence', { confidence: detectionResult.confidence })}
-              </p>
+
+              <div className="space-y-1">
+                <p className="text-sm font-semibold">
+                  {getScoreLabel(detectionResult.aiScore)}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {t('detector.confidence', {
+                    confidence: detectionResult.confidence
+                  })}
+                </p>
+              </div>
             </div>
 
-            {/* Breakdown - Compact */}
-            <div className="space-y-3">
-              <h4 className="font-medium text-sm">{t('detector.analysis.title')}</h4>
-
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span>{t('detector.analysis.vocabulary')}</span>
-                  <span>{detectionResult.breakdown.vocabulary}%</span>
-                </div>
-                <Progress
-                  value={detectionResult.breakdown.vocabulary}
-                  className="h-1"
-                />
+            {/* Analysis Breakdown - Compact */}
+            <div className="space-y-3 flex-1">
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-3 bg-primary rounded-full" />
+                <h4 className="font-medium text-sm">
+                  {t('detector.analysis.title')}
+                </h4>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span>{t('detector.analysis.syntax')}</span>
-                  <span>{detectionResult.breakdown.syntax}%</span>
-                </div>
-                <Progress
-                  value={detectionResult.breakdown.syntax}
-                  className="h-1"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span>{t('detector.analysis.coherence')}</span>
-                  <span>{detectionResult.breakdown.coherence}%</span>
-                </div>
-                <Progress
-                  value={detectionResult.breakdown.coherence}
-                  className="h-1"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span>{t('detector.analysis.creativity')}</span>
-                  <span>{detectionResult.breakdown.creativity}%</span>
-                </div>
-                <Progress
-                  value={detectionResult.breakdown.creativity}
-                  className="h-1"
-                />
+              <div className="grid grid-cols-1 gap-2">
+                {[
+                  {
+                    key: 'vocabulary',
+                    label: t('detector.analysis.vocabulary'),
+                    value: detectionResult.breakdown.vocabulary
+                  },
+                  {
+                    key: 'syntax',
+                    label: t('detector.analysis.syntax'),
+                    value: detectionResult.breakdown.syntax
+                  },
+                  {
+                    key: 'coherence',
+                    label: t('detector.analysis.coherence'),
+                    value: detectionResult.breakdown.coherence
+                  },
+                  {
+                    key: 'creativity',
+                    label: t('detector.analysis.creativity'),
+                    value: detectionResult.breakdown.creativity
+                  }
+                ].map((item) => (
+                  <div
+                    key={item.key}
+                    className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50"
+                  >
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-xs font-medium">{item.label}</span>
+                      <span className="text-xs font-bold">{item.value}%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+                      <div
+                        className={`h-1.5 rounded-full transition-all duration-1000 ease-out ${
+                          item.value >= 70
+                            ? 'bg-red-500'
+                            : item.value >= 30
+                              ? 'bg-yellow-500'
+                              : 'bg-green-500'
+                        }`}
+                        style={{ width: `${item.value}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -208,12 +257,18 @@ export function DetectorPage() {
     }
 
     return (
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center text-muted-foreground">
-          <ShieldCheckIcon className="h-8 w-8 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">
-            {t('detector.resultsPlaceholder')}
-          </p>
+      <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text text-slate-900 dark:text-slate-100 text-base leading-relaxed rounded-xl p-4">
+        <div className="h-full flex items-center justify-center">
+          <div className="text-center text-muted-foreground h-full">
+            <div className="relative inline-flex items-center justify-center w-16 h-16 mb-3">
+              <div className="absolute inset-0 bg-primary/10 rounded-full" />
+              <ShieldCheckIcon className="h-8 w-8 text-primary/60" />
+            </div>
+            <h3 className="font-medium text-base mb-2">Ready to Analyze</h3>
+            <p className="text-sm max-w-sm mx-auto text-muted-foreground/80">
+              {t('detector.resultsPlaceholder')}
+            </p>
+          </div>
         </div>
       </div>
     );

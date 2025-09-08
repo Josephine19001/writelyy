@@ -62,7 +62,9 @@
     "characters": "caracteres",
     "copyText": "Copiar Texto",
     "copyResult": "Copiar Resultado",
-    "minWordsError": "Por favor, insira pelo menos 30 palavras para processar o texto."
+    "minWordsError": "Por favor, insira pelo menos 30 palavras para processar o texto.",
+    "copySuccess": "Copiado para a área de transferência!",
+    "copyError": "Falha ao copiar para a área de transferência"
   },
   "history": {
     "justNow": "Agora mesmo",
