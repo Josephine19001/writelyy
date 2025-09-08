@@ -73,30 +73,37 @@ export function DetectorPage() {
   };
 
   const handleHistoryItemClick = useCallback(
-    (id: string) => {
+    async (id: string) => {
       const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
         setInputText(entry.inputText);
-        if (entry.aiProbability !== undefined && entry.aiProbability !== null) {
-          setDetectionResult({
-            aiProbability: entry.aiProbability,
-            detectionResult: entry.detectionResult as 'Human' | 'AI' | 'Mixed',
-            confidence: 'Medium', // Default confidence from history
-            analysis: {
-              reasoning: '',
-              indicators: {
-                vocabulary: { score: 0, issues: [], explanation: '' },
-                syntax: { score: 0, issues: [], explanation: '' },
-                coherence: { score: 0, issues: [], explanation: '' },
-                creativity: { score: 0, issues: [], explanation: '' }
-              },
-              suggestions: []
-            }
-          });
+        // Re-run detection to get full analysis data
+        try {
+          await handleProcess(entry.inputText);
+        } catch (error) {
+          console.error('Failed to re-analyze text:', error);
+          // Fallback to basic data if re-analysis fails
+          if (entry.aiProbability !== undefined && entry.aiProbability !== null) {
+            setDetectionResult({
+              aiProbability: entry.aiProbability,
+              detectionResult: entry.detectionResult as 'Human' | 'AI' | 'Mixed',
+              confidence: 'Medium',
+              analysis: {
+                reasoning: '',
+                indicators: {
+                  vocabulary: { score: 0, issues: [], explanation: '' },
+                  syntax: { score: 0, issues: [], explanation: '' },
+                  coherence: { score: 0, issues: [], explanation: '' },
+                  creativity: { score: 0, issues: [], explanation: '' }
+                },
+                suggestions: []
+              }
+            });
+          }
         }
       }
     },
-    [historyData?.history]
+    [historyData?.history, handleProcess]
   );
 
   const handleHistoryItemDelete = useCallback(
@@ -111,7 +118,7 @@ export function DetectorPage() {
     [deleteHistoryMutation, refetchHistory]
   );
 
-  const handleHistoryItemCopy = useCallback((text: string) => {
+  const handleHistoryItemCopy = useCallback(() => {
     // Silently handle copy - no toast needed for detector history items
   }, []);
 
