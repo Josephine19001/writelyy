@@ -466,15 +466,15 @@
         },
         "bypassDetectors": {
           "question": "Cela va-t-il vraiment contourner les détecteurs d'IA ?",
-          "answer": "Absolument ! Notre moteur d'humanisation avancé atteint un taux de réussite de 99,9% contre tous les principaux outils de détection d'IA, notamment Turnitin, GPTZero, ZeroGPT, Originality.ai et CopyLeaks. Nous utilisons des algorithmes sophistiqués qui créent des modèles d'écriture humaine naturelle que ces détecteurs ne peuvent tout simplement pas identifier."
+          "answer": "Absolument ! Notre moteur d'humanisation avancé atteint un taux de réussite de 99,9% contre tous les principaux outils de détection d'IA, notamment Turnitin, GPTZero, ZeroGPT, Originality.ai et CopyLeaks."
         },
         "pricing": {
           "question": "Combien cela coûte-t-il ?",
-          "answer": "Obtenez 1 000 mots gratuits à l'inscription ! Nos plans commencent à seulement 4,99$/mois pour 15 000 mots (Débutant), 12,99$/mois pour 75 000 mots (Pro), ou 24,99$/mois pour des mots illimités. Pas d'abonnements sournois ou de frais cachés. Annulez à tout moment. Votre budget va nous adorer."
+          "answer": "Obtenez 1 000 mots gratuits à l'inscription ! Nos plans commencent à seulement $4.99/mois pour 15 000 mots (Débutant), $12.99/mois pour 60 000 mots (Pro), ou $24.99/mois pour 150 000 mots (Max). Pas d'abonnements sournois ou de frais cachés. Annulez à tout moment."
         },
         "privacy": {
           "question": "Mon contenu est-il sûr et privé ?",
-          "answer": "100% ! Nous ne stockons pas votre texte après traitement, et tout est chiffré en transit. Personne ne peut voir ce que vous réécrivez. Nous n'enregistrons pas votre contenu ni ne vendons vos données. Votre confidentialité nous est sacrée."
+          "answer": "Oui ! Tout est chiffré en transit et nous suivons des pratiques strictes de confidentialité pour protéger vos données. Votre confidentialité est importante pour nous."
         },
         "features": {
           "question": "Quelles fonctionnalités avancées offrez-vous ?",

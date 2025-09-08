@@ -1310,15 +1310,15 @@
         },
         "bypassDetectors": {
           "question": "Wird das wirklich KI-Detektoren umgehen?",
-          "answer": "Absolut! Unsere fortschrittliche Humanisierungsengine erreicht eine 99,9% Erfolgsrate gegen alle großen KI-Erkennungstools einschließlich Turnitin, GPTZero, ZeroGPT, Originality.ai und CopyLeaks. Wir verwenden ausgeklügelte Algorithmen, die natürliche menschliche Schreibmuster erstellen, die diese Detektoren einfach nicht identifizieren können."
+          "answer": "Absolut! Unsere fortschrittliche Humanisierungsengine erreicht eine 99,9% Erfolgsrate gegen alle großen KI-Erkennungstools einschließlich Turnitin, GPTZero, ZeroGPT, Originality.ai und CopyLeaks."
         },
         "pricing": {
           "question": "Wie viel kostet es?",
-          "answer": "Erhalten Sie 1.000 Wörter kostenlos bei der Anmeldung! Unsere Pläne beginnen bei nur 4,99$/Monat für 15.000 Wörter (Starter), 12,99$/Monat für 75.000 Wörter (Pro), oder 24,99$/Monat für unbegrenzte Wörter. Keine hinterhältigen Abonnements oder versteckten Gebühren. Jederzeit kündbar. Ihr Budget wird uns lieben."
+          "answer": "Erhalten Sie 1.000 Wörter kostenlos bei der Anmeldung! Unsere Pläne beginnen bei nur $4.99/Monat für 15.000 Wörter (Starter), $12.99/Monat für 60.000 Wörter (Pro), oder $24.99/Monat für 150.000 Wörter (Max). Keine hinterhältigen Abonnements oder versteckten Gebühren. Jederzeit kündbar."
         },
         "privacy": {
           "question": "Ist mein Inhalt sicher und privat?",
-          "answer": "100%! Wir speichern Ihren Text nicht nach der Verarbeitung, und alles wird während der Übertragung verschlüsselt. Niemand kann sehen, was Sie umschreiben. Wir protokollieren Ihren Inhalt nicht oder verkaufen Ihre Daten. Ihre Privatsphäre ist uns heilig."
+          "answer": "Ja! Alles wird während der Übertragung verschlüsselt und wir befolgen strenge Datenschutzpraktiken zum Schutz Ihrer Daten. Ihre Privatsphäre ist uns wichtig."
         },
         "features": {
           "question": "Welche erweiterten Funktionen bieten Sie an?",

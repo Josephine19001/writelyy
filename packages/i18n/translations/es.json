@@ -466,15 +466,15 @@
         },
         "bypassDetectors": {
           "question": "¿Realmente evitará los detectores de IA?",
-          "answer": "¡Absolutamente! Nuestro motor de humanización avanzado logra una tasa de éxito del 99.9% contra todas las principales herramientas de detección de IA incluyendo Turnitin, GPTZero, ZeroGPT, Originality.ai, y CopyLeaks. Utilizamos algoritmos sofisticados que crean patrones de escritura humana natural que estos detectores simplemente no pueden identificar."
+          "answer": "¡Absolutamente! Nuestro motor de humanización avanzado logra una tasa de éxito del 99.9% contra todas las principales herramientas de detección de IA incluyendo Turnitin, GPTZero, ZeroGPT, Originality.ai, y CopyLeaks."
         },
         "pricing": {
           "question": "¿Cuánto cuesta?",
-          "answer": "¡Obtén 1,000 palabras gratis al registrarte! Nuestros planes comienzan en solo $4.99/mes por 15,000 palabras (Inicial), $12.99/mes por 75,000 palabras (Pro), o $24.99/mes por palabras ilimitadas. Sin suscripciones engañosas o tarifas ocultas. Cancela en cualquier momento. Tu presupuesto nos amará."
+          "answer": "¡Obtén 1,000 palabras gratis al registrarte! Nuestros planes comienzan en solo $4.99/mes por 15,000 palabras (Inicial), $12.99/mes por 60,000 palabras (Pro), o $24.99/mes por 150,000 palabras (Max). Sin suscripciones engañosas o tarifas ocultas. Cancela en cualquier momento."
         },
         "privacy": {
           "question": "¿Mi contenido está seguro y privado?",
-          "answer": "¡100%! No almacenamos tu texto después del procesamiento, y todo está encriptado en tránsito. Nadie puede ver lo que estás reescribiendo. No registramos tu contenido ni vendemos tus datos. Tu privacidad es sagrada para nosotros."
+          "answer": "¡Sí! Todo está encriptado en tránsito y seguimos prácticas estrictas de privacidad para proteger tus datos. Tu privacidad es importante para nosotros."
         },
         "features": {
           "question": "¿Qué características avanzadas ofrecen?",

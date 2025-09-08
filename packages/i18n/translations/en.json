@@ -1302,23 +1302,23 @@
       "items": {
         "howItWorks": {
           "question": "How does Writelyy actually work?",
-          "answer": "It's surprisingly simple! Just paste your AI-generated text into our editor or highlight text with our browser extension, then click \"Humanize.\" Our advanced AI rewrites it to sound natural and human-like while keeping the original meaning intact. Takes under 2 seconds and works like magic!"
+          "answer": "It's surprisingly simple! Just paste your AI-generated text into our editor, then click \"Humanize.\" Our advanced AI rewrites it to sound natural and human-like while keeping the original meaning intact. Takes under 2 seconds and works like magic!"
         },
         "bypassDetectors": {
           "question": "Will this really bypass AI detectors?",
-          "answer": "Absolutely! Our advanced humanization engine achieves a 99.9% success rate against all major AI detection tools including Turnitin, GPTZero, ZeroGPT, Originality.ai, and CopyLeaks. We use sophisticated algorithms that create natural human writing patterns these detectors simply cannot identify."
+          "answer": "Absolutely! Our advanced humanization engine achieves a 99.9% success rate against all major AI detection tools including Turnitin, GPTZero, ZeroGPT, Originality.ai, and CopyLeaks."
         },
         "pricing": {
           "question": "How much does it cost?",
-          "answer": "Get 1,000 words free on signup! Our plans start at just $4.99/month for 15,000 words (Starter), $12.99/month for 75,000 words (Pro), or $24.99/month for unlimited words. No sneaky subscriptions or hidden fees. Cancel anytime. Your budget will love us."
+          "answer": "Get 1,000 words free on signup! Our plans start at just $4.99/month for 15,000 words (Starter), $12.99/month for 60,000 words (Pro), or $24.99/month for 150,000 words (Max). No sneaky subscriptions or hidden fees. Cancel anytime."
         },
         "privacy": {
           "question": "Is my content safe and private?",
-          "answer": "100%! We don't store your text after processing, and everything is encrypted in transit. No one can see what you're rewriting. We're not logging your content or selling your data. Your privacy is sacred to us."
+          "answer": "Yes! Everything is encrypted in transit and we follow strict privacy practices to protect your data. Your privacy is important to us."
         },
         "features": {
           "question": "What advanced features do you offer?",
-          "answer": "We offer multiple writing tones, context management for consistent projects, team collaboration features, unlimited grammar checks, fast processing mode, and support for 50+ languages. Pro and Unlimited plans include advanced humanization engines and higher word limits per request."
+          "answer": "We offer multiple writing tones, fast processing mode, and advanced humanization engines. Pro and Max plans include higher word limits per request (up to 3,000 words) and priority support."
         },
         "academic": {
           "question": "Can I use this for academic writing?",
@@ -1326,7 +1326,7 @@
         },
         "installation": {
           "question": "Do I need to install anything?",
-          "answer": "Nope! You can use our web editor instantly - just copy, paste, and humanize. Want even more convenience? Install our optional browser extension to rewrite text directly in Google Docs, Gmail, Notion, or any text field. Both work perfectly!"
+          "answer": "Nope! You can use our web editor instantly - just copy, paste, and humanize. Everything works right in your browser with no downloads or installations required!"
         },
         "guarantee": {
           "question": "What if I'm not satisfied with the results?",
