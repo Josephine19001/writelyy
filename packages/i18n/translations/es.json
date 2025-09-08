@@ -48,6 +48,20 @@
       "zh": "Chino"
     }
   },
+  "summariser": {
+    "title": "Resumidor de Texto",
+    "placeholder": "Pega tu texto aquí para generar un resumen...",
+    "actionLabel": "Resumir Texto",
+    "processingLabel": "Resumiendo...",
+    "resultsPlaceholder": "El resumen aparecerá aquí"
+  },
+  "paraphraser": {
+    "title": "Parafraseador de Texto",
+    "placeholder": "Pega tu texto aquí para parafrasear y reescribir...",
+    "actionLabel": "Parafrasear Texto",
+    "processingLabel": "Parafraseando...",
+    "resultsPlaceholder": "El texto parafraseado aparecerá aquí"
+  },
   "sidebar": {
     "searchPlaceholder": "Buscar historial...",
     "noMatches": "No se encontraron coincidencias",
@@ -83,6 +97,16 @@
     "detector": {
       "name": "Detector",
       "description": "Detectar contenido generado por IA"
+    },
+    "summariser": {
+      "name": "Resumidor",
+      "description": "Crear resúmenes concisos",
+      "placeholder": "Pega tu texto aquí para generar un resumen..."
+    },
+    "paraphraser": {
+      "name": "Parafraseador",
+      "description": "Reformular y reescribir texto",
+      "placeholder": "Pega tu texto aquí para reformular y reescribir..."
     }
   },
   "common": {
@@ -110,6 +134,7 @@
   },
   "marketing": {
     "nav": {
+      "product": "Producto",
       "humanizer": "Humanizador",
       "detector": "Detector",
       "features": "Características", 
@@ -332,7 +357,7 @@
             "11": "Crear y gestionar hasta 10 contextos"
           }
         },
-        "unlimited": {
+        "max": {
           "title": "Ilimitado",
           "description": "Para usuarios avanzados, equipos grandes y organizaciones",
           "features": {

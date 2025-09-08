@@ -34,7 +34,7 @@ interface AppSidebarLayoutProps {
   onHistoryItemClick?: (id: string) => void;
   onHistoryItemCopy?: (text: string) => void;
   onHistoryItemDelete?: (id: string) => void;
-  currentPage: 'humanizer' | 'detector';
+  currentPage: 'humanizer' | 'detector' | 'paraphraser' | 'summariser';
   className?: string;
 }
 
@@ -57,7 +57,7 @@ export function AppSidebarLayout({
   const filteredEntries = historyEntries.filter(
     (entry) =>
       entry.originalText.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (entry.processedText?.toLowerCase().includes(searchQuery.toLowerCase()))
+      entry.processedText?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleCopy = async (text: string) => {
@@ -68,7 +68,6 @@ export function AppSidebarLayout({
       console.error('Failed to copy text:', error);
     }
   };
-
 
   return (
     <div className={cn('flex h-screen relative', className)}>
@@ -107,7 +106,9 @@ export function AppSidebarLayout({
           isCollapsed ? 'lg:w-12' : 'lg:w-72',
           // Mobile behavior
           'fixed lg:static inset-y-0 left-0 z-40 w-72',
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+          isMobileMenuOpen
+            ? 'translate-x-0'
+            : '-translate-x-full lg:translate-x-0'
         )}
       >
         {/* Top Section - Tool Selector & Toggle */}
@@ -123,7 +124,7 @@ export function AppSidebarLayout({
           {(!isCollapsed || isMobileMenuOpen) && (
             <ToolSelector currentTool={currentPage} className="flex-1" />
           )}
-          
+
           {/* Desktop collapse toggle - hidden on mobile */}
           <Button
             variant="ghost"
@@ -170,7 +171,9 @@ export function AppSidebarLayout({
               ) : (
                 <div className="p-4 text-center">
                   <p className="text-sm text-muted-foreground">
-                    {searchQuery ? t('sidebar.noMatches') : t('sidebar.noHistory')}
+                    {searchQuery
+                      ? t('sidebar.noMatches')
+                      : t('sidebar.noHistory')}
                   </p>
                 </div>
               )}
@@ -191,7 +194,10 @@ export function AppSidebarLayout({
                       className="h-1.5"
                     />
                     <div className="text-xs text-muted-foreground">
-                      {t('sidebar.creditsUsed', { used: currentUsage.comments || 0, total: 100 })}
+                      {t('sidebar.creditsUsed', {
+                        used: currentUsage.comments || 0,
+                        total: 100
+                      })}
                     </div>
                   </div>
                 )}

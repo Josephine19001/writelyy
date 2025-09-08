@@ -12,13 +12,15 @@ import {
   ChevronDownIcon,
   SparklesIcon,
   ShieldCheckIcon,
-  PlusIcon
+  PlusIcon,
+  FileTextIcon,
+  RepeatIcon
 } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 interface ToolSelectorProps {
-  currentTool: 'humanizer' | 'detector';
+  currentTool: 'humanizer' | 'detector' | 'summariser' | 'paraphraser';
   className?: string;
 }
 
@@ -39,6 +41,20 @@ export function ToolSelector({ currentTool, className }: ToolSelectorProps) {
       icon: ShieldCheckIcon,
       href: '/app/detector',
       description: t('tools.detector.description')
+    },
+    {
+      id: 'summariser' as const,
+      name: t('tools.summariser.name'),
+      icon: FileTextIcon,
+      href: '/app/summariser',
+      description: t('tools.summariser.description')
+    },
+    {
+      id: 'paraphraser' as const,
+      name: t('tools.paraphraser.name'),
+      icon: RepeatIcon,
+      href: '/app/paraphraser',
+      description: t('tools.paraphraser.description')
     }
   ];
 

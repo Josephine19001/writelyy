@@ -48,6 +48,20 @@
       "zh": "Chinois"
     }
   },
+  "summariser": {
+    "title": "Résumeur de Texte",
+    "placeholder": "Collez votre texte ici pour générer un résumé...",
+    "actionLabel": "Résumer le Texte",
+    "processingLabel": "Résumé en cours...",
+    "resultsPlaceholder": "Le résumé apparaîtra ici"
+  },
+  "paraphraser": {
+    "title": "Paraphraseur de Texte",
+    "placeholder": "Collez votre texte ici pour paraphraser et réécrire...",
+    "actionLabel": "Paraphraser le Texte",
+    "processingLabel": "Paraphrase en cours...",
+    "resultsPlaceholder": "Le texte paraphrasé apparaîtra ici"
+  },
   "sidebar": {
     "searchPlaceholder": "Rechercher l'historique...",
     "noMatches": "Aucune correspondance trouvée",
@@ -83,6 +97,16 @@
     "detector": {
       "name": "Détecteur",
       "description": "Détecter le contenu généré par IA"
+    },
+    "summariser": {
+      "name": "Résumeur",
+      "description": "Créer des résumés concis",
+      "placeholder": "Collez votre texte ici pour générer un résumé..."
+    },
+    "paraphraser": {
+      "name": "Paraphraseur",
+      "description": "Reformuler et réécrire le texte",
+      "placeholder": "Collez votre texte ici pour le reformuler et le réécrire..."
     }
   },
   "common": {
@@ -110,6 +134,7 @@
   },
   "marketing": {
     "nav": {
+      "product": "Produit",
       "humanizer": "Humaniseur",
       "detector": "Détecteur",
       "features": "Fonctionnalités",
@@ -332,7 +357,7 @@
             "11": "Créer et gérer jusqu'à 10 contextes"
           }
         },
-        "unlimited": {
+        "max": {
           "title": "Illimité",
           "description": "Pour les utilisateurs avancés, grandes équipes et organisations",
           "features": {

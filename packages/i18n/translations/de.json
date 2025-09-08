@@ -48,6 +48,20 @@
       "zh": "Chinesisch"
     }
   },
+  "summariser": {
+    "title": "Text-Zusammenfasser",
+    "placeholder": "Fügen Sie hier Ihren Text ein, um eine Zusammenfassung zu erstellen...",
+    "actionLabel": "Text Zusammenfassen",
+    "processingLabel": "Zusammenfassen...",
+    "resultsPlaceholder": "Die Zusammenfassung wird hier angezeigt"
+  },
+  "paraphraser": {
+    "title": "Text-Umschreiber",
+    "placeholder": "Fügen Sie hier Ihren Text ein, um ihn zu paraphrasieren und umzuschreiben...",
+    "actionLabel": "Text Paraphrasieren",
+    "processingLabel": "Paraphrasiere...",
+    "resultsPlaceholder": "Der paraphrasierte Text wird hier angezeigt"
+  },
   "sidebar": {
     "searchPlaceholder": "Verlauf durchsuchen...",
     "noMatches": "Keine Übereinstimmungen gefunden",
@@ -83,6 +97,16 @@
     "detector": {
       "name": "Detektor",
       "description": "KI-generierten Inhalt erkennen"
+    },
+    "summariser": {
+      "name": "Zusammenfasser",
+      "description": "Prägnante Zusammenfassungen erstellen",
+      "placeholder": "Fügen Sie Ihren Text hier ein, um eine Zusammenfassung zu erstellen..."
+    },
+    "paraphraser": {
+      "name": "Umschreiber",
+      "description": "Text umformulieren und neu schreiben",
+      "placeholder": "Fügen Sie Ihren Text hier ein, um ihn umzuformulieren und neu zu schreiben..."
     }
   },
   "common": {
@@ -954,6 +978,7 @@
   },
   "marketing": {
     "nav": {
+      "product": "Produkt",
       "humanizer": "Humanisierer",
       "detector": "Detektor",
       "features": "Features",
@@ -1176,7 +1201,7 @@
             "11": "Erstellen und verwalten Sie bis zu 10 Kontexte"
           }
         },
-        "unlimited": {
+        "max": {
           "title": "Unbegrenzt",
           "description": "Für Power-User, große Teams und Organisationen",
           "features": {

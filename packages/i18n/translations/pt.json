@@ -48,6 +48,20 @@
       "zh": "Chinês"
     }
   },
+  "summariser": {
+    "title": "Resumidor de Texto",
+    "placeholder": "Cole seu texto aqui para gerar um resumo...",
+    "actionLabel": "Resumir Texto",
+    "processingLabel": "Resumindo...",
+    "resultsPlaceholder": "O resumo aparecerá aqui"
+  },
+  "paraphraser": {
+    "title": "Parafraseador de Texto",
+    "placeholder": "Cole seu texto aqui para parafrasear e reescrever...",
+    "actionLabel": "Parafrasear Texto",
+    "processingLabel": "Parafraseando...",
+    "resultsPlaceholder": "O texto parafraseado aparecerá aqui"
+  },
   "sidebar": {
     "searchPlaceholder": "Pesquisar histórico...",
     "noMatches": "Nenhuma correspondência encontrada",
@@ -83,6 +97,16 @@
     "detector": {
       "name": "Detector",
       "description": "Detectar conteúdo gerado por IA"
+    },
+    "summariser": {
+      "name": "Resumidor",
+      "description": "Criar resumos concisos",
+      "placeholder": "Cole seu texto aqui para gerar um resumo..."
+    },
+    "paraphraser": {
+      "name": "Parafraseador",
+      "description": "Reformular e reescrever texto",
+      "placeholder": "Cole seu texto aqui para reformular e reescrever..."
     }
   },
   "common": {
@@ -110,9 +134,13 @@
   },
   "marketing": {
     "nav": {
+      "product": "Produto",
+      "humanizer": "Humanizador",
+      "detector": "Detector",
       "features": "Recursos",
       "howItWorks": "Como Funciona",
       "pricing": "Preços",
+      "contact": "Contato",
       "signIn": "Entrar",
       "getStarted": "Começar"
     },
@@ -274,7 +302,7 @@
           "title": "Pro",
           "description": "Para escritores regulares, profissionais e pequenas equipes"
         },
-        "unlimited": {
+        "max": {
           "title": "Ilimitado",
           "description": "Para usuários avançados, grandes equipes e organizações"
         }

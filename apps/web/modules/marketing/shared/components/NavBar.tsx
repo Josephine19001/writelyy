@@ -7,12 +7,12 @@ import { ColorModeToggle } from '@shared/components/ColorModeToggle';
 import { LocaleSwitch } from '@shared/components/LocaleSwitch';
 import { Logo } from '@shared/components/Logo';
 import { Button } from '@ui/components/button';
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger
-// } from '@ui/components/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@ui/components/dropdown-menu';
 import {
   Sheet,
   SheetContent,
@@ -22,10 +22,14 @@ import {
 import { cn } from '@ui/lib';
 import {
   MenuIcon,
-  // ChevronDownIcon,
+  ChevronDownIcon,
   TrendingUpIcon,
   UserIcon,
-  BrainIcon
+  BrainIcon,
+  SparklesIcon,
+  ShieldCheckIcon,
+  FileTextIcon,
+  RepeatIcon
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import NextLink from 'next/link';
@@ -63,6 +67,33 @@ export function NavBar() {
 
   const isDocsPage = localePathname.startsWith('/docs');
 
+  const productTools = [
+    {
+      label: t('tools.humanizer.name'),
+      href: user ? '/app' : '/auth/login',
+      icon: SparklesIcon,
+      description: t('tools.humanizer.description')
+    },
+    {
+      label: t('tools.detector.name'),
+      href: user ? '/app/detector' : '/auth/login',
+      icon: ShieldCheckIcon,
+      description: t('tools.detector.description')
+    },
+    {
+      label: t('tools.summariser.name'),
+      href: user ? '/app/summariser' : '/auth/login',
+      icon: FileTextIcon,
+      description: t('tools.summariser.description')
+    },
+    {
+      label: t('tools.paraphraser.name'),
+      href: user ? '/app/paraphraser' : '/auth/login',
+      icon: RepeatIcon,
+      description: t('tools.paraphraser.description')
+    }
+  ];
+
   const useCases = [
     {
       label: 'Creators',
@@ -88,18 +119,6 @@ export function NavBar() {
     label: string;
     href: string;
   }[] = [
-    {
-      label: t('marketing.nav.humanizer'),
-      href: '/#humanizer'
-    },
-    {
-      label: t('marketing.nav.detector'),
-      href: '/#detector'
-    },
-    {
-      label: t('marketing.nav.features'),
-      href: '/#features'
-    },
     {
       label: t('marketing.nav.pricing'),
       href: '/#pricing'
@@ -139,6 +158,40 @@ export function NavBar() {
           </div>
 
           <div className="hidden flex-1 items-center justify-center lg:flex">
+            {/* Product Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="px-3 py-2 font-medium text-foreground/80 text-sm hover:text-foreground transition-colors h-auto gap-1"
+                >
+                  {t('marketing.nav.product')}
+                  <ChevronDownIcon className="h-3 w-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-80">
+                {productTools.map((tool) => (
+                  <DropdownMenuItem key={tool.href} asChild className="p-0">
+                    <NextLink
+                      href={tool.href}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-accent/50 transition-colors"
+                      prefetch={!user}
+                    >
+                      <div className="flex-shrink-0">
+                        <tool.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-sm">{tool.label}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {tool.description}
+                        </div>
+                      </div>
+                    </NextLink>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {menuItems.map((menuItem) => (
               <LocaleLink
                 key={menuItem.href}
@@ -181,6 +234,29 @@ export function NavBar() {
               <SheetContent className="w-[280px]" side="right">
                 <SheetTitle />
                 <div className="flex flex-col items-start justify-center">
+                  {/* Product Tools Section */}
+                  <div className="w-full px-3 py-2">
+                    <div className="text-sm font-medium text-foreground/60 mb-2">
+                      {t('marketing.nav.product')}
+                    </div>
+                    {productTools.map((tool) => (
+                      <NextLink
+                        key={tool.href}
+                        href={tool.href}
+                        className="flex items-center gap-3 px-3 py-2 text-base text-foreground/80 hover:text-foreground"
+                        prefetch={!user}
+                      >
+                        <tool.icon className="h-5 w-5 text-primary" />
+                        <div>
+                          <div className="font-medium">{tool.label}</div>
+                          <div className="text-sm text-foreground/60">
+                            {tool.description}
+                          </div>
+                        </div>
+                      </NextLink>
+                    ))}
+                  </div>
+
                   {/* Use Cases Section */}
                   <div className="w-full px-3 py-2">
                     <div className="text-sm font-medium text-foreground/60 mb-2">

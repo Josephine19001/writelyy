@@ -20,7 +20,7 @@ interface TextHistoryEntry {
   id: string;
   originalText: string;
   processedText?: string;
-  type: 'humanized' | 'detected';
+  type: 'humanized' | 'detected' | 'summarised' | 'paraphrased';
   status?: 'processing' | 'completed' | 'failed';
   timestamp: Date;
   aiScore?: number;
@@ -33,7 +33,7 @@ interface SelectOption {
 
 interface TextProcessorPageProps {
   // Page configuration
-  currentPage: 'humanizer' | 'detector';
+  currentPage: 'humanizer' | 'detector' | 'summariser' | 'paraphraser';
 
   // Header configuration
   showToneSelector?: boolean;

@@ -186,20 +186,18 @@ export const config = {
           }
         ]
       },
-      unlimited: {
+      max: {
         prices: [
           {
             type: 'recurring',
-            productId: process.env
-              .NEXT_PUBLIC_PRICE_ID_UNLIMITED_MONTHLY as string,
+            productId: process.env.NEXT_PUBLIC_PRICE_ID_MAX_MONTHLY as string,
             amount: 24.99,
             currency: 'USD',
             interval: 'month'
           },
           {
             type: 'recurring',
-            productId: process.env
-              .NEXT_PUBLIC_PRICE_ID_UNLIMITED_YEARLY as string,
+            productId: process.env.NEXT_PUBLIC_PRICE_ID_MAX_YEARLY as string,
             amount: 249.99,
             currency: 'USD',
             interval: 'year'

@@ -48,6 +48,20 @@
       "zh": "Cinese"
     }
   },
+  "summariser": {
+    "title": "Riassuntore di Testo",
+    "placeholder": "Incolla il tuo testo qui per generare un riassunto...",
+    "actionLabel": "Riassumi Testo",
+    "processingLabel": "Riassumendo...",
+    "resultsPlaceholder": "Il riassunto apparirà qui"
+  },
+  "paraphraser": {
+    "title": "Parafrasatore di Testo",
+    "placeholder": "Incolla il tuo testo qui per parafrasare e riscrivere...",
+    "actionLabel": "Parafrasa Testo",
+    "processingLabel": "Parafrasando...",
+    "resultsPlaceholder": "Il testo parafrasato apparirà qui"
+  },
   "sidebar": {
     "searchPlaceholder": "Cerca cronologia...",
     "noMatches": "Nessuna corrispondenza trovata",
@@ -83,6 +97,16 @@
     "detector": {
       "name": "Rilevatore",
       "description": "Rilevare contenuti generati da IA"
+    },
+    "summariser": {
+      "name": "Riassuntore",
+      "description": "Creare riassunti concisi",
+      "placeholder": "Incolla il tuo testo qui per generare un riassunto..."
+    },
+    "paraphraser": {
+      "name": "Parafrasatore",
+      "description": "Riformulare e riscrivere il testo",
+      "placeholder": "Incolla il tuo testo qui per riformularlo e riscriverlo..."
     }
   },
   "common": {
@@ -110,9 +134,13 @@
   },
   "marketing": {
     "nav": {
+      "product": "Prodotto",
+      "humanizer": "Umanizzatore",
+      "detector": "Rilevatore",
       "features": "Caratteristiche",
       "howItWorks": "Come Funziona",
       "pricing": "Prezzi",
+      "contact": "Contatto",
       "signIn": "Accedi",
       "getStarted": "Inizia"
     },
@@ -274,7 +302,7 @@
           "title": "Pro",
           "description": "Per scrittori regolari, professionisti e piccole squadre"
         },
-        "unlimited": {
+        "max": {
           "title": "Illimitato",
           "description": "Per utenti avanzati, grandi squadre e organizzazioni"
         }

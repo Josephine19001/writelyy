@@ -953,12 +953,37 @@
       "description": "Make AI text sound human"
     },
     "detector": {
-      "name": "Detector", 
+      "name": "Detector",
       "description": "Detect AI-generated content"
+    },
+    "summariser": {
+      "name": "Summariser",
+      "description": "Create concise summaries",
+      "placeholder": "Paste your text here to generate a summary..."
+    },
+    "paraphraser": {
+      "name": "Paraphraser",
+      "description": "Rephrase and rewrite text",
+      "placeholder": "Paste your text here to rephrase and rewrite it..."
     }
+  },
+  "summariser": {
+    "title": "Text Summarizer",
+    "placeholder": "Paste your text here to generate a summary...",
+    "actionLabel": "Summarise Text",
+    "processingLabel": "Summarising...",
+    "resultsPlaceholder": "Summary will appear here"
+  },
+  "paraphraser": {
+    "title": "Text Paraphraser",
+    "placeholder": "Paste your text here to rephrase and rewrite it...",
+    "actionLabel": "Paraphrase Text",
+    "processingLabel": "Paraphrasing...",
+    "resultsPlaceholder": "Paraphrased text will appear here"
   },
   "marketing": {
     "nav": {
+      "product": "Product",
       "humanizer": "Humanizer",
       "detector": "Detector",
       "features": "Features",
@@ -1137,45 +1162,36 @@
             "3": "Basic Humanization Engine",
             "4": "Error-free rewriting",
             "5": "Web text editor",
-            "6": "Google Docs & Notion extension",
-            "7": "Email support",
-            "8": "Create & manage up to 3 contexts"
+            "7": "Email support"
           }
         },
         "pro": {
           "title": "Pro",
           "description": "For regular writers, professionals, and small teams",
           "features": {
-            "0": "75,000 words/month",
+            "0": "60,000 words/month",
             "1": "1,500 words per request",
             "2": "Bypass all major AI detectors (incl. Turnitin & GPTZero)",
             "3": "Advanced Humanization Engine",
             "4": "Plagiarism-free rewriting",
             "5": "Undetectable results",
-            "6": "Google Docs & Notion extension",
-            "7": "Unlimited grammar checks",
             "8": "Fast mode",
-            "9": "Priority support",
-            "10": "Invite team members (up to 5)",
-            "11": "Create & manage up to 10 contexts"
+            "9": "Priority support"
           }
         },
-        "unlimited": {
-          "title": "Unlimited",
+        "max": {
+          "title": "Max",
           "description": "For power users, large teams, and organizations",
           "features": {
-            "0": "Unlimited words",
+            "0": "150,000 words/month",
             "1": "3,000 words per request",
             "2": "Bypass all major AI detectors (incl. Turnitin & GPTZero)",
             "3": "Advanced Humanization Engine",
             "4": "Ultra-human writing output",
             "5": "Plagiarism-free & error-free rewriting",
             "6": "Unlimited grammar checks",
-            "7": "All supported languages (50+)",
             "8": "Fast mode",
-            "9": "Priority support",
-            "10": "Invite unlimited team members",
-            "11": "Create & manage unlimited contexts"
+            "9": "Priority support"
           }
         }
       }
