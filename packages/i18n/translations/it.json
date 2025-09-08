@@ -408,5 +408,46 @@
       "backToSignin": "Torna al login",
       "message": "Inserisci la password monouso dalla tua app di autenticazione per continuare."
     }
+  },
+  "mail": {
+    "common": {
+      "openLinkInBrowser": "Se vuoi aprire il link in un browser diverso da quello predefinito, copia e incolla questo link:",
+      "otp": "Password monouso",
+      "useLink": "o usa il seguente link:"
+    },
+    "emailVerification": {
+      "body": "Per favore, fai clic sul link sottostante per verificare questo nuovo indirizzo email.",
+      "confirmEmail": "Verifica email",
+      "subject": "Verifica la tua email"
+    },
+    "forgotPassword": {
+      "body": "Hai richiesto un reset della password.\n\nFai clic sul pulsante sottostante per reimpostare la tua password.",
+      "resetPassword": "Reimposta password",
+      "subject": "Reimposta la tua password"
+    },
+    "magicLink": {
+      "body": "Hai richiesto un'email di accesso da Writelyy AI.\n\nFai clic sul link sottostante per accedere.",
+      "login": "Accedi",
+      "subject": "Accedi a Writelyy AI"
+    },
+    "newUser": {
+      "body": "Grazie per esserti registrato a Writelyy AI.\n\nPer iniziare a utilizzare la nostra app, per favore conferma il tuo indirizzo email facendo clic sul link sottostante.",
+      "confirmEmail": "Conferma email",
+      "subject": "Conferma la tua email"
+    },
+    "newsletterSignup": {
+      "body": "Grazie per esserti iscritto alla newsletter di Writelyy AI. Ti terremo aggiornato con le ultime notizie e aggiornamenti.",
+      "subject": "Benvenuto nella nostra newsletter"
+    },
+    "organizationInvitation": {
+      "body": "Sei stato invitato a unirti al contesto {brandName}. Fai clic sul pulsante sottostante o copia e incolla il link nel tuo browser preferito per accettare l'invito e unirti al contesto.",
+      "headline": "Unisciti al contesto {brandName}",
+      "join": "Unisciti al contesto",
+      "subject": "Sei stato invitato a unirti a un contesto"
+    },
+    "paymentReceipt": {
+      "body": "Grazie per il tuo pagamento! La tua ricevuta e i dettagli dell'ordine sono di seguito.",
+      "subject": "Ricevuta di Pagamento"
+    }
   }
 }

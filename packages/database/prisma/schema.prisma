@@ -39,6 +39,10 @@ model User {
     locale             String?
     twoFactorEnabled   Boolean?
     completedTours     String[]     @default([])
+    
+    // Monthly word limit tracking
+    monthlyWordLimit   Int          @default(1000)   // Default 1k words per month for new users
+    
     sessions           Session[]
     accounts           Account[]
     passkeys           Passkey[]
@@ -47,6 +51,11 @@ model User {
     members            Member[]
     twofactors         TwoFactor[]
     aiChats            AiChat[]
+    humanizerUsages    HumanizerUsage[]
+    detectorUsages     DetectorUsage[]
+    summariserUsages   SummariserUsage[]
+    paraphraserUsages  ParaphraserUsage[]
+    monthlyUsages      MonthlyUsage[]
 
     @@unique([email])
     @@unique([username])
@@ -249,6 +258,126 @@ model CreditTransaction {
     @@index([type])
     @@index([createdAt])
     @@map("credit_transaction")
+}
+
+model HumanizerUsage {
+    id               String    @id @default(cuid())
+    userId           String
+    user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    // Encrypted content - stored as JSON string with iv, authTag
+    encryptedContent String    @db.Text  // Contains {inputText, outputText}
+    
+    // Non-sensitive metadata
+    tone             String?
+    wordCount        Int
+    charactersUsed   Int
+    creditsUsed      Int?
+    
+    // Auto-deletion for GDPR compliance
+    expiresAt        DateTime?
+    createdAt        DateTime  @default(now())
+    
+    @@index([userId])
+    @@index([createdAt])
+    @@index([expiresAt])
+    @@map("humanizer_usage")
+}
+
+model DetectorUsage {
+    id               String    @id @default(cuid())
+    userId           String
+    user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    // Encrypted content - stored as JSON string with iv, authTag
+    encryptedContent String    @db.Text  // Contains {inputText}
+    
+    // Non-sensitive metadata
+    aiProbability    Float     // Probability score (0-1)
+    detectionResult  String    // "Human", "AI", "Mixed"
+    wordCount        Int
+    charactersUsed   Int
+    creditsUsed      Int?
+    
+    // Auto-deletion for GDPR compliance
+    expiresAt        DateTime?
+    createdAt        DateTime  @default(now())
+    
+    @@index([userId])
+    @@index([createdAt])
+    @@index([expiresAt])
+    @@map("detector_usage")
+}
+
+model SummariserUsage {
+    id               String    @id @default(cuid())
+    userId           String
+    user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    // Encrypted content - stored as JSON string with iv, authTag
+    encryptedContent String    @db.Text  // Contains {inputText, summaryText}
+    
+    // Non-sensitive metadata
+    summaryType      String?   // Brief, Detailed, Key Points
+    wordCount        Int
+    charactersUsed   Int
+    creditsUsed      Int?
+    
+    // Auto-deletion for GDPR compliance
+    expiresAt        DateTime?
+    createdAt        DateTime  @default(now())
+    
+    @@index([userId])
+    @@index([createdAt])
+    @@index([expiresAt])
+    @@map("summariser_usage")
+}
+
+model ParaphraserUsage {
+    id               String    @id @default(cuid())
+    userId           String
+    user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    // Encrypted content - stored as JSON string with iv, authTag
+    encryptedContent String    @db.Text  // Contains {inputText, paraphrasedText}
+    
+    // Non-sensitive metadata
+    style            String?   // Formal, Casual, Academic, Creative
+    wordCount        Int
+    charactersUsed   Int
+    creditsUsed      Int?
+    
+    // Auto-deletion for GDPR compliance
+    expiresAt        DateTime?
+    createdAt        DateTime  @default(now())
+    
+    @@index([userId])
+    @@index([createdAt])
+    @@index([expiresAt])
+    @@map("paraphraser_usage")
+}
+
+model MonthlyUsage {
+    id           String   @id @default(cuid())
+    userId       String
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    month        Int      // 1-12
+    year         Int      // 2024, 2025, etc
+    totalWords   Int      @default(0)
+    
+    // Track usage by tool type
+    humanizerWords    Int @default(0)
+    detectorWords     Int @default(0)
+    summariserWords   Int @default(0)
+    paraphraserWords  Int @default(0)
+    
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+    
+    @@unique([userId, month, year])
+    @@index([userId])
+    @@index([month, year])
+    @@map("monthly_usage")
 }
 
 

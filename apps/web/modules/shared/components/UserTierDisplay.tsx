@@ -7,6 +7,7 @@ import { Progress } from '@ui/components/progress';
 import { CrownIcon, CreditCardIcon, ZapIcon } from 'lucide-react';
 import { useActivePlan } from '@saas/payments/hooks/use-active-plan';
 import { useUsageLimits } from '@saas/payments/hooks/use-usage-limits';
+import { useMonthlyUsage } from '@shared/hooks/use-monthly-usage';
 import { cn } from '@ui/lib';
 import Link from 'next/link';
 
@@ -17,6 +18,12 @@ interface UserTierDisplayProps {
 export function UserTierDisplay({ className }: UserTierDisplayProps) {
   const { activePlan, creditData } = useActivePlan();
   const { getRemainingUsage, currentUsage } = useUsageLimits();
+  const { 
+    stats: monthlyUsage, 
+    currentUsageFormatted, 
+    wordLimitFormatted, 
+    usagePercentageRounded 
+  } = useMonthlyUsage();
 
   const getPlanDisplayName = () => {
     if (!activePlan) return 'Free';
@@ -52,9 +59,7 @@ export function UserTierDisplay({ className }: UserTierDisplayProps) {
 
   const getRemainingCredits = () => {
     if (!activePlan || activePlan.id === 'free') {
-      const freeLimit = 100;
-      const used = currentUsage.comments || 0;
-      return Math.max(0, freeLimit - used);
+      return `${monthlyUsage.remainingWords.toLocaleString()} words`;
     }
     if (activePlan.id === 'credits') {
       return creditData?.creditBalance || 0;
@@ -63,15 +68,11 @@ export function UserTierDisplay({ className }: UserTierDisplayProps) {
   };
 
   const getUsageProgress = () => {
-    if (!activePlan || activePlan.id === 'free') {
-      const freeLimit = 100;
-      const used = currentUsage.comments || 0;
-      return (used / freeLimit) * 100;
-    }
-    return 0; // Don't show progress for paid plans
+    // Always show word usage progress for all plans
+    return usagePercentageRounded;
   };
 
-  const shouldShowProgress = !activePlan || activePlan.id === 'free';
+  const shouldShowProgress = true; // Show word usage progress for all plans
   const remainingCredits = getRemainingCredits();
   const usageProgress = getUsageProgress();
 
@@ -93,23 +94,21 @@ export function UserTierDisplay({ className }: UserTierDisplayProps) {
         </div>
       </div>
 
-      {/* Credits Info */}
+      {/* Monthly Usage Info */}
       <div className="space-y-2">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Credits</span>
+          <span className="text-muted-foreground">Monthly Usage</span>
           <span className="font-medium">
-            {typeof remainingCredits === 'number' 
-              ? remainingCredits.toLocaleString() 
-              : remainingCredits}
+            {currentUsageFormatted} / {wordLimitFormatted}
           </span>
         </div>
 
-        {/* Progress for Free Users */}
+        {/* Progress for All Users */}
         {shouldShowProgress && (
           <div className="space-y-1">
             <Progress value={usageProgress} className="h-1.5" />
             <div className="text-xs text-muted-foreground">
-              {currentUsage.comments || 0} of 100 used this month
+              {currentUsageFormatted} of {wordLimitFormatted} words used this month
             </div>
           </div>
         )}

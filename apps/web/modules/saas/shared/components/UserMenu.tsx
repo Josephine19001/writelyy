@@ -7,6 +7,7 @@ import { useSession } from '@saas/auth/hooks/use-session';
 import { UserAvatar } from '@shared/components/UserAvatar';
 import { clearCache } from '@shared/lib/cache';
 import { useActivePlan } from '@saas/payments/hooks/use-active-plan';
+import { useMonthlyUsage } from '@shared/hooks/use-monthly-usage';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,6 +48,7 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
   const { setTheme: setCurrentTheme, theme: currentTheme } = useTheme();
   const [theme, setTheme] = useState<string>(currentTheme ?? 'system');
   const { activePlan } = useActivePlan();
+  const { currentUsageFormatted, wordLimitFormatted } = useMonthlyUsage();
   const router = useRouter();
 
   const updateLocaleMutation = useMutation({
@@ -161,6 +163,9 @@ export function UserMenu({ showUserName }: { showUserName?: boolean }) {
           <span className="block font-normal text-xs opacity-70">{email}</span>
           <span className="block font-normal text-xs opacity-70 mt-1">
             {getPlanDisplayName()}
+          </span>
+          <span className="block font-normal text-xs opacity-60 mt-1">
+            {currentUsageFormatted} / {wordLimitFormatted} words used
           </span>
         </DropdownMenuLabel>
 

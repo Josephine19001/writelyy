@@ -13,7 +13,6 @@ import {
 import { useState } from 'react';
 import { cn } from '@ui/lib';
 import { UserMenu } from '@saas/shared/components/UserMenu';
-import { useActivePlan } from '@saas/payments/hooks/use-active-plan';
 import { useUsageLimits } from '@saas/payments/hooks/use-usage-limits';
 import { Progress } from '@ui/components/progress';
 import { useTranslations } from 'next-intl';
@@ -51,8 +50,9 @@ export function AppSidebarLayout({
   const [searchQuery, setSearchQuery] = useState('');
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { activePlan } = useActivePlan();
-  const { currentUsage } = useUsageLimits();
+  const { monthlyUsage } = useUsageLimits();
+
+  console.log('--monthlyUsage', monthlyUsage);
 
   const filteredEntries = historyEntries.filter(
     (entry) =>
@@ -181,26 +181,20 @@ export function AppSidebarLayout({
 
             {/* User Section at Bottom with Credits */}
             <div className="border-t border-border/30 p-3 space-y-3">
-              {/* Credits Display with Progress */}
+              {/* Words Usage Display with Progress */}
               <div className="px-1">
-                {/* Progress bar for free users */}
-                {!activePlan && (
-                  <div className="space-y-2">
-                    <Progress
-                      value={Math.min(
-                        100,
-                        ((currentUsage.comments || 0) / 100) * 100
-                      )}
-                      className="h-1.5"
-                    />
-                    <div className="text-xs text-muted-foreground">
-                      {t('sidebar.creditsUsed', {
-                        used: currentUsage.comments || 0,
-                        total: 100
-                      })}
-                    </div>
+                {/* Progress bar for word usage */}
+                <div className="space-y-2">
+                  <Progress
+                    value={monthlyUsage.usagePercentage}
+                    className="h-1.5"
+                  />
+                  <div className="text-xs text-muted-foreground">
+                    {monthlyUsage.currentUsage.toLocaleString()} of{' '}
+                    {monthlyUsage.wordLimit.toLocaleString()} words used this
+                    month
                   </div>
-                )}
+                </div>
               </div>
 
               <UserMenu showUserName={true} />

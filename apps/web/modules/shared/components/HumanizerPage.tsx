@@ -1,45 +1,28 @@
 'use client';
 
+import { useState, useCallback } from 'react';
+import { SparklesIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
 import { DiffHighlighter } from '@shared/components/DiffHighlighter';
-import { SparklesIcon } from 'lucide-react';
-import { useState, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
-
-// Mock data - replace with actual API calls
-const mockHistoryEntries = [
-  {
-    id: '1',
-    originalText:
-      'This is an AI-generated text that needs to be humanized for better readability and natural flow.',
-    processedText:
-      "This text was originally created by AI, but now it's been transformed to sound more natural and engaging for readers.",
-    type: 'humanized' as const,
-    status: 'completed' as const,
-    timestamp: new Date(Date.now() - 1000 * 60 * 30) // 30 minutes ago
-  },
-  {
-    id: '2',
-    originalText:
-      'The quick brown fox jumps over the lazy dog. This sentence is commonly used for testing purposes.',
-    processedText:
-      'A nimble brown fox leaps gracefully over a sleepy dog. People often use this phrase when testing different things.',
-    type: 'humanized' as const,
-    status: 'completed' as const,
-    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2) // 2 hours ago
-  }
-];
-
-
+import {
+  useHumanizeTextMutation,
+  useHumanizerHistoryQuery
+} from '@shared/lib/tools-api';
 
 export function HumanizerPage() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [historyEntries, setHistoryEntries] = useState(mockHistoryEntries);
   const [showTypewriter, setShowTypewriter] = useState(false);
+
+  // API hooks
+  const humanizeMutation = useHumanizeTextMutation();
+  const { data: historyData, refetch: refetchHistory } =
+    useHumanizerHistoryQuery(10);
+
+  const isProcessing = humanizeMutation.isPending;
 
   const toneOptions = [
     { value: 'default', label: t('humanizer.toneOptions.default') },
@@ -65,30 +48,28 @@ export function HumanizerPage() {
     { value: 'zh', label: t('humanizer.languageOptions.zh') }
   ];
 
-  const handleProcess = async (text: string, _options: { tone?: string; language?: string }) => {
-    setIsProcessing(true);
+  const handleProcess = async (
+    text: string,
+    options: { tone?: string; language?: string }
+  ) => {
     setOutputText(''); // Clear previous results
     setShowTypewriter(false);
 
-    // Mock API call - replace with actual API
-    setTimeout(() => {
-      const humanizedText = "Here's your content rewritten to sound more natural and engaging. The AI has transformed your original text into something that flows better and feels more authentic to readers.";
-      setOutputText(humanizedText);
+    try {
+      const result = await humanizeMutation.mutateAsync({
+        inputText: text,
+        tone: options.tone || 'default'
+      });
+
+      setOutputText(result.outputText);
       setShowTypewriter(true); // Start typewriter effect
-      setIsProcessing(false);
 
-      // Add to history
-      const newEntry = {
-        id: Date.now().toString(),
-        originalText: text,
-        processedText: humanizedText,
-        type: 'humanized' as const,
-        status: 'completed' as const,
-        timestamp: new Date()
-      };
-
-      setHistoryEntries((prev) => [newEntry, ...prev]);
-    }, 2000);
+      // Refetch history to get the new entry
+      refetchHistory();
+    } catch (error) {
+      console.error('Humanization failed:', error);
+      // You could show a toast or error message here
+    }
   };
 
   const handleReset = () => {
@@ -99,21 +80,26 @@ export function HumanizerPage() {
 
   const handleHistoryItemClick = useCallback(
     (id: string) => {
-      const entry = historyEntries.find((e) => e.id === id);
+      const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
-        setInputText(entry.originalText);
-        if (entry.processedText) {
-          setOutputText(entry.processedText);
+        setInputText(entry.inputText);
+        if (entry.outputText) {
+          setOutputText(entry.outputText);
           setShowTypewriter(false); // Show immediate result for history items
         }
       }
     },
-    [historyEntries]
+    [historyData?.history]
   );
 
-  const handleHistoryItemDelete = useCallback((id: string) => {
-    setHistoryEntries((prev) => prev.filter((entry) => entry.id !== id));
-  }, []);
+  const handleHistoryItemDelete = useCallback(
+    (id: string) => {
+      // TODO: Implement delete API endpoint
+      console.log('Delete history item:', id);
+      refetchHistory();
+    },
+    [refetchHistory]
+  );
 
   const renderResults = () => (
     <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
@@ -137,8 +123,8 @@ export function HumanizerPage() {
 
   return (
     <>
-      <TrialDataManager 
-        currentPage="humanizer" 
+      <TrialDataManager
+        currentPage="humanizer"
         onTrialDataFound={setInputText}
       />
       <TextProcessorPage
@@ -152,7 +138,16 @@ export function HumanizerPage() {
         processingLabel={t('humanizer.processingLabel')}
         ActionIcon={SparklesIcon}
         maxLength={5000}
-        historyEntries={historyEntries}
+        historyEntries={
+          historyData?.history?.map((entry) => ({
+            id: entry.id,
+            originalText: entry.inputText,
+            processedText: entry.outputText || '',
+            type: 'humanized' as const,
+            status: 'completed' as const,
+            timestamp: new Date(entry.createdAt)
+          })) || []
+        }
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
         onProcess={handleProcess}

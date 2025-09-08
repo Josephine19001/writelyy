@@ -408,5 +408,46 @@
       "backToSignin": "Voltar ao login",
       "message": "Insira a senha de uso único do seu aplicativo autenticador para continuar."
     }
+  },
+  "mail": {
+    "common": {
+      "openLinkInBrowser": "Se você quiser abrir o link em um navegador diferente do seu navegador padrão, copie e cole este link:",
+      "otp": "Senha de uso único",
+      "useLink": "ou use o seguinte link:"
+    },
+    "emailVerification": {
+      "body": "Por favor, clique no link abaixo para verificar este novo endereço de email.",
+      "confirmEmail": "Verificar email",
+      "subject": "Verifique seu email"
+    },
+    "forgotPassword": {
+      "body": "Você solicitou uma redefinição de senha.\n\nClique no botão abaixo para redefinir sua senha.",
+      "resetPassword": "Redefinir senha",
+      "subject": "Redefina sua senha"
+    },
+    "magicLink": {
+      "body": "Você solicitou um email de login do Writelyy AI.\n\nClique no link abaixo para fazer login.",
+      "login": "Fazer login",
+      "subject": "Fazer login no Writelyy AI"
+    },
+    "newUser": {
+      "body": "Obrigado por se inscrever no Writelyy AI.\n\nPara começar a usar nosso aplicativo, por favor confirme seu endereço de email clicando no link abaixo.",
+      "confirmEmail": "Confirmar email",
+      "subject": "Confirme seu email"
+    },
+    "newsletterSignup": {
+      "body": "Obrigado por se inscrever no boletim informativo do Writelyy AI. Manteremos você atualizado com as últimas notícias e atualizações.",
+      "subject": "Bem-vindo ao nosso boletim informativo"
+    },
+    "organizationInvitation": {
+      "body": "Você foi convidado para se juntar ao contexto {brandName}. Clique no botão abaixo ou copie e cole o link no seu navegador de escolha para aceitar o convite e se juntar ao contexto.",
+      "headline": "Junte-se ao contexto {brandName}",
+      "join": "Juntar-se ao contexto",
+      "subject": "Você foi convidado para se juntar a um contexto"
+    },
+    "paymentReceipt": {
+      "body": "Obrigado pelo seu pagamento! Seu recibo e detalhes do pedido estão abaixo.",
+      "subject": "Recibo de Pagamento"
+    }
   }
 }

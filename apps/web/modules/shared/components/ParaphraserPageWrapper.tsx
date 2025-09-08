@@ -2,6 +2,7 @@
 
 import { ParaphraserPage } from '@shared/components/ParaphraserPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
+import { useParaphraseTextMutation, useParaphraserHistoryQuery } from '@shared/lib/tools-api';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -15,49 +16,35 @@ interface TextHistoryEntry {
   aiScore?: number;
 }
 
-// Mock data - replace with actual API calls
-const mockHistoryEntries: TextHistoryEntry[] = [
-  {
-    id: '1',
-    originalText:
-      'The quick brown fox jumps over the lazy dog. This sentence is commonly used for testing purposes in typography and printing.',
-    processedText:
-      'A swift brown fox leaps across a sleepy canine. This phrase is frequently employed for testing in typography and print work.',
-    type: 'paraphrased',
-    status: 'completed',
-    timestamp: new Date(Date.now() - 1000 * 60 * 30) // 30 minutes ago
-  }
-];
 
 export function ParaphraserPageWrapper() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [historyEntries, setHistoryEntries] = useState(mockHistoryEntries);
+  
+  // API hooks
+  const paraphraseMutation = useParaphraseTextMutation();
+  const { data: historyData, refetch: refetchHistory } = useParaphraserHistoryQuery(10);
+  
+  const isProcessing = paraphraseMutation.isPending;
 
   const handleProcess = async (text: string, options: { tone?: string; level?: string }) => {
-    setIsProcessing(true);
     setOutputText(''); // Clear previous results
 
-    // Mock API call - replace with actual API
-    setTimeout(() => {
-      const paraphrasedText = "Here's your content rewritten with different words and sentence structures while maintaining the original meaning and intent.";
-      setOutputText(paraphrasedText);
-      setIsProcessing(false);
+    try {
+      const result = await paraphraseMutation.mutateAsync({
+        inputText: text,
+        style: (options.tone as 'formal' | 'casual' | 'academic' | 'creative') || 'formal'
+      });
 
-      // Add to history
-      const newEntry: TextHistoryEntry = {
-        id: Date.now().toString(),
-        originalText: text,
-        processedText: paraphrasedText,
-        type: 'paraphrased',
-        status: 'completed',
-        timestamp: new Date()
-      };
-
-      setHistoryEntries((prev) => [newEntry, ...prev]);
-    }, 2000);
+      setOutputText(result.paraphrasedText);
+      
+      // Refetch history to get the new entry
+      refetchHistory();
+    } catch (error) {
+      console.error('Paraphrasing failed:', error);
+      // You could show a toast or error message here
+    }
   };
 
   const handleReset = () => {
@@ -67,20 +54,22 @@ export function ParaphraserPageWrapper() {
 
   const handleHistoryItemClick = useCallback(
     (id: string) => {
-      const entry = historyEntries.find((e) => e.id === id);
+      const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
-        setInputText(entry.originalText);
-        if (entry.processedText) {
-          setOutputText(entry.processedText);
+        setInputText(entry.inputText);
+        if (entry.paraphrasedText) {
+          setOutputText(entry.paraphrasedText);
         }
       }
     },
-    [historyEntries]
+    [historyData?.history]
   );
 
   const handleHistoryItemDelete = useCallback((id: string) => {
-    setHistoryEntries((prev) => prev.filter((entry) => entry.id !== id));
-  }, []);
+    // TODO: Implement delete API endpoint
+    console.log('Delete history item:', id);
+    refetchHistory();
+  }, [refetchHistory]);
 
   const renderResults = () => (
     <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
@@ -101,7 +90,14 @@ export function ParaphraserPageWrapper() {
         onTrialDataFound={setInputText}
       />
       <ParaphraserPage
-        historyEntries={historyEntries}
+        historyEntries={historyData?.history?.map(entry => ({
+          id: entry.id,
+          originalText: entry.inputText,
+          processedText: entry.paraphrasedText || '',
+          type: 'paraphrased' as const,
+          status: 'completed' as const,
+          timestamp: new Date(entry.createdAt)
+        })) || []}
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
         onProcess={handleProcess}

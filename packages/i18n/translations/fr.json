@@ -820,5 +820,46 @@
         "dangerZone": "Zone de danger"
       }
     }
+  },
+  "mail": {
+    "common": {
+      "openLinkInBrowser": "Si vous souhaitez ouvrir le lien dans un navigateur différent de votre navigateur par défaut, copiez et collez ce lien :",
+      "otp": "Mot de passe à usage unique",
+      "useLink": "ou utilisez le lien suivant :"
+    },
+    "emailVerification": {
+      "body": "Veuillez cliquer sur le lien ci-dessous pour vérifier cette nouvelle adresse e-mail.",
+      "confirmEmail": "Vérifier l'e-mail",
+      "subject": "Vérifiez votre e-mail"
+    },
+    "forgotPassword": {
+      "body": "Vous avez demandé une réinitialisation de mot de passe.\n\nCliquez sur le bouton ci-dessous pour réinitialiser votre mot de passe.",
+      "resetPassword": "Réinitialiser le mot de passe",
+      "subject": "Réinitialisez votre mot de passe"
+    },
+    "magicLink": {
+      "body": "Vous avez demandé un e-mail de connexion de Writelyy AI.\n\nCliquez sur le lien ci-dessous pour vous connecter.",
+      "login": "Se connecter",
+      "subject": "Se connecter à Writelyy AI"
+    },
+    "newUser": {
+      "body": "Merci de vous être inscrit à Writelyy AI.\n\nPour commencer à utiliser notre application, veuillez confirmer votre adresse e-mail en cliquant sur le lien ci-dessous.",
+      "confirmEmail": "Confirmer l'e-mail",
+      "subject": "Confirmez votre e-mail"
+    },
+    "newsletterSignup": {
+      "body": "Merci de vous être inscrit à la newsletter Writelyy AI. Nous vous tiendrons au courant des dernières nouvelles et mises à jour.",
+      "subject": "Bienvenue dans notre newsletter"
+    },
+    "organizationInvitation": {
+      "body": "Vous avez été invité à rejoindre le contexte {brandName}. Cliquez sur le bouton ci-dessous ou copiez et collez le lien dans votre navigateur de choix pour accepter l'invitation et rejoindre le contexte.",
+      "headline": "Rejoignez le contexte {brandName}",
+      "join": "Rejoindre le contexte",
+      "subject": "Vous avez été invité à rejoindre un contexte"
+    },
+    "paymentReceipt": {
+      "body": "Merci pour votre paiement ! Votre reçu et les détails de votre commande sont ci-dessous.",
+      "subject": "Reçu de paiement"
+    }
   }
 }

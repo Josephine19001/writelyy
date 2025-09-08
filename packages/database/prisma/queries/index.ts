@@ -4,6 +4,7 @@ import type { Prisma } from '@prisma/client';
 export * from './organizations';
 export * from './purchases';
 export * from './users';
+export * from './tools';
 
 // Credit management functions
 export async function addCreditsToOrganization(

@@ -820,5 +820,46 @@
         "dangerZone": "Zona de peligro"
       }
     }
+  },
+  "mail": {
+    "common": {
+      "openLinkInBrowser": "Si quieres abrir el enlace en un navegador diferente al predeterminado, copia y pega este enlace:",
+      "otp": "Contraseña de un solo uso",
+      "useLink": "o usa el siguiente enlace:"
+    },
+    "emailVerification": {
+      "body": "Por favor, haz clic en el enlace de abajo para verificar esta nueva dirección de correo electrónico.",
+      "confirmEmail": "Verificar email",
+      "subject": "Verifica tu email"
+    },
+    "forgotPassword": {
+      "body": "Has solicitado un restablecimiento de contraseña.\n\nHaz clic en el botón de abajo para restablecer tu contraseña.",
+      "resetPassword": "Restablecer contraseña",
+      "subject": "Restablece tu contraseña"
+    },
+    "magicLink": {
+      "body": "Has solicitado un email de inicio de sesión de Writelyy AI.\n\nHaz clic en el enlace de abajo para iniciar sesión.",
+      "login": "Iniciar sesión",
+      "subject": "Iniciar sesión en Writelyy AI"
+    },
+    "newUser": {
+      "body": "Gracias por registrarte en Writelyy AI.\n\nPara comenzar a usar nuestra aplicación, por favor confirma tu dirección de correo electrónico haciendo clic en el enlace de abajo.",
+      "confirmEmail": "Confirmar email",
+      "subject": "Confirma tu email"
+    },
+    "newsletterSignup": {
+      "body": "Gracias por suscribirte al boletín de Writelyy AI. Te mantendremos actualizado con las últimas noticias y actualizaciones.",
+      "subject": "Bienvenido a nuestro boletín"
+    },
+    "organizationInvitation": {
+      "body": "Has sido invitado a unirte al contexto {brandName}. Haz clic en el botón de abajo o copia y pega el enlace en tu navegador preferido para aceptar la invitación y unirte al contexto.",
+      "headline": "Únete al contexto {brandName}",
+      "join": "Unirse al contexto",
+      "subject": "Has sido invitado a unirte a un contexto"
+    },
+    "paymentReceipt": {
+      "body": "¡Gracias por tu pago! Tu recibo y detalles del pedido están abajo.",
+      "subject": "Recibo de Pago"
+    }
   }
 }

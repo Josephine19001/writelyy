@@ -2,6 +2,7 @@
 
 import { SummariserPage } from '@shared/components/SummariserPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
+import { useSummarizeTextMutation, useSummariserHistoryQuery } from '@shared/lib/tools-api';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -15,49 +16,35 @@ interface TextHistoryEntry {
   aiScore?: number;
 }
 
-// Mock data - replace with actual API calls
-const mockHistoryEntries: TextHistoryEntry[] = [
-  {
-    id: '1',
-    originalText:
-      'This is a long article that discusses various aspects of artificial intelligence and machine learning. It covers the fundamentals of neural networks, deep learning algorithms, and their applications in modern technology. The article also explores the ethical implications of AI development and deployment in various industries.',
-    processedText:
-      'This article covers AI and machine learning basics, including neural networks, deep learning, and tech applications, plus ethical considerations.',
-    type: 'summarised',
-    status: 'completed',
-    timestamp: new Date(Date.now() - 1000 * 60 * 30) // 30 minutes ago
-  }
-];
 
 export function SummariserPageWrapper() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [historyEntries, setHistoryEntries] = useState(mockHistoryEntries);
+  
+  // API hooks
+  const summarizeMutation = useSummarizeTextMutation();
+  const { data: historyData, refetch: refetchHistory } = useSummariserHistoryQuery(10);
+  
+  const isProcessing = summarizeMutation.isPending;
 
   const handleProcess = async (text: string) => {
-    setIsProcessing(true);
     setOutputText(''); // Clear previous results
 
-    // Mock API call - replace with actual API
-    setTimeout(() => {
-      const summarizedText = "This is a concise summary of your original text, highlighting the main points and key information in a shorter format.";
-      setOutputText(summarizedText);
-      setIsProcessing(false);
+    try {
+      const result = await summarizeMutation.mutateAsync({
+        inputText: text,
+        summaryType: 'brief'
+      });
 
-      // Add to history
-      const newEntry: TextHistoryEntry = {
-        id: Date.now().toString(),
-        originalText: text,
-        processedText: summarizedText,
-        type: 'summarised',
-        status: 'completed',
-        timestamp: new Date()
-      };
-
-      setHistoryEntries((prev) => [newEntry, ...prev]);
-    }, 2000);
+      setOutputText(result.summaryText);
+      
+      // Refetch history to get the new entry
+      refetchHistory();
+    } catch (error) {
+      console.error('Summarization failed:', error);
+      // You could show a toast or error message here
+    }
   };
 
   const handleReset = () => {
@@ -67,20 +54,22 @@ export function SummariserPageWrapper() {
 
   const handleHistoryItemClick = useCallback(
     (id: string) => {
-      const entry = historyEntries.find((e) => e.id === id);
+      const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
-        setInputText(entry.originalText);
-        if (entry.processedText) {
-          setOutputText(entry.processedText);
+        setInputText(entry.inputText);
+        if (entry.summaryText) {
+          setOutputText(entry.summaryText);
         }
       }
     },
-    [historyEntries]
+    [historyData?.history]
   );
 
   const handleHistoryItemDelete = useCallback((id: string) => {
-    setHistoryEntries((prev) => prev.filter((entry) => entry.id !== id));
-  }, []);
+    // TODO: Implement delete API endpoint
+    console.log('Delete history item:', id);
+    refetchHistory();
+  }, [refetchHistory]);
 
   const renderResults = () => (
     <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
@@ -101,7 +90,14 @@ export function SummariserPageWrapper() {
         onTrialDataFound={setInputText}
       />
       <SummariserPage
-        historyEntries={historyEntries}
+        historyEntries={historyData?.history?.map(entry => ({
+          id: entry.id,
+          originalText: entry.inputText,
+          processedText: entry.summaryText || '',
+          type: 'summarised' as const,
+          status: 'completed' as const,
+          timestamp: new Date(entry.createdAt)
+        })) || []}
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
         onProcess={handleProcess}

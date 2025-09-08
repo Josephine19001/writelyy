@@ -2,80 +2,46 @@
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
+import { useDetectTextMutation, useDetectorHistoryQuery } from '@shared/lib/tools-api';
 import { ShieldCheckIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-
-// Mock data - replace with actual API calls
-const mockHistoryEntries = [
-  {
-    id: '1',
-    originalText:
-      'This text was written by a human author with natural language patterns and authentic voice.',
-    type: 'detected' as const,
-    status: 'completed' as const,
-    timestamp: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
-    aiScore: 15 // 15% AI detected
-  },
-  {
-    id: '2',
-    originalText:
-      'The implementation of artificial intelligence algorithms requires careful consideration of various parameters and optimization techniques.',
-    type: 'detected' as const,
-    status: 'completed' as const,
-    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
-    aiScore: 85 // 85% AI detected
-  }
-];
 
 export function DetectorPage() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
   const [detectionResult, setDetectionResult] = useState<{
-    aiScore: number;
-    confidence: number;
-    breakdown: {
-      vocabulary: number;
-      syntax: number;
-      coherence: number;
-      creativity: number;
-    };
+    aiProbability: number;
+    detectionResult: 'Human' | 'AI' | 'Mixed';
+    confidence: string;
   } | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [historyEntries, setHistoryEntries] = useState(mockHistoryEntries);
+  
+  // API hooks
+  const detectMutation = useDetectTextMutation();
+  const { data: historyData, refetch: refetchHistory } = useDetectorHistoryQuery(10);
+  
+  const isProcessing = detectMutation.isPending;
 
   const handleProcess = async (text: string) => {
-    setIsProcessing(true);
+    setDetectionResult(null);
 
-    // Mock API call - replace with actual API
-    setTimeout(() => {
-      const mockScore = Math.floor(Math.random() * 100);
-      const result = {
-        aiScore: mockScore,
-        confidence: Math.floor(Math.random() * 30) + 70, // 70-100%
-        breakdown: {
-          vocabulary: Math.floor(Math.random() * 100),
-          syntax: Math.floor(Math.random() * 100),
-          coherence: Math.floor(Math.random() * 100),
-          creativity: Math.floor(Math.random() * 100)
-        }
-      };
+    try {
+      const result = await detectMutation.mutateAsync({
+        inputText: text
+      });
 
-      setDetectionResult(result);
-
-      // Add to history
-      const newEntry = {
-        id: Date.now().toString(),
-        originalText: text,
-        type: 'detected' as const,
-        status: 'completed' as const,
-        timestamp: new Date(),
-        aiScore: mockScore
-      };
-
-      setHistoryEntries((prev) => [newEntry, ...prev]);
-      setIsProcessing(false);
-    }, 2000);
+      setDetectionResult({
+        aiProbability: result.aiProbability,
+        detectionResult: result.detectionResult,
+        confidence: result.confidence
+      });
+      
+      // Refetch history to get the new entry
+      refetchHistory();
+    } catch (error) {
+      console.error('Detection failed:', error);
+      // You could show a toast or error message here
+    }
   };
 
   const handleReset = () => {
@@ -85,29 +51,26 @@ export function DetectorPage() {
 
   const handleHistoryItemClick = useCallback(
     (id: string) => {
-      const entry = historyEntries.find((e) => e.id === id);
+      const entry = historyData?.history?.find((e) => e.id === id);
       if (entry) {
-        setInputText(entry.originalText);
-        if (entry.aiScore !== undefined) {
+        setInputText(entry.inputText);
+        if (entry.aiProbability !== undefined) {
           setDetectionResult({
-            aiScore: entry.aiScore,
-            confidence: 85, // Mock confidence
-            breakdown: {
-              vocabulary: Math.floor(Math.random() * 100),
-              syntax: Math.floor(Math.random() * 100),
-              coherence: Math.floor(Math.random() * 100),
-              creativity: Math.floor(Math.random() * 100)
-            }
+            aiProbability: entry.aiProbability,
+            detectionResult: entry.detectionResult as 'Human' | 'AI' | 'Mixed',
+            confidence: 'Medium' // Default confidence from history
           });
         }
       }
     },
-    [historyEntries]
+    [historyData?.history]
   );
 
   const handleHistoryItemDelete = useCallback((id: string) => {
-    setHistoryEntries((prev) => prev.filter((entry) => entry.id !== id));
-  }, []);
+    // TODO: Implement delete API endpoint
+    console.log('Delete history item:', id);
+    refetchHistory();
+  }, [refetchHistory]);
 
   const getScoreColor = (score: number) => {
     if (score >= 70) {
@@ -161,11 +124,11 @@ export function DetectorPage() {
                     strokeWidth="8"
                     fill="none"
                     strokeDasharray={`${2 * Math.PI * 40}`}
-                    strokeDashoffset={`${2 * Math.PI * 40 * (1 - detectionResult.aiScore / 100)}`}
+                    strokeDashoffset={`${2 * Math.PI * 40 * (1 - detectionResult.aiProbability)}`}
                     className={`transition-all duration-1000 ease-out ${
-                      detectionResult.aiScore >= 70
+                      detectionResult.aiProbability >= 0.7
                         ? 'text-red-500'
-                        : detectionResult.aiScore >= 30
+                        : detectionResult.aiProbability >= 0.3
                           ? 'text-yellow-500'
                           : 'text-green-500'
                     }`}
@@ -176,9 +139,9 @@ export function DetectorPage() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <span
-                      className={`text-xl font-bold ${getScoreColor(detectionResult.aiScore)}`}
+                      className={`text-xl font-bold ${getScoreColor(Math.round(detectionResult.aiProbability * 100))}`}
                     >
-                      {detectionResult.aiScore}%
+                      {Math.round(detectionResult.aiProbability * 100)}%
                     </span>
                   </div>
                 </div>
@@ -186,7 +149,7 @@ export function DetectorPage() {
 
               <div className="space-y-1">
                 <p className="text-sm font-semibold">
-                  {getScoreLabel(detectionResult.aiScore)}
+                  {detectionResult.detectionResult}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {t('detector.confidence', {
@@ -196,7 +159,7 @@ export function DetectorPage() {
               </div>
             </div>
 
-            {/* Analysis Breakdown - Compact */}
+            {/* Detection Details */}
             <div className="space-y-3 flex-1">
               <div className="flex items-center gap-2">
                 <div className="w-1 h-3 bg-primary rounded-full" />
@@ -204,52 +167,15 @@ export function DetectorPage() {
                   {t('detector.analysis.title')}
                 </h4>
               </div>
-
-              <div className="grid grid-cols-1 gap-2">
-                {[
-                  {
-                    key: 'vocabulary',
-                    label: t('detector.analysis.vocabulary'),
-                    value: detectionResult.breakdown.vocabulary
-                  },
-                  {
-                    key: 'syntax',
-                    label: t('detector.analysis.syntax'),
-                    value: detectionResult.breakdown.syntax
-                  },
-                  {
-                    key: 'coherence',
-                    label: t('detector.analysis.coherence'),
-                    value: detectionResult.breakdown.coherence
-                  },
-                  {
-                    key: 'creativity',
-                    label: t('detector.analysis.creativity'),
-                    value: detectionResult.breakdown.creativity
-                  }
-                ].map((item) => (
-                  <div
-                    key={item.key}
-                    className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50"
-                  >
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-xs font-medium">{item.label}</span>
-                      <span className="text-xs font-bold">{item.value}%</span>
-                    </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
-                      <div
-                        className={`h-1.5 rounded-full transition-all duration-1000 ease-out ${
-                          item.value >= 70
-                            ? 'bg-red-500'
-                            : item.value >= 30
-                              ? 'bg-yellow-500'
-                              : 'bg-green-500'
-                        }`}
-                        style={{ width: `${item.value}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+              
+              <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                <div className="text-sm">
+                  <p className="font-medium">Result: {detectionResult.detectionResult}</p>
+                  <p className="text-muted-foreground mt-1">Confidence: {detectionResult.confidence}</p>
+                  <p className="text-muted-foreground mt-1">
+                    AI Probability: {Math.round(detectionResult.aiProbability * 100)}%
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -288,7 +214,15 @@ export function DetectorPage() {
         processingLabel={t('detector.processingLabel')}
         ActionIcon={ShieldCheckIcon}
         maxLength={5000}
-        historyEntries={historyEntries}
+        historyEntries={historyData?.history?.map(entry => ({
+          id: entry.id,
+          originalText: entry.inputText,
+          processedText: '',
+          type: 'detected' as const,
+          status: 'completed' as const,
+          timestamp: new Date(entry.createdAt),
+          aiScore: Math.round((entry.aiProbability || 0) * 100)
+        })) || []}
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
         onProcess={handleProcess}
