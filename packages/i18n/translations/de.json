@@ -5,6 +5,7 @@
     "actionLabel": "KI-Inhalt Erkennen",
     "processingLabel": "Analysiere...",
     "resultsPlaceholder": "Erkennungsergebnisse werden hier angezeigt",
+    "analysisError": "Textanalyse fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "confidence": "Vertrauen: {confidence}%",
     "analysis": {
       "title": "Analyse-Details",
@@ -30,6 +31,7 @@
     "actionLabel": "Humanisieren",
     "processingLabel": "Humanisiere...",
     "resultsPlaceholder": "Ihr Text wird hier erscheinen",
+    "humanizationError": "Texthumanisierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "toneOptions": {
       "default": "Allgemein",
       "professional": "Professionell",
@@ -83,7 +85,11 @@
     "copyResult": "Ergebnis Kopieren",
     "minWordsError": "Bitte geben Sie mindestens 30 Wörter ein, um den Text zu verarbeiten.",
     "copySuccess": "In die Zwischenablage kopiert!",
-    "copyError": "Kopieren in die Zwischenablage fehlgeschlagen"
+    "copyError": "Kopieren in die Zwischenablage fehlgeschlagen",
+    "chars": "Zeich.",
+    "wordsRemaining": "Wörter verbleiben diesen Monat",
+    "deleteSuccess": "Element erfolgreich gelöscht!",
+    "deleteError": "Element konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
   },
   "history": {
     "justNow": "Gerade jetzt",

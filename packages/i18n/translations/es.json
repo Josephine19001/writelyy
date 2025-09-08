@@ -5,6 +5,8 @@
     "actionLabel": "Detectar Contenido de IA",
     "processingLabel": "Analizando...",
     "resultsPlaceholder": "Los resultados de detección aparecerán aquí",
+    "humanizationError": "Error al humanizar el texto. Inténtalo de nuevo.",
+    "analysisError": "Error al analizar el texto. Inténtalo de nuevo.",
     "confidence": "Confianza: {confidence}%",
     "analysis": {
       "title": "Detalles del Análisis",
@@ -30,6 +32,7 @@
     "actionLabel": "Humanizar",
     "processingLabel": "Humanizando...",
     "resultsPlaceholder": "Tu texto aparecerá aquí",
+    "humanizationError": "Error al humanizar el texto. Inténtalo de nuevo.",
     "toneOptions": {
       "default": "General",
       "professional": "Profesional",
@@ -58,7 +61,13 @@
     "placeholder": "Pega tu texto aquí para generar un resumen...",
     "actionLabel": "Resumir Texto",
     "processingLabel": "Resumiendo...",
-    "resultsPlaceholder": "El resumen aparecerá aquí"
+    "resultsPlaceholder": "El resumen aparecerá aquí",
+    "summarizationError": "Error al resumir el texto. Inténtalo de nuevo.",
+    "summaryTypeOptions": {
+      "brief": "Breve",
+      "detailed": "Detallado",
+      "keyPoints": "Puntos Clave"
+    }
   },
   "paraphraser": {
     "title": "Parafraseador de Texto",
@@ -79,11 +88,13 @@
     "languagePlaceholder": "Idioma",
     "words": "palabras",
     "characters": "caracteres",
+    "chars": "car.",
     "copyText": "Copiar Texto",
     "copyResult": "Copiar Resultado",
     "minWordsError": "Por favor ingresa al menos 30 palabras para procesar el texto.",
     "copySuccess": "¡Copiado al portapapeles!",
-    "copyError": "Error al copiar al portapapeles"
+    "copyError": "Error al copiar al portapapeles",
+    "wordsRemaining": "palabras restantes este mes"
   },
   "history": {
     "justNow": "Ahora mismo",
@@ -95,7 +106,9 @@
     "copyModified": "Copiar modificado",
     "delete": "Eliminar",
     "copySuccess": "¡Copiado al portapapeles!",
-    "copyError": "Error al copiar al portapapeles"
+    "copyError": "Error al copiar al portapapeles",
+    "deleteSuccess": "¡Elemento eliminado exitosamente!",
+    "deleteError": "Error al eliminar elemento. Inténtalo de nuevo."
   },
   "tools": {
     "new": "Nuevo",

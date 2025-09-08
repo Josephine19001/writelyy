@@ -9,6 +9,7 @@ import {
 } from '@shared/lib/tools-api';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
 export function SummariserPageWrapper() {
   const t = useTranslations();
@@ -38,7 +39,12 @@ export function SummariserPageWrapper() {
       refetchHistory();
     } catch (error) {
       console.error('Summarization failed:', error);
-      // You could show a toast or error message here
+      // Check if it's a word limit error
+      if (error instanceof Error && error.message.includes('word limit')) {
+        toast.error(error.message);
+      } else {
+        toast.error(t('summariser.summarizationError'));
+      }
     }
   };
 
@@ -64,13 +70,23 @@ export function SummariserPageWrapper() {
     async (id: string) => {
       try {
         await deleteHistoryMutation.mutateAsync(id);
+        toast.success(t('history.deleteSuccess'));
         refetchHistory();
       } catch (error) {
         console.error('Failed to delete history item:', error);
+        toast.error(t('history.deleteError'));
       }
     },
-    [deleteHistoryMutation, refetchHistory]
+    [deleteHistoryMutation, refetchHistory, t]
   );
+
+  const handleHistoryItemCopy = useCallback((text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success(t('history.copySuccess'));
+    }).catch(() => {
+      toast.error(t('history.copyError'));
+    });
+  }, [t]);
 
   const renderResults = () => (
     <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text rounded-lg p-4 text-sm text-slate-900 dark:text-slate-100">
@@ -103,6 +119,7 @@ export function SummariserPageWrapper() {
         }
         onHistoryItemClick={handleHistoryItemClick}
         onHistoryItemDelete={handleHistoryItemDelete}
+        onHistoryItemCopy={handleHistoryItemCopy}
         onProcess={handleProcess}
         inputText={inputText}
         setInputText={setInputText}

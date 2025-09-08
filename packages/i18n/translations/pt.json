@@ -5,6 +5,7 @@
     "actionLabel": "Detectar Conteúdo IA",
     "processingLabel": "Analisando...",
     "resultsPlaceholder": "Os resultados de detecção aparecerão aqui",
+    "humanizationError": "Error al humanizar el texto. Inténtalo de nuevo.",
     "confidence": "Confiança: {confidence}%",
     "analysis": {
       "title": "Detalhes da Análise",
@@ -30,6 +31,7 @@
     "actionLabel": "Humanizar",
     "processingLabel": "Humanizando...",
     "resultsPlaceholder": "Seu texto aparecerá aqui",
+    "humanizationError": "Error al humanizar el texto. Inténtalo de nuevo.",
     "toneOptions": {
       "default": "Geral",
       "professional": "Profissional",
@@ -83,7 +85,11 @@
     "copyResult": "Copiar Resultado",
     "minWordsError": "Por favor, insira pelo menos 30 palavras para processar o texto.",
     "copySuccess": "Copiado para a área de transferência!",
-    "copyError": "Falha ao copiar para a área de transferência"
+    "copyError": "Falha ao copiar para a área de transferência",
+    "chars": "car.",
+    "wordsRemaining": "palavras restantes este mês",
+    "deleteSuccess": "Item excluído com sucesso!",
+    "deleteError": "Falha ao excluir item. Tente novamente."
   },
   "history": {
     "justNow": "Agora mesmo",
@@ -95,7 +101,11 @@
     "copyModified": "Copiar modificado",
     "delete": "Excluir",
     "copySuccess": "Copiado para a área de transferência!",
-    "copyError": "Falha ao copiar para a área de transferência"
+    "copyError": "Falha ao copiar para a área de transferência",
+    "chars": "car.",
+    "wordsRemaining": "palavras restantes este mês",
+    "deleteSuccess": "Item excluído com sucesso!",
+    "deleteError": "Falha ao excluir item. Tente novamente."
   },
   "tools": {
     "new": "Novo",

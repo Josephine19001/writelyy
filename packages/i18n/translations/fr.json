@@ -5,6 +5,7 @@
     "actionLabel": "Détecter le Contenu IA",
     "processingLabel": "Analyse...",
     "resultsPlaceholder": "Les résultats de détection apparaîtront ici",
+    "analysisError": "Échec de l'analyse du texte. Veuillez réessayer.",
     "confidence": "Confiance : {confidence}%",
     "analysis": {
       "title": "Détails de l'Analyse",
@@ -30,6 +31,7 @@
     "actionLabel": "Humaniser",
     "processingLabel": "Humanisation...",
     "resultsPlaceholder": "Votre texte apparaîtra ici",
+    "humanizationError": "Échec de l'humanisation du texte. Veuillez réessayer.",
     "toneOptions": {
       "default": "Général",
       "professional": "Professionnel",
@@ -58,14 +60,27 @@
     "placeholder": "Collez votre texte ici pour générer un résumé...",
     "actionLabel": "Résumer le Texte",
     "processingLabel": "Résumé en cours...",
-    "resultsPlaceholder": "Le résumé apparaîtra ici"
+    "resultsPlaceholder": "Le résumé apparaîtra ici",
+    "summarizationError": "Échec du résumé du texte. Veuillez réessayer.",
+    "summaryTypeOptions": {
+      "brief": "Bref",
+      "detailed": "Détaillé",
+      "keyPoints": "Points Clés"
+    }
   },
   "paraphraser": {
     "title": "Paraphraseur de Texte",
     "placeholder": "Collez votre texte ici pour paraphraser et réécrire...",
     "actionLabel": "Paraphraser le Texte",
     "processingLabel": "Paraphrase en cours...",
-    "resultsPlaceholder": "Le texte paraphrasé apparaîtra ici"
+    "resultsPlaceholder": "Le texte paraphrasé apparaîtra ici",
+    "paraphrasingError": "Échec de la paraphrase du texte. Veuillez réessayer.",
+    "styleOptions": {
+      "formal": "Formel",
+      "casual": "Décontracté",
+      "academic": "Académique",
+      "creative": "Créatif"
+    }
   },
   "sidebar": {
     "searchPlaceholder": "Rechercher l'historique...",
@@ -79,11 +94,13 @@
     "languagePlaceholder": "Langue",
     "words": "mots",
     "characters": "caractères",
+    "chars": "car.",
     "copyText": "Copier le Texte",
     "copyResult": "Copier le Résultat",
     "minWordsError": "Veuillez saisir au moins 30 mots pour traiter le texte.",
     "copySuccess": "Copié dans le presse-papiers !",
-    "copyError": "Échec de la copie dans le presse-papiers"
+    "copyError": "Échec de la copie dans le presse-papiers",
+    "wordsRemaining": "mots restants ce mois"
   },
   "history": {
     "justNow": "À l'instant",
@@ -95,7 +112,9 @@
     "copyModified": "Copier modifié",
     "delete": "Supprimer",
     "copySuccess": "Copié dans le presse-papiers !",
-    "copyError": "Échec de la copie dans le presse-papiers"
+    "copyError": "Échec de la copie dans le presse-papiers",
+    "deleteSuccess": "Élément supprimé avec succès !",
+    "deleteError": "Échec de la suppression de l'élément. Veuillez réessayer."
   },
   "tools": {
     "new": "Nouveau",

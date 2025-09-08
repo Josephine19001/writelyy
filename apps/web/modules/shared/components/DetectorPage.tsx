@@ -2,6 +2,8 @@
 
 import { TextProcessorPage } from '@shared/components/TextProcessorPage';
 import { TrialDataManager } from '@shared/components/TrialDataManager';
+import { useUsageLimits } from '@saas/payments/hooks/use-usage-limits';
+import { countWords } from '@shared/utils/text-utils';
 import {
   useDetectTextMutation,
   useDetectorHistoryQuery,
@@ -10,6 +12,7 @@ import {
 import { ShieldCheckIcon } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 import {
   Accordion,
   AccordionContent,
@@ -20,6 +23,7 @@ import {
 export function DetectorPage() {
   const t = useTranslations();
   const [inputText, setInputText] = useState('');
+  const { canProcessText, checkLimit } = useUsageLimits();
   const [detectionResult, setDetectionResult] = useState<{
     aiProbability: number;
     detectionResult: 'Human' | 'AI' | 'Mixed';
@@ -44,7 +48,17 @@ export function DetectorPage() {
 
   const isProcessing = detectMutation.isPending;
 
+
   const handleProcess = async (text: string) => {
+    const wordCount = countWords(text);
+    
+    // Check if user can process this many words
+    if (!canProcessText(wordCount)) {
+      if (!checkLimit(wordCount)) {
+        return; // This will trigger the pricing gate via checkLimit
+      }
+    }
+
     setDetectionResult(null);
 
     try {
@@ -63,7 +77,12 @@ export function DetectorPage() {
       refetchHistory();
     } catch (error) {
       console.error('Detection failed:', error);
-      // You could show a toast or error message here
+      // Check if it's a word limit error
+      if (error instanceof Error && error.message.includes('word limit')) {
+        toast.error(error.message);
+      } else {
+        toast.error(t('detector.analysisError'));
+      }
     }
   };
 
@@ -103,17 +122,23 @@ export function DetectorPage() {
     async (id: string) => {
       try {
         await deleteHistoryMutation.mutateAsync(id);
+        toast.success(t('history.deleteSuccess'));
         refetchHistory();
       } catch (error) {
         console.error('Failed to delete history item:', error);
+        toast.error(t('history.deleteError'));
       }
     },
-    [deleteHistoryMutation, refetchHistory]
+    [deleteHistoryMutation, refetchHistory, t]
   );
 
-  const handleHistoryItemCopy = useCallback(() => {
-    // Silently handle copy - no toast needed for detector history items
-  }, []);
+  const handleHistoryItemCopy = useCallback((text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success(t('history.copySuccess'));
+    }).catch(() => {
+      toast.error(t('history.copyError'));
+    });
+  }, [t]);
 
   const getScoreColor = (score: number) => {
     if (score >= 70) {

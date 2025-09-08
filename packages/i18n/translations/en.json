@@ -877,6 +877,7 @@
     "actionLabel": "Detect AI Content",
     "processingLabel": "Analyzing...",
     "resultsPlaceholder": "Detection results will appear here",
+    "analysisError": "Failed to analyze text. Please try again.",
     "confidence": "Confidence: {confidence}%",
     "analysis": {
       "title": "Analysis Details",
@@ -902,6 +903,7 @@
     "actionLabel": "Humanize",
     "processingLabel": "Humanizing...",
     "resultsPlaceholder": "Your text will appear here",
+    "humanizationError": "Failed to humanize text. Please try again.",
     "toneOptions": {
       "default": "General",
       "professional": "Professional",
@@ -937,11 +939,13 @@
     "languagePlaceholder": "Language",
     "words": "words",
     "characters": "characters",
+    "chars": "chars",
     "copyText": "Copy Text",
     "copyResult": "Copy Result",
     "minWordsError": "Please enter at least 30 words to process the text.",
     "copySuccess": "Copied to clipboard!",
-    "copyError": "Failed to copy to clipboard"
+    "copyError": "Failed to copy to clipboard",
+    "wordsRemaining": "words remaining this month"
   },
   "history": {
     "justNow": "Just now",
@@ -953,7 +957,9 @@
     "copyModified": "Copy modified",
     "delete": "Delete",
     "copySuccess": "Copied to clipboard!",
-    "copyError": "Failed to copy to clipboard"
+    "copyError": "Failed to copy to clipboard",
+    "deleteSuccess": "Item deleted successfully!",
+    "deleteError": "Failed to delete item. Please try again."
   },
   "tools": {
     "new": "New",
@@ -981,14 +987,27 @@
     "placeholder": "Paste your text here to generate a summary...",
     "actionLabel": "Summarise Text",
     "processingLabel": "Summarising...",
-    "resultsPlaceholder": "Summary will appear here"
+    "resultsPlaceholder": "Summary will appear here",
+    "summarizationError": "Failed to summarize text. Please try again.",
+    "summaryTypeOptions": {
+      "brief": "Brief",
+      "detailed": "Detailed", 
+      "keyPoints": "Key Points"
+    }
   },
   "paraphraser": {
     "title": "Text Paraphraser",
     "placeholder": "Paste your text here to rephrase and rewrite it...",
     "actionLabel": "Paraphrase Text",
     "processingLabel": "Paraphrasing...",
-    "resultsPlaceholder": "Paraphrased text will appear here"
+    "resultsPlaceholder": "Paraphrased text will appear here",
+    "paraphrasingError": "Failed to paraphrase text. Please try again.",
+    "styleOptions": {
+      "formal": "Formal",
+      "casual": "Casual",
+      "academic": "Academic",
+      "creative": "Creative"
+    }
   },
   "marketing": {
     "nav": {

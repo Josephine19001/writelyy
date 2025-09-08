@@ -7,6 +7,8 @@ import { Textarea } from '@ui/components/textarea';
 import { Progress } from '@ui/components/progress';
 import { CopyIcon, RotateCcwIcon, TrashIcon, CameraIcon } from 'lucide-react';
 import { toast } from 'sonner';
+import { useUsageLimits } from '@saas/payments/hooks/use-usage-limits';
+import { countWords } from '@shared/utils/text-utils';
 import {
   Select,
   SelectContent,
@@ -103,6 +105,8 @@ export function TextProcessorPage({
   const [selectedLanguage, setSelectedLanguage] = useState(
     languageOptions[0]?.value || ''
   );
+  const { canProcessText, checkLimit, monthlyUsage } = useUsageLimits();
+
 
   const handleCopy = async (text: string) => {
     try {
@@ -115,14 +119,19 @@ export function TextProcessorPage({
     }
   };
 
-
   const handleProcess = () => {
-    // Count words by splitting on whitespace and filtering out empty strings
-    const wordCount = inputText.trim().split(/\s+/).filter(word => word.length > 0).length;
+    const wordCount = countWords(inputText);
     
     if (wordCount < 30) {
       toast.error(t('textProcessor.minWordsError'));
       return;
+    }
+    
+    // Check if user can process this many words
+    if (!canProcessText(wordCount)) {
+      if (!checkLimit(wordCount)) {
+        return; // This will trigger the pricing gate via checkLimit
+      }
     }
     
     onProcess(inputText, { tone: selectedTone, language: selectedLanguage });
@@ -186,9 +195,15 @@ export function TextProcessorPage({
           </div>
 
           {/* Character/Word Count */}
-          <div className="text-xs text-muted-foreground">
-            {inputText.length}/{maxLength}{' '}
-            {currentPage === 'humanizer' ? t('textProcessor.words') : t('textProcessor.characters')}
+          <div className="text-xs text-muted-foreground space-y-1">
+            <div>
+              {countWords(inputText)} {t('textProcessor.words')} • {inputText.length}/{maxLength} {t('textProcessor.chars')}
+            </div>
+            {monthlyUsage && (
+              <div className={`${monthlyUsage.remainingWords < countWords(inputText) ? 'text-red-500' : monthlyUsage.remainingWords < 1000 ? 'text-yellow-500' : ''}`}>
+                {monthlyUsage.remainingWords.toLocaleString()} {t('textProcessor.wordsRemaining')}
+              </div>
+            )}
           </div>
         </div>
 

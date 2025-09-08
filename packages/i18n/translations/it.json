@@ -5,6 +5,7 @@
     "actionLabel": "Rileva Contenuto IA",
     "processingLabel": "Analizzando...",
     "resultsPlaceholder": "I risultati del rilevamento appariranno qui",
+    "humanizationError": "Error al humanizar el texto. Inténtalo de nuevo.",
     "confidence": "Fiducia: {confidence}%",
     "analysis": {
       "title": "Dettagli dell'Analisi",
@@ -30,6 +31,7 @@
     "actionLabel": "Umanizza",
     "processingLabel": "Umanizzando...",
     "resultsPlaceholder": "Il tuo testo apparirà qui",
+    "humanizationError": "Error al humanizar el texto. Inténtalo de nuevo.",
     "toneOptions": {
       "default": "Generale",
       "professional": "Professionale",
@@ -83,7 +85,11 @@
     "copyResult": "Copia Risultato",
     "minWordsError": "Inserisci almeno 30 parole per elaborare il testo.",
     "copySuccess": "Copiato negli appunti!",
-    "copyError": "Impossibile copiare negli appunti"
+    "copyError": "Impossibile copiare negli appunti",
+    "chars": "car.",
+    "wordsRemaining": "parole rimanenti questo mese",
+    "deleteSuccess": "Elemento eliminato con successo!",
+    "deleteError": "Impossibile eliminare l'elemento. Riprova."
   },
   "history": {
     "justNow": "Adesso",
@@ -95,7 +101,11 @@
     "copyModified": "Copia modificato",
     "delete": "Elimina",
     "copySuccess": "Copiato negli appunti!",
-    "copyError": "Impossibile copiare negli appunti"
+    "copyError": "Impossibile copiare negli appunti",
+    "chars": "car.",
+    "wordsRemaining": "parole rimanenti questo mese",
+    "deleteSuccess": "Elemento eliminato con successo!",
+    "deleteError": "Impossibile eliminare l'elemento. Riprova."
   },
   "tools": {
     "new": "Nuovo",
