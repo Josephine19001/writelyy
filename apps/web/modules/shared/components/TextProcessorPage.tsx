@@ -311,8 +311,16 @@ export function TextProcessorPage({
               </div>
 
               {isProcessing && (
-                <div className="mt-3">
-                  <Progress value={33} className="h-1" />
+                <div className="mt-3 space-y-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Analyzing text...</span>
+                    <span>Please wait</span>
+                  </div>
+                  <div className="relative">
+                    <Progress value={100} className="h-2 bg-gray-200 dark:bg-gray-700" />
+                    <div className="absolute inset-0 h-2 bg-gradient-to-r from-primary/20 to-primary rounded-full animate-pulse" />
+                    <div className="absolute inset-0 h-2 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-full animate-ping" />
+                  </div>
                 </div>
               )}
             </div>

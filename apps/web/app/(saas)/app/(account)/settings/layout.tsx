@@ -1,9 +1,9 @@
 import { config } from '@repo/config';
 import { getSession } from '@saas/auth/lib/server';
 import { SettingsMenu } from '@saas/settings/components/SettingsMenu';
-import { PageHeader } from '@saas/shared/components/PageHeader';
-import { AppSidebarLayout } from '@shared/components/AppSidebarLayout';
+// import { PageHeader } from '@saas/shared/components/PageHeader';
 import { UserAvatar } from '@shared/components/UserAvatar';
+import { SettingsLayoutWrapper } from './SettingsLayoutWrapper';
 import {
   CreditCardIcon,
   Settings2Icon,
@@ -67,30 +67,24 @@ export default async function AccountSettingsLayout({
   ];
 
   return (
-    <AppSidebarLayout
-      historyEntries={[]} // Settings don't have history entries
-      currentPage="humanizer" // Default, not used in settings
-      onNewAction={() => {}} // No-op for settings
-    >
+    <SettingsLayoutWrapper>
       <div className="flex h-full">
         {/* Settings Sidebar */}
         <div className="w-64 border-r border-border/50 bg-background">
-          <div className="p-4 border-b border-border/50">
+          {/* <div className="p-4 border-b border-border/50">
             <PageHeader
               title={t('settings.account.title')}
               subtitle={t('settings.account.subtitle')}
             />
-          </div>
+          </div> */}
           <div className="p-4">
             <SettingsMenu menuItems={menuItems} />
           </div>
         </div>
-        
+
         {/* Settings Content */}
-        <div className="flex-1 overflow-auto bg-background">
-          {children}
-        </div>
+        <div className="flex-1 overflow-auto bg-background p-4">{children}</div>
       </div>
-    </AppSidebarLayout>
+    </SettingsLayoutWrapper>
   );
 }

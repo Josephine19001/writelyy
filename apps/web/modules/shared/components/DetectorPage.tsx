@@ -17,7 +17,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
+  AccordionTrigger
 } from '@ui/components/accordion';
 
 export function DetectorPage() {
@@ -48,10 +48,9 @@ export function DetectorPage() {
 
   const isProcessing = detectMutation.isPending;
 
-
   const handleProcess = async (text: string) => {
     const wordCount = countWords(text);
-    
+
     // Check if user can process this many words
     if (!canProcessText(wordCount)) {
       if (!checkLimit(wordCount)) {
@@ -132,13 +131,19 @@ export function DetectorPage() {
     [deleteHistoryMutation, refetchHistory, t]
   );
 
-  const handleHistoryItemCopy = useCallback((text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      toast.success(t('history.copySuccess'));
-    }).catch(() => {
-      toast.error(t('history.copyError'));
-    });
-  }, [t]);
+  const handleHistoryItemCopy = useCallback(
+    (text: string) => {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          toast.success(t('history.copySuccess'));
+        })
+        .catch(() => {
+          toast.error(t('history.copyError'));
+        });
+    },
+    [t]
+  );
 
   const getScoreColor = (score: number) => {
     if (score >= 70) {
@@ -153,68 +158,89 @@ export function DetectorPage() {
   const renderResults = () => {
     if (detectionResult) {
       return (
-        <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text text-slate-900 dark:text-slate-100 text-base leading-relaxed rounded-xl p-4 flex flex-col">
-          <div className="space-y-4 h-full overflow-y-auto flex flex-col">
-            {/* Main Score - Enhanced with circular progress */}
+        <div className="w-full h-full border border-background-text dark:border-background-text bg-white dark:bg-background-text text-slate-900 dark:text-slate-100 text-base leading-relaxed rounded-xl p-4 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col min-h-0 overflow-y-auto space-y-4">
+            {/* Main Score - Segmented circular progress */}
             <div className="text-center p-4 border rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 shadow-sm flex-shrink-0">
-              <div className="relative inline-flex items-center justify-center w-24 h-24 mb-3">
-                {/* Circular Progress Background */}
+              <div className="relative inline-flex items-center justify-center w-32 h-32 mb-3">
+                {/* Segmented Progress Ring */}
                 <svg
-                  className="w-24 h-24 transform -rotate-90"
-                  viewBox="0 0 100 100"
+                  className="w-32 h-32 transform -rotate-90"
+                  viewBox="0 0 120 120"
                   aria-label="AI Detection Score Progress"
                 >
                   <title>AI Detection Score Progress</title>
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="none"
-                    className="text-gray-200 dark:text-gray-700"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray={`${2 * Math.PI * 40}`}
-                    strokeDashoffset={`${2 * Math.PI * 40 * (1 - detectionResult.aiProbability)}`}
-                    className={`transition-all duration-1000 ease-out ${
+                  {(() => {
+                    const segments = 40; // Number of segments around the circle
+                    const radius = 50;
+                    const centerX = 60;
+                    const centerY = 60;
+                    const segmentAngle = (2 * Math.PI) / segments;
+                    const filledSegments = Math.round(
+                      detectionResult.aiProbability * segments
+                    );
+
+                    const progressColor =
                       detectionResult.aiProbability >= 0.7
-                        ? 'text-red-500'
+                        ? '#ef4444' // red-500
                         : detectionResult.aiProbability >= 0.3
-                          ? 'text-yellow-500'
-                          : 'text-green-500'
-                    }`}
-                    strokeLinecap="round"
-                  />
+                          ? '#f97316' // orange-500
+                          : '#22c55e'; // green-500
+
+                    return Array.from({ length: segments }, (_, i) => {
+                      const angle = i * segmentAngle;
+                      const x1 = centerX + (radius - 8) * Math.cos(angle);
+                      const y1 = centerY + (radius - 8) * Math.sin(angle);
+                      const x2 = centerX + (radius + 2) * Math.cos(angle);
+                      const y2 = centerY + (radius + 2) * Math.sin(angle);
+
+                      const isFilled = i < filledSegments;
+
+                      return (
+                        <line
+                          key={i}
+                          x1={x1}
+                          y1={y1}
+                          x2={x2}
+                          y2={y2}
+                          stroke={isFilled ? progressColor : '#e2e8f0'}
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          className="transition-all duration-75 ease-out"
+                          style={{
+                            transitionDelay: `${i * 20}ms`,
+                            opacity: isFilled ? 1 : 0.3
+                          }}
+                        />
+                      );
+                    });
+                  })()}
                 </svg>
                 {/* Score Text */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <span
-                      className={`text-xl font-bold ${getScoreColor(Math.round(detectionResult.aiProbability * 100))}`}
+                      className={`text-2xl font-bold ${getScoreColor(Math.round(detectionResult.aiProbability * 100))}`}
                     >
                       {Math.round(detectionResult.aiProbability * 100)}%
                     </span>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      {detectionResult.detectionResult}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <p className="text-sm font-semibold">
+              {/* <div className="space-y-1"> */}
+              {/* <p className="text-sm font-semibold">
                   {detectionResult.detectionResult}
-                </p>
-                <p className="text-xs text-muted-foreground">
+                </p> */}
+              {/* <p className="text-xs text-muted-foreground">
                   {t('detector.confidence', {
                     confidence: detectionResult.confidence
                   })}
-                </p>
-              </div>
+                </p> */}
+              {/* </div> */}
             </div>
 
             {/* Analysis Summary - Only show if reasoning exists */}
@@ -232,108 +258,95 @@ export function DetectorPage() {
               (indicator) =>
                 indicator.explanation || indicator.issues.length > 0
             ) && (
-              <div className="flex-1 min-h-0">
+              <div className="flex-shrink min-h-0">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-1 h-3 bg-primary rounded-full" />
-                  <h4 className="font-medium text-sm">{t('detector.analysis.detailedAnalysis')}</h4>
+                  <h4 className="font-medium text-sm">
+                    {t('detector.analysis.detailedAnalysis')}
+                  </h4>
                 </div>
 
-                <Accordion type="multiple" className="space-y-3">
-                  {Object.entries(detectionResult.analysis.indicators)
-                    .filter(
-                      ([, data]) => data.explanation || data.issues.length > 0
-                    )
-                    .map(([key, data]) => (
-                      <AccordionItem 
-                        key={key} 
-                        value={key}
-                        className="border-0 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 shadow-sm overflow-hidden"
-                      >
-                        <AccordionTrigger className="px-4 py-3 hover:no-underline border-0 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors">
-                          <div className="flex items-center justify-between w-full mr-2">
-                            <div className="flex items-center gap-3">
-                              <div className="w-2 h-2 rounded-full bg-primary/60" />
-                              <h5 className="font-semibold text-sm capitalize text-foreground">
-                                {t(`detector.analysis.${key}`)}
-                              </h5>
-                            </div>
-                            {data.score > 0 && (
+                <div className="max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
+                  <Accordion type="multiple" className="space-y-3 pr-2">
+                    {Object.entries(detectionResult.analysis.indicators)
+                      .filter(
+                        ([, data]) => data.explanation || data.issues.length > 0
+                      )
+                      .map(([key, data]) => (
+                        <AccordionItem
+                          key={key}
+                          value={key}
+                          className="border-0 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 shadow-sm overflow-hidden"
+                        >
+                          <AccordionTrigger className="px-4 py-3 hover:no-underline border-0 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors flex-shrink-0">
+                            <div className="flex items-center justify-between w-full mr-2">
                               <div className="flex items-center gap-3">
-                                <div className="text-xs font-medium text-muted-foreground">
-                                  {data.score}/100
-                                </div>
-                                <div className="w-20 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-                                  <div
-                                    className={`h-full transition-all duration-700 ease-out rounded-full ${
-                                      data.score >= 70
-                                        ? 'bg-gradient-to-r from-green-400 to-green-500'
-                                        : data.score >= 40
-                                          ? 'bg-gradient-to-r from-yellow-400 to-yellow-500'
-                                          : 'bg-gradient-to-r from-red-400 to-red-500'
-                                    }`}
-                                    style={{ width: `${data.score}%` }}
-                                  />
-                                </div>
+                                <div className="w-2 h-2 rounded-full bg-primary/60" />
+                                <h5 className="font-semibold text-sm capitalize text-foreground">
+                                  {t(`detector.analysis.${key}`)}
+                                </h5>
                               </div>
-                            )}
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="px-4 pb-4 pt-0">
-                          <div className="space-y-3">
-                            {data.explanation && (
-                              <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
-                                <p className="text-sm text-foreground/80 leading-relaxed">
-                                  {data.explanation}
-                                </p>
-                              </div>
-                            )}
-                            {data.issues.length > 0 && (
-                              <div className="space-y-2">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-1 h-3 bg-orange-400 rounded-full" />
-                                  <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">
-                                    {t('detector.analysis.issuesFound')}
+                              {data.score > 0 && (
+                                <div className="flex items-center gap-3">
+                                  <div className="text-xs font-medium text-muted-foreground">
+                                    {data.score}/100
+                                  </div>
+                                  <div className="w-20 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div
+                                      className={`h-full transition-all duration-700 ease-out rounded-full ${
+                                        data.score >= 70
+                                          ? 'bg-gradient-to-r from-green-400 to-green-500'
+                                          : data.score >= 40
+                                            ? 'bg-gradient-to-r from-yellow-400 to-yellow-500'
+                                            : 'bg-gradient-to-r from-red-400 to-red-500'
+                                      }`}
+                                      style={{ width: `${data.score}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-4 pt-0">
+                            <div className="space-y-3">
+                              {data.explanation && (
+                                <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
+                                  <p className="text-sm text-foreground/80 leading-relaxed">
+                                    {data.explanation}
                                   </p>
                                 </div>
-                                <ul className="space-y-2 ml-3">
-                                  {data.issues.map((issue, index) => (
-                                    <li
-                                      key={index}
-                                      className="flex items-start gap-2 text-sm text-muted-foreground"
-                                    >
-                                      <span className="text-orange-500 mt-1 text-xs">
-                                        ▪
-                                      </span>
-                                      <span className="leading-relaxed">{issue}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                </Accordion>
-              </div>
-            )}
-
-            {/* Suggestions - Only show if there are suggestions */}
-            {detectionResult.analysis.suggestions.length > 0 && (
-              <div className="p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 flex-shrink-0">
-                <h5 className="font-medium text-sm text-green-800 dark:text-green-200 mb-2">
-💡 {t('detector.analysis.recommendations')}
-                </h5>
-                <ul className="text-xs text-green-700 dark:text-green-300 space-y-1">
-                  {detectionResult.analysis.suggestions.map(
-                    (suggestion, index) => (
-                      <li key={index} className="flex items-start gap-1">
-                        <span className="text-green-500 mt-0.5">•</span>
-                        <span>{suggestion}</span>
-                      </li>
-                    )
-                  )}
-                </ul>
+                              )}
+                              {data.issues.length > 0 && (
+                                <div className="space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-1 h-3 bg-orange-400 rounded-full" />
+                                    <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">
+                                      {t('detector.analysis.issuesFound')}
+                                    </p>
+                                  </div>
+                                  <ul className="space-y-2 ml-3">
+                                    {data.issues.map((issue, index) => (
+                                      <li
+                                        key={index}
+                                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                                      >
+                                        <span className="text-orange-500 mt-1 text-xs">
+                                          ▪
+                                        </span>
+                                        <span className="leading-relaxed">
+                                          {issue}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                  </Accordion>
+                </div>
               </div>
             )}
           </div>
@@ -349,7 +362,9 @@ export function DetectorPage() {
               <div className="absolute inset-0 bg-primary/10 rounded-full" />
               <ShieldCheckIcon className="h-8 w-8 text-primary/60" />
             </div>
-            <h3 className="font-medium text-base mb-2">{t('detector.analysis.readyToAnalyze')}</h3>
+            <h3 className="font-medium text-base mb-2">
+              {t('detector.analysis.readyToAnalyze')}
+            </h3>
             <p className="text-sm max-w-sm mx-auto text-muted-foreground/80">
               {t('detector.resultsPlaceholder')}
             </p>
