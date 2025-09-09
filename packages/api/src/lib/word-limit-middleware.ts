@@ -8,6 +8,30 @@ export interface WordLimitResult {
   message?: string;
 }
 
+export interface PerRequestLimitResult {
+  allowed: boolean;
+  requestLimit: number;
+  requestedWords: number;
+  message?: string;
+}
+
+// Per-request word limits based on plan tiers
+export function getPerRequestWordLimit(planId?: string): number {
+  switch (planId) {
+    case 'starter':
+      return 500;
+    case 'pro': 
+      return 1500;
+    case 'max':
+    case 'premium': // fallback for premium plans
+      return 3000;
+    case 'credits':
+      return 1500; // Same as pro for credit users
+    default:
+      return 500; // Free plan / default
+  }
+}
+
 export async function enforceWordLimit(
   userId: string,
   requestedWords: number

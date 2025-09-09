@@ -205,8 +205,12 @@ export function AppSidebarLayout({
 
               {/* Upgrade Button - Show when user has exceeded word limit */}
               {hasExceededWordLimit && (
-                <Link href="/app/billing">
-                  <Button variant="primary" size="sm" className="w-full mb-3">
+                <Link href="/app/settings/billing">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="w-full mb-3 text-white"
+                  >
                     <CrownIcon className="h-4 w-4 mr-2" />
                     {t('sidebar.upgradeButton')}
                   </Button>

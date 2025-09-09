@@ -8,7 +8,8 @@ import { Progress } from '@ui/components/progress';
 import { CopyIcon, RotateCcwIcon, TrashIcon, CameraIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useUsageLimits } from '@saas/payments/hooks/use-usage-limits';
-import { countWords } from '@shared/utils/text-utils';
+import { useActivePlan } from '@saas/payments/hooks/use-active-plan';
+import { countWords, getPerRequestWordLimit } from '@shared/utils/text-utils';
 import {
   Select,
   SelectContent,
@@ -106,7 +107,55 @@ export function TextProcessorPage({
     languageOptions[0]?.value || ''
   );
   const { canProcessText, checkLimit, monthlyUsage } = useUsageLimits();
+  const { activePlan } = useActivePlan();
+  
+  // Get per-request word limit based on user's plan
+  const perRequestLimit = getPerRequestWordLimit(activePlan?.id);
 
+  // Validate text against per-request word limit
+  const validatePerRequestLimit = (text: string): boolean => {
+    const wordCount = countWords(text);
+    if (wordCount > perRequestLimit) {
+      const planName = activePlan?.id === 'credits' ? 'Credits' : 
+                       activePlan?.id === 'starter' ? 'Starter' : 
+                       activePlan?.id === 'pro' ? 'Pro' : 
+                       activePlan?.id === 'max' ? 'Max' : 'Free';
+      
+      toast.error(
+        `${planName} plan limit: ${perRequestLimit.toLocaleString()} words per request. Your text has ${wordCount.toLocaleString()} words.`
+      );
+      return false;
+    }
+    return true;
+  };
+
+  // Handle text input with per-request limit validation
+  const handleTextChange = (text: string) => {
+    if (text.length > maxLength) {
+      return; // Let maxLength handle character limits
+    }
+    
+    const wordCount = countWords(text);
+    if (wordCount > perRequestLimit) {
+      // If exceeding per-request limit, don't update the text
+      validatePerRequestLimit(text); // Show error message
+      return;
+    }
+    
+    setInputText(text);
+  };
+
+  // Handle paste events with validation
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const pasteText = e.clipboardData.getData('text');
+    const currentText = inputText;
+    const newText = currentText + pasteText;
+    
+    if (!validatePerRequestLimit(newText)) {
+      e.preventDefault(); // Prevent paste if it exceeds limit
+      return;
+    }
+  };
 
   const handleCopy = async (text: string) => {
     try {
@@ -127,7 +176,12 @@ export function TextProcessorPage({
       return;
     }
     
-    // Check if user can process this many words
+    // Check per-request word limit
+    if (!validatePerRequestLimit(inputText)) {
+      return;
+    }
+    
+    // Check if user can process this many words (monthly limit)
     if (!canProcessText(wordCount)) {
       if (!checkLimit(wordCount)) {
         return; // This will trigger the pricing gate via checkLimit
@@ -196,8 +250,8 @@ export function TextProcessorPage({
 
           {/* Character/Word Count */}
           <div className="text-xs text-muted-foreground space-y-1">
-            <div>
-              {countWords(inputText)} {t('textProcessor.words')} • {inputText.length}/{maxLength} {t('textProcessor.chars')}
+            <div className={`${countWords(inputText) > perRequestLimit ? 'text-red-500' : ''}`}>
+              {countWords(inputText)}/{perRequestLimit.toLocaleString()} {t('textProcessor.words')} • {inputText.length}/{maxLength} {t('textProcessor.chars')}
             </div>
             {monthlyUsage && (
               <div className={`${monthlyUsage.remainingWords < countWords(inputText) ? 'text-red-500' : monthlyUsage.remainingWords < 1000 ? 'text-yellow-500' : ''}`}>
@@ -215,7 +269,8 @@ export function TextProcessorPage({
               <Textarea
                 placeholder={placeholder}
                 value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                onChange={(e) => handleTextChange(e.target.value)}
+                onPaste={handlePaste}
                 className="w-full h-full resize-none border border-background-text dark:border-background-text bg-white dark:bg-background-text text-slate-900 dark:text-slate-100 text-base leading-relaxed focus:ring-1 focus:ring-primary/20 focus:border-primary/30 rounded-xl p-4"
                 maxLength={maxLength}
               />
