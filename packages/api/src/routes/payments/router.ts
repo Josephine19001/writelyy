@@ -1,10 +1,5 @@
 import { type Config, config } from '@repo/config';
-import { getOrganizationMembership } from '@repo/database';
-import {
-  PurchaseSchema,
-  getOrganizationById,
-  getPurchaseById
-} from '@repo/database';
+import { PurchaseSchema, getPurchaseById } from '@repo/database';
 import { logger } from '@repo/logs';
 import {
   createCheckoutLink,
@@ -71,8 +66,7 @@ export const paymentsRouter = new Hono()
       z.object({
         type: z.enum(['one-time', 'subscription']),
         productId: z.string(),
-        redirectUrl: z.string().optional(),
-        organizationId: z.string().optional()
+        redirectUrl: z.string().optional()
       })
     ),
     describeRoute({
@@ -87,19 +81,12 @@ export const paymentsRouter = new Hono()
       }
     }),
     async (c) => {
-      const { productId, redirectUrl, type, organizationId } =
-        c.req.valid('query');
+      const { productId, redirectUrl, type } = c.req.valid('query');
       const user = c.get('user');
 
-      const customerId = await getCustomerIdFromEntity(
-        organizationId
-          ? {
-              organizationId
-            }
-          : {
-              userId: user.id
-            }
-      );
+      const customerId = await getCustomerIdFromEntity({
+        userId: user.id
+      });
 
       const plan = Object.entries(plans).find(([_planId, plan]) =>
         plan.prices?.find((price) => price.productId === productId)
@@ -110,14 +97,6 @@ export const paymentsRouter = new Hono()
       const trialPeriodDays =
         price && 'trialPeriodDays' in price ? price.trialPeriodDays : undefined;
 
-      const organization = organizationId
-        ? await getOrganizationById(organizationId)
-        : undefined;
-
-      if (organization === null) {
-        throw new HTTPException(404);
-      }
-
       try {
         const checkoutLink = await createCheckoutLink({
           type,
@@ -125,19 +104,28 @@ export const paymentsRouter = new Hono()
           email: user.email,
           name: user.name ?? '',
           redirectUrl,
-          ...(organizationId ? { organizationId } : { userId: user.id }),
+          userId: user.id,
           trialPeriodDays,
           customerId: customerId ?? undefined
         });
 
         if (!checkoutLink) {
-          throw new HTTPException(500);
+          logger.error('Checkout link creation returned null/undefined');
+          throw new HTTPException(500, {
+            message: 'Failed to create checkout link - no URL returned'
+          });
         }
 
         return c.json({ checkoutLink });
       } catch (e) {
-        logger.error(e);
-        throw new HTTPException(500);
+        logger.error('Checkout link creation failed:', e);
+
+        // Provide more specific error message
+        const errorMessage =
+          e instanceof Error
+            ? e.message
+            : 'Unknown error creating checkout link';
+        throw new HTTPException(500, { message: errorMessage });
       }
     }
   )
@@ -173,17 +161,8 @@ export const paymentsRouter = new Hono()
         throw new HTTPException(403);
       }
 
-      if (purchase.organizationId) {
-        const userOrganizationMembership = await getOrganizationMembership(
-          purchase.organizationId,
-          user.id
-        );
-        if (userOrganizationMembership?.role !== 'owner') {
-          throw new HTTPException(403);
-        }
-      }
-
-      if (purchase.userId && purchase.userId !== user.id) {
+      // For user-level billing, just check if this purchase belongs to the current user
+      if (purchase.userId !== user.id) {
         throw new HTTPException(403);
       }
 
@@ -195,13 +174,17 @@ export const paymentsRouter = new Hono()
         });
 
         if (!customerPortalLink) {
-          throw new HTTPException(500);
+          logger.error('Customer portal link creation returned null/undefined');
+          throw new HTTPException(500, { message: 'Failed to create customer portal link - no URL returned' });
         }
 
         return c.json({ customerPortalLink });
       } catch (e) {
-        logger.error('Could not create customer portal link', e);
-        throw new HTTPException(500);
+        logger.error('Could not create customer portal link:', e);
+        
+        // Provide more specific error message
+        const errorMessage = e instanceof Error ? e.message : 'Unknown error creating customer portal link';
+        throw new HTTPException(500, { message: errorMessage });
       }
     }
   );

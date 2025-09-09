@@ -68,9 +68,9 @@ export default async function AccountSettingsLayout({
 
   return (
     <SettingsLayoutWrapper>
-      <div className="flex flex-col lg:flex-row h-full">
+      <div className="flex flex-col lg:flex-row min-h-full">
         {/* Settings Sidebar */}
-        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-border/50 bg-background">
+        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-border/50 bg-background lg:flex-shrink-0">
           {/* <div className="p-4 border-b border-border/50">
             <PageHeader
               title={t('settings.account.title')}
@@ -83,7 +83,7 @@ export default async function AccountSettingsLayout({
         </div>
 
         {/* Settings Content */}
-        <div className="flex-1 overflow-auto bg-background p-4 min-h-0">{children}</div>
+        <div className="flex-1 bg-background p-4">{children}</div>
       </div>
     </SettingsLayoutWrapper>
   );

@@ -3,8 +3,7 @@ import {
   deletePurchaseBySubscriptionId,
   getPurchaseBySubscriptionId,
   updatePurchase,
-  addCreditsToOrganization,
-  resetMonthlyCredits
+  updateUserWordLimit
 } from '@repo/database';
 import { logger } from '@repo/logs';
 import { config } from '@repo/config';
@@ -19,6 +18,32 @@ import type {
 } from '../../types';
 
 let stripeClient: Stripe | null = null;
+
+function getPlanIdFromProductId(productId: string): string | null {
+  const plans = config.payments.plans;
+  for (const [planId, planConfig] of Object.entries(plans)) {
+    if (planConfig.prices?.some((price) => price.productId === productId)) {
+      return planId;
+    }
+  }
+  return null;
+}
+
+function getMonthlyWordLimit(planId?: string): number {
+  switch (planId) {
+    case 'starter':
+      return 15000;
+    case 'pro':
+      return 60000;
+    case 'max':
+    case 'premium':
+      return 150000;
+    case 'credits':
+      return 60000;
+    default:
+      return 1000;
+  }
+}
 
 export function getStripeClient() {
   if (stripeClient) {
@@ -43,21 +68,31 @@ export const createCheckoutLink: CreateCheckoutLink = async (options) => {
     productId,
     redirectUrl,
     customerId,
-    organizationId,
     userId,
     trialPeriodDays,
     seats,
     email
   } = options;
 
+  if (!productId) {
+    throw new Error('Missing productId for checkout session');
+  }
+
+  if (!email && !customerId) {
+    throw new Error('Either email or customerId must be provided');
+  }
+
+  const successUrl =
+    redirectUrl || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
   const metadata = {
-    organization_id: organizationId || null,
     user_id: userId || null
   };
 
   const response = await stripeClient.checkout.sessions.create({
     mode: type === 'subscription' ? 'subscription' : 'payment',
-    success_url: redirectUrl ?? '',
+    success_url: successUrl,
+    cancel_url: successUrl, // Add cancel URL
     line_items: [
       {
         quantity: seats ?? 1,
@@ -82,6 +117,10 @@ export const createCheckoutLink: CreateCheckoutLink = async (options) => {
     metadata
   });
 
+  if (!response.url) {
+    throw new Error('Stripe returned no checkout URL');
+  }
+
   return response.url;
 };
 
@@ -91,10 +130,18 @@ export const createCustomerPortalLink: CreateCustomerPortalLink = async ({
 }) => {
   const stripeClient = getStripeClient();
 
+  if (!customerId) {
+    throw new Error('Missing customerId for customer portal creation');
+  }
+
   const response = await stripeClient.billingPortal.sessions.create({
     customer: customerId,
-    return_url: redirectUrl ?? ''
+    return_url: redirectUrl || 'http://localhost:3000'
   });
+
+  if (!response.url) {
+    throw new Error('Stripe returned no customer portal URL');
+  }
 
   return response.url;
 };
@@ -178,7 +225,7 @@ export const webhookHandler: WebhookHandler = async (req) => {
         // Only handle one-time purchases here to avoid duplicates
         if (mode === 'payment') {
           const purchaseData = {
-            organizationId: metadata?.organization_id || null,
+            organizationId: null, // Always null for user-level billing
             userId: metadata?.user_id || null,
             customerId: customer as string,
             type: 'ONE_TIME' as const,
@@ -189,25 +236,30 @@ export const webhookHandler: WebhookHandler = async (req) => {
 
           const purchase = await createPurchase(purchaseData);
 
-          // Add credits for one-time purchase
-          if (purchaseData.organizationId && purchase) {
-            const credits = getCreditsByProductId(productId);
-            if (credits > 0) {
-              await addCreditsToOrganization(
-                purchaseData.organizationId,
-                credits,
-                'PURCHASE_ONETIME',
-                `One-time purchase: ${credits} credits`,
-                purchase.id
-              );
+          // Update user's monthly word limit for one-time purchase
+          if (purchaseData.userId && purchase) {
+            const planId = getPlanIdFromProductId(productId);
+            const newWordLimit = getMonthlyWordLimit(planId || undefined);
+
+            try {
+              await updateUserWordLimit(purchaseData.userId, newWordLimit);
               logger.info(
-                `➕ Added one-time credits: ${credits} for organization ${purchaseData.organizationId}`
+                `📝 Updated word limit: ${newWordLimit} words for user ${purchaseData.userId} (one-time plan: ${planId})`
+              );
+            } catch (error) {
+              logger.error(
+                '❌ Failed to update user word limit for one-time purchase:',
+                error
               );
             }
           }
 
+          // Credits not used in user-level billing
+          logger.info(
+            '✅ One-time purchase processed successfully (user-level billing)'
+          );
+
           await setCustomerIdToEntity(customer as string, {
-            organizationId: metadata?.organization_id,
             userId: metadata?.user_id
           });
 
@@ -241,7 +293,7 @@ export const webhookHandler: WebhookHandler = async (req) => {
 
         const purchase = await createPurchase({
           subscriptionId: id,
-          organizationId: metadata?.organization_id || null,
+          organizationId: null, // Always null for user-level billing
           userId: metadata?.user_id || null,
           customerId: customer as string,
           type: 'SUBSCRIPTION',
@@ -249,19 +301,24 @@ export const webhookHandler: WebhookHandler = async (req) => {
           status
         });
 
-        // Add initial credits for subscription
-        if (metadata?.organization_id && purchase) {
-          const credits = getCreditsByProductId(productId);
-          if (credits > 0) {
-            await resetMonthlyCredits(metadata.organization_id, credits);
+        // Update user's monthly word limit based on their plan
+        if (metadata?.user_id && purchase) {
+          const planId = getPlanIdFromProductId(productId);
+          const newWordLimit = getMonthlyWordLimit(planId || undefined);
+
+          try {
+            await updateUserWordLimit(metadata.user_id, newWordLimit);
             logger.info(
-              `🔄 Set initial monthly credits: ${credits} for organization ${metadata.organization_id}`
+              `📝 Updated word limit: ${newWordLimit} words for user ${metadata.user_id} (plan: ${planId})`
             );
+          } catch (error) {
+            logger.error('❌ Failed to update user word limit:', error);
           }
         }
 
+        // Credits not used in user-level billing - user word limits are set above
+
         await setCustomerIdToEntity(customer as string, {
-          organizationId: metadata?.organization_id,
           userId: metadata?.user_id
         });
 
@@ -285,27 +342,17 @@ export const webhookHandler: WebhookHandler = async (req) => {
             break;
           }
 
-          // Find the purchase record
-          const purchase = await getPurchaseBySubscriptionId(subscriptionId);
-
-          if (purchase?.organizationId) {
-            const credits = getCreditsByProductId(purchase.productId);
-            if (credits > 0) {
-              await resetMonthlyCredits(purchase.organizationId, credits);
-              logger.info(
-                `🔄 Monthly credits renewed: ${credits} for organization ${purchase.organizationId}`
-              );
-            }
-          } else {
-            logger.error(
-              `❌ No purchase found for subscription ${subscriptionId}`
-            );
-          }
+          // For user-level billing, renewals don't need special handling
+          // Word limits are already set and usage resets automatically each month
+          logger.info(
+            `🔄 Subscription renewal processed for ${subscriptionId}`
+          );
         }
         break;
       }
       case 'customer.subscription.updated': {
         const subscriptionId = event.data.object.id;
+        const newProductId = event.data.object.items?.data[0].price?.id;
 
         const existingPurchase =
           await getPurchaseBySubscriptionId(subscriptionId);
@@ -314,14 +361,57 @@ export const webhookHandler: WebhookHandler = async (req) => {
           await updatePurchase({
             id: existingPurchase.id,
             status: event.data.object.status,
-            productId: event.data.object.items?.data[0].price?.id
+            productId: newProductId
           });
+
+          // Update user's word limit if product changed
+          if (
+            existingPurchase.userId &&
+            newProductId &&
+            newProductId !== existingPurchase.productId
+          ) {
+            const planId = getPlanIdFromProductId(newProductId);
+            const newWordLimit = getMonthlyWordLimit(planId || undefined);
+
+            try {
+              await updateUserWordLimit(existingPurchase.userId, newWordLimit);
+              logger.info(
+                `📝 Updated word limit on plan change: ${newWordLimit} words for user ${existingPurchase.userId} (plan: ${planId})`
+              );
+            } catch (error) {
+              logger.error(
+                '❌ Failed to update user word limit on subscription update:',
+                error
+              );
+            }
+          }
         }
 
         break;
       }
       case 'customer.subscription.deleted': {
-        await deletePurchaseBySubscriptionId(event.data.object.id);
+        const subscriptionId = event.data.object.id;
+        const existingPurchase =
+          await getPurchaseBySubscriptionId(subscriptionId);
+
+        // Reset user to free plan word limit before deleting purchase
+        if (existingPurchase?.userId) {
+          const freeWordLimit = getMonthlyWordLimit(); // defaults to free plan
+
+          try {
+            await updateUserWordLimit(existingPurchase.userId, freeWordLimit);
+            logger.info(
+              `📝 Reset to free word limit: ${freeWordLimit} words for user ${existingPurchase.userId} (subscription cancelled)`
+            );
+          } catch (error) {
+            logger.error(
+              '❌ Failed to reset user word limit on subscription cancellation:',
+              error
+            );
+          }
+        }
+
+        await deletePurchaseBySubscriptionId(subscriptionId);
 
         break;
       }
@@ -341,35 +431,4 @@ export const webhookHandler: WebhookHandler = async (req) => {
   }
 };
 
-// Helper function to get credits by product ID
-function getCreditsByProductId(productId: string): number {
-  // Get all prices from all plans
-  const allPrices = [
-    ...config.payments.plans.starter.prices,
-    ...config.payments.plans.pro.prices,
-    ...config.payments.plans.max.prices
-  ];
-  
-  const price = allPrices.find((p) => p.productId === productId);
-  if (!price) return 0;
-  
-  // Determine credits based on plan type and interval
-  // Find which plan this productId belongs to
-  let planType = '';
-  if (config.payments.plans.starter.prices.some(p => p.productId === productId)) {
-    planType = 'starter';
-  } else if (config.payments.plans.pro.prices.some(p => p.productId === productId)) {
-    planType = 'pro';
-  } else if (config.payments.plans.max.prices.some(p => p.productId === productId)) {
-    planType = 'max';
-  }
-  
-  // Assign credits based on plan type
-  const creditsByPlan = {
-    starter: 10000,  // 10k credits
-    pro: 50000,      // 50k credits  
-    max: 200000      // 200k credits
-  };
-  
-  return creditsByPlan[planType as keyof typeof creditsByPlan] || 0;
-}
+// Credits function removed - not used in user-level billing

@@ -10,7 +10,9 @@ export function SettingsLayoutWrapper({ children }: PropsWithChildren) {
       currentPage="humanizer" // Default, not used in settings
       onNewAction={() => {}} // No-op for settings
     >
-      <div className="p-6">{children}</div>
+      <div className="h-full overflow-auto">
+        <div className="p-6">{children}</div>
+      </div>
     </AppSidebarLayout>
   );
 }

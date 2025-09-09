@@ -28,13 +28,20 @@ export default async function BillingSettingsPage() {
 
 	const { activePlan } = createPurchasesHelper(purchases);
 
+	const hasPaidPlan = activePlan && 'purchaseId' in activePlan && activePlan.purchaseId;
+
 	return (
 		<SettingsList>
-			{activePlan && <ActivePlan />}
-			<ChangePlan
-				userId={session?.user.id}
-				activePlanId={activePlan?.id}
-			/>
+			{hasPaidPlan ? (
+				// User has a paid plan - show it with "Manage billing" button
+				<ActivePlan />
+			) : (
+				// User has no paid plan - show pricing table to choose one
+				<ChangePlan
+					userId={session?.user.id}
+					activePlanId={activePlan?.id}
+				/>
+			)}
 		</SettingsList>
 	);
 }

@@ -361,3 +361,12 @@ export async function getUserMonthlyStats(userId: string) {
     year: currentYear,
   };
 }
+
+// Helper function to update user's monthly word limit
+export async function updateUserWordLimit(userId: string, newLimit: number) {
+  // @ts-ignore - Prisma client will be regenerated after migration
+  return db.user.update({
+    where: { id: userId },
+    data: { monthlyWordLimit: newLimit },
+  });
+}

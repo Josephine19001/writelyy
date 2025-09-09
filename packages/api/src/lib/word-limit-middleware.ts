@@ -15,6 +15,23 @@ export interface PerRequestLimitResult {
   message?: string;
 }
 
+// Monthly word limits based on plan tiers
+export function getMonthlyWordLimit(planId?: string): number {
+  switch (planId) {
+    case 'starter':
+      return 15000; // 15k words per month
+    case 'pro': 
+      return 60000; // 60k words per month
+    case 'max':
+    case 'premium': // fallback for premium plans
+      return 150000; // 150k words per month
+    case 'credits':
+      return 60000; // Same as pro for credit users
+    default:
+      return 1000; // Free plan - 1k words per month
+  }
+}
+
 // Per-request word limits based on plan tiers
 export function getPerRequestWordLimit(planId?: string): number {
   switch (planId) {

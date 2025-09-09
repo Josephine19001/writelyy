@@ -4,11 +4,9 @@ import { SettingsItem } from "@saas/shared/components/SettingsItem";
 import { useTranslations } from "next-intl";
 
 export function ChangePlan({
-	organizationId,
 	userId,
 	activePlanId,
 }: {
-	organizationId?: string;
 	userId?: string;
 	activePlanId?: string;
 }) {
@@ -21,7 +19,6 @@ export function ChangePlan({
 			isColumn={true}
 		>
 			<PricingTable
-				organizationId={organizationId}
 				userId={userId}
 				activePlanId={activePlanId}
 				variant="compact"

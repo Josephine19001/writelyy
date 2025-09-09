@@ -42,7 +42,16 @@ export const useCreateCheckoutLinkMutation = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create checkout link');
+        let errorMessage = 'Failed to create checkout link';
+        try {
+          const errorData = await response.json();
+          if (errorData?.message) {
+            errorMessage = errorData.message;
+          }
+        } catch {
+          // If can't parse error response, use default message
+        }
+        throw new Error(errorMessage);
       }
 
       return response.json();

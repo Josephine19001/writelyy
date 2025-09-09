@@ -13,73 +13,32 @@ interface CreditData {
 
 export function useActivePlan() {
   const { activeOrganization } = useActiveOrganization();
-  const { activePlan: purchaseBasedPlan, purchases } = usePurchases(
-    activeOrganization?.id
-  );
+  // For user-level billing, don't pass organization ID
+  const { activePlan: purchaseBasedPlan, purchases } = usePurchases();
 
-  // Fetch credit balance
-  const { data: creditData } = useQuery({
-    queryKey: ['credits', activeOrganization?.id],
-    queryFn: async (): Promise<CreditData> => {
-      if (!activeOrganization?.id) {
-        return {
-          creditBalance: 0,
-          lastCreditReset: null,
-          nextCreditReset: null
-        };
-      }
+  // Since billing is at user level, we don't need organization-based credits
+  // Credits system can be removed or moved to user level if needed
+  const creditData = {
+    creditBalance: 0,
+    lastCreditReset: null,
+    nextCreditReset: null
+  };
 
-      try {
-        const response = await fetch(
-          `/api/organizations/${activeOrganization.id}/credits`
-        );
-
-        if (!response.ok) {
-          return {
-            creditBalance: 0,
-            lastCreditReset: null,
-            nextCreditReset: null
-          };
-        }
-
-        return response.json();
-      } catch (error) {
-        console.error('Failed to fetch credit data:', error);
-        return {
-          creditBalance: 0,
-          lastCreditReset: null,
-          nextCreditReset: null
-        };
-      }
-    },
-    enabled: !!activeOrganization?.id,
-    staleTime: 30 * 1000, // 30 seconds
-    refetchInterval: 60 * 1000 // Refetch every minute
-  });
-
-  // Determine the actual active plan considering both purchases and credits
+  // Determine the actual active plan for user-level billing
   const activePlan = useMemo(() => {
-    // If we have a valid purchase-based plan, use it
-    if (purchaseBasedPlan) {
-      return purchaseBasedPlan;
-    }
-
-    // If we have credit balance > 0, user has credits plan
-    if (creditData && creditData.creditBalance > 0) {
-      return {
-        id: 'credits' as const,
-        status: 'active' as const
-      };
-    }
-
-    // Otherwise, use the purchase-based plan (which will be free plan or null)
+    // Return the purchase-based plan (includes free plan fallback)
     return purchaseBasedPlan;
-  }, [purchaseBasedPlan, creditData]);
+  }, [purchaseBasedPlan]);
+
+  // Add refresh functionality for when user returns from payment
+  const { refetch: refetchPurchases } = usePurchases();
 
   return {
     activePlan,
     purchases,
     creditData,
+    // Add refresh function
+    refresh: refetchPurchases,
     // Helper functions
     hasSubscription: (planIds?: string[] | string) => {
       return (
